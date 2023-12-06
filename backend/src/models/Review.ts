@@ -14,7 +14,7 @@ export interface IReview {
   comment?: string;
 }
 
-export const bookingSchema = new Schema<IReview>({
+export const reviewSchema = new Schema<IReview>({
   firstname: { type: String, required: true },
   lastname: { type: String, required: false },
   wineName: { type: String, required: true },
@@ -28,4 +28,4 @@ export const bookingSchema = new Schema<IReview>({
   comment: { type: String, required: false },
 });
 
-export const Booking = model<IReview>("Review", bookingSchema);
+export const Review = model<IReview>("Review", reviewSchema);
