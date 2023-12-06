@@ -2,16 +2,16 @@ import { Schema, model } from "mongoose";
 
 export interface IReview {
   firstname: string;
-  lastname?: string;
+  lastname: string;
   wineName: string;
   photo: string;
   producer: string;
   percentage: string;
   price: number;
   rating: number;
-  foodPairing?: string;
+  foodPairing: string;
   grape: string;
-  comment?: string;
+  comment: string;
 }
 
 export const reviewSchema = new Schema<IReview>({
