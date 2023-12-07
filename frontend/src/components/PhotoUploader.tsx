@@ -1,14 +1,9 @@
-//import { MdOutlineAddAPhoto } from "react-icons/md";
+import { MdOutlineAddAPhoto } from "react-icons/md";
 import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IReview } from "../models/IReview";
 
 const PhotoUploader = () => {
-  interface INewPhoto {
-    uploadedPhoto: File | null;
-    // other properties...
-  }
-
   const [newReview, setNewReview] = useState<IReview>({
     firstname: "",
     lastname: "test",
@@ -23,27 +18,17 @@ const PhotoUploader = () => {
     comment: "test",
   });
 
-  const [newPhoto, setNewPhoto] = useState<INewPhoto>({
-    uploadedPhoto: null,
-  });
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewReview({ ...newReview, [e.target.name]: e.target.value });
   };
 
-  //   const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
-  //     if (!e.target.files) return;
-  //     setNewPhoto({ ...newPhoto, uploadedPhoto: e.target.files[0] });
-  //     console.log(e.target.files[0]);
-  //   };
-
   const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
-    //if (!e.target.files) return;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     setNewReview({ ...newReview, photo: e.target.files![0] });
   };
 
-  console.log(newPhoto);
-  console.log(newReview);
+  //console.log(newReview);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -72,24 +57,19 @@ const PhotoUploader = () => {
   };
 
   return (
-    // <label className="uploadButton" htmlFor="file_picker">
-    //   <MdOutlineAddAPhoto />
-    //   <input
-    //     hidden
-    //     type="file"
-    //     name="file_picker"
-    //     id="file_picker"
-    //     onChange={(e) => handleChange(e)}
-    //   />
-    // </label>
     <>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input
-          type="file"
-          accept=".png, .jpg, .jpeg"
-          name="photo"
-          onChange={handlePhoto}
-        />
+        <label className="uploadButton" htmlFor="file_picker">
+          <MdOutlineAddAPhoto />
+          <input
+            hidden
+            type="file"
+            name="PHOTO"
+            accept=".png, .jpg, .jpeg"
+            id="file_picker"
+            onChange={(e) => handlePhoto(e)}
+          />
+        </label>
         <input
           type="text"
           placeholder="firstname"
