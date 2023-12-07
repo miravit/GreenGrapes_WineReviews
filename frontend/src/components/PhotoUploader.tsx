@@ -18,6 +18,8 @@ const PhotoUploader = () => {
     comment: "test",
   });
 
+  const [photoUploaded, setPhotoUploaded] = useState("");
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewReview({ ...newReview, [e.target.name]: e.target.value });
   };
@@ -26,6 +28,9 @@ const PhotoUploader = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     setNewReview({ ...newReview, photo: e.target.files![0] });
+    if (e.target.files![0]) {
+      setPhotoUploaded("Photo Successfully uploaded!");
+    }
   };
 
   //console.log(newReview);
@@ -70,6 +75,7 @@ const PhotoUploader = () => {
             onChange={(e) => handlePhoto(e)}
           />
         </label>
+
         <input
           type="text"
           placeholder="firstname"
@@ -79,6 +85,7 @@ const PhotoUploader = () => {
         />
         <input type="submit" />
       </form>
+      <p>{photoUploaded}</p>
     </>
   );
 };
