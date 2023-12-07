@@ -1,12 +1,10 @@
-import { useState } from "react";
 import "./App.css";
+import PhotoUploader from "./components/PhotoUploader";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <p>hej här kommer min app vara </p>
+      <PhotoUploader />
     </>
   );
 }
