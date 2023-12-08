@@ -1,6 +1,6 @@
 import { MdOutlineAddAPhoto } from "react-icons/md";
 import axios from "axios";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { IReview } from "../models/IReview";
 
 const PhotoUploader = () => {
@@ -19,6 +19,7 @@ const PhotoUploader = () => {
   });
 
   const [photoUploaded, setPhotoUploaded] = useState("");
+  //const [images, setImage] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewReview({ ...newReview, [e.target.name]: e.target.value });
@@ -55,25 +56,9 @@ const PhotoUploader = () => {
       "http://localhost:4000/api/v1/review",
       formData
     );
-    console.log(response.data);
+
     return response.data;
   };
-
-  useEffect(() => {
-    const response = async () => {
-      try {
-        const response = await axios.get<IReview>(
-          "http://localhost:4000/api/v1/review"
-        );
-        console.log(response.data);
-        // Handle the data as needed
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    response();
-  }, []);
 
   return (
     <>
@@ -99,6 +84,7 @@ const PhotoUploader = () => {
         </label>
       </form>
       <p>{photoUploaded}</p>
+      <div></div>
     </>
   );
 };

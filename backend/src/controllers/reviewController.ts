@@ -1,5 +1,15 @@
+const cloudinary = require("cloudinary").v2;
 import { RequestHandler } from "express";
 import { Review } from "../models/Review";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import dotenv from "dotenv";
+dotenv.config();
+
+cloudinary.config({
+  cloud_name: process.env.cloud_name,
+  api_key: process.env.cloud_api_key,
+  api_secret: process.env.cloud_api_secret,
+});
 
 export const getAllReviews: RequestHandler = async (req, res, next) => {
   try {
@@ -31,6 +41,10 @@ export const createReview: RequestHandler = async (req, res, next) => {
     const photo = req.file?.filename;
     console.log("------- photo i backend:  " + photo);
 
+    if (req.file) {
+      const photoToCloudinary = await cloudinary.uploader.upload(req.file.path);
+    }
+
     const newReview = await Review.create({
       firstname: firstname,
       lastname: lastname,
@@ -44,6 +58,7 @@ export const createReview: RequestHandler = async (req, res, next) => {
       grape: grape,
       comment: comment,
     });
+    //denna laddar upp bilden till Cloudfoundry.
 
     return res.status(201).json(newReview);
   } catch (error) {
