@@ -8,6 +8,7 @@ import cors from "cors";
 const app = express();
 
 app.use(express.json());
+app.use(express.static("public")); // maybe not needed
 
 app.use((req, res, next) => {
   console.log(`processing ${req.method} request to ${req.path}`);

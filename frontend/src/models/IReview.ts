@@ -1,5 +1,4 @@
 export interface IReview {
-  _id: string;
   firstname: string;
   lastname: string;
   wineName: string;
