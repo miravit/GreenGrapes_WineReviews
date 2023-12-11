@@ -6,24 +6,24 @@ import { IReview } from "../models/IReview";
 const PhotoUploader = () => {
   const [newReview, setNewReview] = useState<IReview>({
     firstname: "",
-    lastname: "test",
-    wineName: "test",
-    photo: "test",
-    producer: "test",
-    percentage: "test",
+    lastname: "",
+    wineName: "",
+    photo: "",
+    producer: "",
+    percentage: "",
     price: 0,
-    rating: 1,
-    foodPairing: "test",
-    grape: "test",
-    comment: "test",
+    rating: 0,
+    foodPairing: "",
+    grape: "",
+    comment: "",
   });
 
   const [photoUploaded, setPhotoUploaded] = useState("");
   //const [images, setImage] = useState("");
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewReview({ ...newReview, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   setNewReview({ ...newReview, [e.target.name]: e.target.value });
+  // };
 
   const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -64,13 +64,13 @@ const PhotoUploader = () => {
   return (
     <>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input
+        {/* <input
           type="text"
           placeholder="firstname"
           name="firstname"
           value={newReview.firstname}
           onChange={handleChange}
-        />
+        /> */}
         <input type="submit" />
         <label className="uploadButton" htmlFor="file_picker">
           <MdOutlineAddAPhoto />
