@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IReview } from "../models/IReview";
 
 const AllPhotos = () => {
@@ -21,6 +21,7 @@ const AllPhotos = () => {
       alert("error");
     }
   };
+
   useEffect(() => {
     getReviewData();
   }, []);

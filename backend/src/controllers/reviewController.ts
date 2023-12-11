@@ -38,12 +38,11 @@ export const createReview: RequestHandler = async (req, res, next) => {
     } = req.body;
 
     //detta är för multer middleware
-    const photo = req.file?.filename;
-    console.log("------- photo i backend:  " + photo);
+    const photo = req.file?.path;
 
-    if (req.file) {
-      const photoToCloudinary = await cloudinary.uploader.upload(req.file.path);
-    }
+    console.log("------- photo i path:  " + photo);
+
+    //console.log(req.file?.path);
 
     const newReview = await Review.create({
       firstname: firstname,
@@ -59,8 +58,15 @@ export const createReview: RequestHandler = async (req, res, next) => {
       comment: comment,
     });
     //denna laddar upp bilden till Cloudfoundry.
-
-    return res.status(201).json(newReview);
+    if (req.file) {
+      const photoToCloudinary = await cloudinary.uploader.upload(req.file.path);
+      console.log("kolla här är url" + photoToCloudinary.url);
+      console.log("och här är public id" + photoToCloudinary.public_id);
+    }
+    return res
+      .status(201)
+      .json(newReview)
+      .send(`${newReview.photo} uploaded to Cloudinary`);
   } catch (error) {
     console.error(error);
     return res.status(500).json("Sorry, couldn't create a new booking");

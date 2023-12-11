@@ -64,7 +64,7 @@ const storage = new CloudinaryStorage({
       allowedFormats: ["png", "jpg", "jpeg"],
       folder: "green_grapes_photos",
       //format: "jpeg",
-      public_id: "some_unique_id",
+      public_id: uuidv4(),
       width: 250,
       height: 250,
       crop: "fill",
