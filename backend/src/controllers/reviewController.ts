@@ -1,6 +1,6 @@
 const cloudinary = require("cloudinary").v2;
 import { RequestHandler } from "express";
-import { Review } from "../models/Review";
+import { Review } from "../../../backend/src/models/Review";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import dotenv from "dotenv";
 dotenv.config();
@@ -60,13 +60,8 @@ export const createReview: RequestHandler = async (req, res, next) => {
     //denna laddar upp bilden till Cloudfoundry.
     if (req.file) {
       const photoToCloudinary = await cloudinary.uploader.upload(req.file.path);
-      console.log("kolla här är url" + photoToCloudinary.url);
-      console.log("och här är public id" + photoToCloudinary.public_id);
     }
-    return res
-      .status(201)
-      .json(newReview)
-      .send(`${newReview.photo} uploaded to Cloudinary`);
+    return res.status(201).json(newReview);
   } catch (error) {
     console.error(error);
     return res.status(500).json("Sorry, couldn't create a new booking");

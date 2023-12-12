@@ -5,25 +5,25 @@ import { IReview } from "../models/IReview";
 
 const PhotoUploader = () => {
   const [newReview, setNewReview] = useState<IReview>({
-    firstname: "",
-    lastname: "",
-    wineName: "",
-    photo: "",
-    producer: "",
-    percentage: "",
+    firstname: "testing",
+    lastname: "ss",
+    wineName: "ss",
+    photo: "ss",
+    producer: "ss",
+    percentage: "ss",
     price: 0,
     rating: 0,
-    foodPairing: "",
-    grape: "",
-    comment: "",
+    foodPairing: "ss",
+    grape: "ss",
+    comment: "ss",
   });
 
   const [photoUploaded, setPhotoUploaded] = useState("");
   //const [images, setImage] = useState("");
 
-  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setNewReview({ ...newReview, [e.target.name]: e.target.value });
-  // };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewReview({ ...newReview, [e.target.name]: e.target.value });
+  };
 
   const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -60,17 +60,18 @@ const PhotoUploader = () => {
     console.log(response.data);
     return response.data;
   };
+  console.log(newReview);
 
   return (
     <>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        {/* <input
+        <input
           type="text"
           placeholder="firstname"
           name="firstname"
           value={newReview.firstname}
           onChange={handleChange}
-        /> */}
+        />
         <input type="submit" />
         <label className="uploadButton" htmlFor="file_picker">
           <MdOutlineAddAPhoto />
