@@ -5,7 +5,7 @@ import Form from "./components/Form";
 import { IAllReviewsContext, IReviewContext } from "./contexts/ReviewContext";
 import { IReview } from "./models/IReview";
 import { createNewReview, getAllReviews } from "./services/reviewApi";
-import PhotoUploader from "./components/PhotoUploader";
+import WelcomePage from "./components/pages/WelcomePage";
 
 function App() {
   const [allReviews, setAllReviews] = useState<IAllReviewsContext>(() => ({
@@ -74,6 +74,7 @@ function App() {
 
   return (
     <>
+      <WelcomePage />
       {/* <PhotoUploader /> */}
       <Form></Form>
       <AllPhotos />
