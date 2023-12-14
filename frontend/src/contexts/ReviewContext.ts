@@ -12,6 +12,7 @@ export interface IAllReviewsContext {
   getReviews: () => void;
 }
 
+// my context with the current context and the post request function.
 export const ReviewContext = createContext<IReviewContext>({
   review: {
     firstname: "",
@@ -33,6 +34,7 @@ export const ReviewContext = createContext<IReviewContext>({
   },
 });
 
+// get all reviews context with the list of all reviews + the get function.
 export const AllReviewsContext = createContext<IAllReviewsContext>({
   reviews: [],
   getReviews: () => {

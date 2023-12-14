@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import AllPhotos from "./components/AllPhotos";
 import Form from "./components/Form";
-import { IAllReviewsContext, IReviewContext } from "./contexts/ReviewContext";
+import {
+  AllReviewsContext,
+  IAllReviewsContext,
+  IReviewContext,
+  ReviewContext,
+} from "./contexts/ReviewContext";
 import { IReview } from "./models/IReview";
 import { createNewReview, getAllReviews } from "./services/reviewApi";
 import WelcomePage from "./components/pages/WelcomePage";
@@ -74,10 +79,14 @@ function App() {
 
   return (
     <>
-      <WelcomePage />
-      {/* <PhotoUploader /> */}
-      <Form></Form>
-      <AllPhotos />
+      <ReviewContext.Provider value={currentReview}>
+        <WelcomePage />
+        {/* <PhotoUploader /> */}
+        <Form></Form>
+        <AllReviewsContext.Provider value={allReviews}>
+          <AllPhotos />
+        </AllReviewsContext.Provider>
+      </ReviewContext.Provider>
     </>
   );
 }
