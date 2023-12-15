@@ -1,0 +1,17 @@
+{
+  "name": "greengrapes",
+  "version": "1.0.0",
+  "description": "This project is an organic wine application where friends can share and review their wines by uploading photos, giving ratings, adding comments, and providing details such as price and recommended food pairings. The goal is for friends to inspire each other and for the app to work as a personal wine library. From a technical point of view, the project will be implemented using a MongoDB database, Mongoose, NodeJS, Express, React, and Typescript. It will deploy using Render.com.",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "cd backend && npm install",
+    "start-server": "cd backend && node app.js",
+    "install-client": "cd client && npm install",
+    "build-client": "cd client && npm run build",
+    "start-client": "cd client && npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
