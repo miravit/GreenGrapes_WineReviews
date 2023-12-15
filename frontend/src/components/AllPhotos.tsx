@@ -25,7 +25,6 @@ const AllPhotos = () => {
   useEffect(() => {
     getReviewData();
   }, []);
-  console.log(data);
 
   return (
     <>
