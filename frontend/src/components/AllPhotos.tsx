@@ -29,13 +29,15 @@ const AllPhotos = () => {
   return (
     <>
       <div>
-        {data.map((photo, i) => (
-          <img
-            key={i}
-            src={photo.photo}
-            alt={"photo of the wine: " + photo.wineName}
-            style={{ width: "250px", height: "250px", margin: "5px" }}
-          />
+        {data.map((review, i) => (
+          <div key={i} style={{ margin: "10px" }}>
+            <img
+              src={review.photo}
+              alt={`Photo of the wine: ${review.wineName}`}
+              style={{ width: "250px", height: "250px" }}
+            />
+            <p>Firstname: {review.firstname}</p>
+          </div>
         ))}
       </div>
     </>
