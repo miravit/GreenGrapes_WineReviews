@@ -3,6 +3,7 @@ import { ReviewContext } from "../contexts/ReviewContext";
 import { IReview } from "../models/IReview";
 import { MdOutlineAddAPhoto } from "react-icons/md";
 import { FormStyled } from "./styled/FormStyled";
+import axios from "axios";
 
 const Form = () => {
   const { createReview, currentReview } = useContext(ReviewContext);
@@ -64,8 +65,12 @@ const Form = () => {
     finishedData.append("grape", formData.grape || "");
     finishedData.append("comment", formData.comment || "");
 
-    const response = await createReview(finishedData);
+    const response = await axios.post<IReview>(
+      "https://green-grapes-l2ar.onrender.com/api/v1/review",
+      finishedData
+    );
     console.log(response);
+    createReview(finishedData);
   };
 
   console.log(currentReview.firstname);
