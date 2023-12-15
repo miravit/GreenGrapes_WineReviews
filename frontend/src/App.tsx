@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./App.css";
 import AllPhotos from "./components/AllPhotos";
 import Form from "./components/Form";
@@ -21,7 +21,7 @@ function App() {
   }));
 
   const [currentReview, setCurrentReview] = useState<IReviewContext>({
-    review: {
+    currentReview: {
       firstname: "",
       lastname: "",
       wineName: "",
@@ -34,48 +34,31 @@ function App() {
       grape: "",
       comment: "",
     },
-
-    createReview: () => {
-      return new Promise<IReview>((resolve) => {
-        resolve({
-          firstname: "",
-          lastname: "",
-          wineName: "",
-          photo: "",
-          producer: "",
-          percentage: "",
-          price: 0,
-          rating: 0,
-          foodPairing: "",
-          grape: "",
-          comment: "",
-        });
-      });
+    createReview: async (reviewData: FormData) => {
+      // assuming you have a function to convert FormData to IReview
+      const result = await createNewReview(reviewData);
+      return result;
     },
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const allResults = await getAllReviews();
+  console.log(allReviews);
+  console.log(currentReview);
 
-      setAllReviews((prevAllReviews) => ({
-        ...prevAllReviews,
-        reviews: allResults,
-      }));
-    };
+  // const { currentReview } = useContext<IReviewContext>(ReviewContext);
+  // const { reviews } = useContext<IAllReviewsContext>(AllReviewsContext);
 
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const allResults = await getAllReviews();
 
-  currentReview.createReview = async (): Promise<IReview> => {
-    const result = await createNewReview(currentReview.review);
-    setCurrentReview({
-      ...currentReview,
-      review: { ...currentReview.review },
-    });
+  //     setAllReviews((prevAllReviews) => ({
+  //       ...prevAllReviews,
+  //       reviews: allResults,
+  //     }));
+  //   };
 
-    return result;
-  };
+  //   fetchData();
+  // }, []);
 
   return (
     <>

@@ -3,7 +3,7 @@ import { IReview } from "../../../backend/src/models/Review";
 import { createNewReview } from "../services/reviewApi";
 
 export interface IReviewContext {
-  review: IReview;
+  currentReview: IReview;
   createReview: (reviewData: FormData) => Promise<IReview>;
 }
 
@@ -14,7 +14,7 @@ export interface IAllReviewsContext {
 
 // my context with the current context and the post request function.
 export const ReviewContext = createContext<IReviewContext>({
-  review: {
+  currentReview: {
     firstname: "",
     lastname: "",
     wineName: "",

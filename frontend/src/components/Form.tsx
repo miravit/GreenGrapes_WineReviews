@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { ReviewContext } from "../contexts/ReviewContext";
 import { IReview } from "../models/IReview";
-import { MdDomainVerification, MdOutlineAddAPhoto } from "react-icons/md";
+import { MdOutlineAddAPhoto } from "react-icons/md";
 import { FormStyled } from "./styled/FormStyled";
 
 const Form = () => {
-  const { createReview, review } = useContext(ReviewContext);
+  const { createReview, currentReview } = useContext(ReviewContext);
   const [photoUploaded, setPhotoUploaded] = useState("");
 
   const [formData, setFormData] = useState<IReview>({
@@ -67,6 +67,8 @@ const Form = () => {
     const response = await createReview(finishedData);
     console.log(response);
   };
+
+  console.log(currentReview.firstname);
   return (
     <>
       <div>
