@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { ReviewContext } from "../contexts/ReviewContext";
 import { IReview } from "../models/IReview";
 import { MdOutlineAddAPhoto } from "react-icons/md";

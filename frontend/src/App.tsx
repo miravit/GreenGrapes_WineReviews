@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState } from "react";
 import "./App.css";
 import AllPhotos from "./components/AllPhotos";
 import Form from "./components/Form";
@@ -8,19 +8,20 @@ import {
   IReviewContext,
   ReviewContext,
 } from "./contexts/ReviewContext";
-import { IReview } from "./models/IReview";
-import { createNewReview, getAllReviews } from "./services/reviewApi";
+import { createNewReview } from "./services/reviewApi";
 import WelcomePage from "./components/pages/WelcomePage";
 
 function App() {
-  const [allReviews, setAllReviews] = useState<IAllReviewsContext>(() => ({
+  //tagit bort setCurrentReview för deployment
+  const [allReviews] = useState<IAllReviewsContext>(() => ({
     reviews: [],
     getReviews: () => {
       return;
     },
   }));
 
-  const [currentReview, setCurrentReview] = useState<IReviewContext>({
+  //tagit bort setCurrentReview för deployment
+  const [currentReview] = useState<IReviewContext>({
     currentReview: {
       firstname: "",
       lastname: "",
