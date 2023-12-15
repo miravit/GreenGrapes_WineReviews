@@ -53,7 +53,7 @@ const PhotoUploader = () => {
 
     console.log(formData);
     const response = await axios.post<IReview>(
-      "http://localhost:4000/api/v1/review",
+      "https://green-grapes-l2ar.onrender.com/api/v1/review",
       formData
     );
 
