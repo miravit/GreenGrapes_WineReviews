@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { ReviewContext } from "../contexts/ReviewContext";
 import { IReview } from "../models/IReview";
@@ -65,10 +66,8 @@ const Form = () => {
     finishedData.append("comment", formData.comment || "");
 
     const response = await createReview(finishedData);
-    console.log(response);
   };
 
-  console.log(currentReview.firstname);
   return (
     <>
       <div>

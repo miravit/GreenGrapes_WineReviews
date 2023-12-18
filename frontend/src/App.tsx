@@ -1,7 +1,6 @@
-import { useEffect, useState, useContext } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState } from "react";
 import "./App.css";
-import AllPhotos from "./components/AllPhotos";
-import Form from "./components/Form";
 import {
   AllReviewsContext,
   IAllReviewsContext,
@@ -9,8 +8,10 @@ import {
   ReviewContext,
 } from "./contexts/ReviewContext";
 import { IReview } from "./models/IReview";
-import { createNewReview, getAllReviews } from "./services/reviewApi";
+import { createNewReview } from "./services/reviewApi";
 import WelcomePage from "./components/pages/WelcomePage";
+import FeedPage from "./components/pages/FeedPage";
+import ReviewPage from "./components/pages/ReviewPage";
 
 function App() {
   const [allReviews, setAllReviews] = useState<IAllReviewsContext>(() => ({
@@ -37,12 +38,9 @@ function App() {
     createReview: async (reviewData: FormData) => {
       // assuming you have a function to convert FormData to IReview
       const result = await createNewReview(reviewData);
-      return result;
+      return result as IReview;
     },
   });
-
-  console.log(allReviews);
-  console.log(currentReview);
 
   // const { currentReview } = useContext<IReviewContext>(ReviewContext);
   // const { reviews } = useContext<IAllReviewsContext>(AllReviewsContext);
@@ -65,9 +63,10 @@ function App() {
       <ReviewContext.Provider value={currentReview}>
         <WelcomePage />
         {/* <PhotoUploader /> */}
-        <Form></Form>
+        <ReviewPage></ReviewPage>
+
         <AllReviewsContext.Provider value={allReviews}>
-          <AllPhotos />
+          <FeedPage></FeedPage>
         </AllReviewsContext.Provider>
       </ReviewContext.Provider>
     </>
