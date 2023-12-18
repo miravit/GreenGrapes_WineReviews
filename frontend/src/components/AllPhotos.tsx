@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { IReview } from "../models/IReview";
 
-const AllPhotos = () => {
+export const AllPhotos = () => {
   const [data, setData] = useState<IReview[]>([]);
 
   const getReviewData = async () => {

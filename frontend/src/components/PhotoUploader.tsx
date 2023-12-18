@@ -4,7 +4,7 @@ import { MdOutlineAddAPhoto } from "react-icons/md";
 interface PhotoUploaderProps {
   onPhotoChange: (photo: File) => void;
 }
-const PhotoUploader = ({ onPhotoChange }: PhotoUploaderProps) => {
+export const PhotoUploader = ({ onPhotoChange }: PhotoUploaderProps) => {
   const [photoUploaded, setPhotoUploaded] = useState("");
 
   const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
