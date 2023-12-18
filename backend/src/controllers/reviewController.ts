@@ -41,6 +41,7 @@ export const createReview: RequestHandler = async (req, res, next) => {
     const photo = req.file?.path;
 
     console.log("------- photo i path:  " + photo);
+    console.log("hallå");
 
     //console.log(req.file?.path);
 

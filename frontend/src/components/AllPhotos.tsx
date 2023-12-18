@@ -7,12 +7,12 @@ const AllPhotos = () => {
 
   const getReviewData = async () => {
     const res = await axios.get<IReview[]>(
-      "https://green-grapes-l2ar.onrender.com/api/v1/review",
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      "https://green-grapes-l2ar.onrender.com/api/v1/review"
+      // {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // }
     );
 
     if (res.status == 200) {
