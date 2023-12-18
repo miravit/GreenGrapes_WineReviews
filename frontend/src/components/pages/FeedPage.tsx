@@ -1,4 +1,6 @@
+
 import { useState } from "react";
+
 
 import AllPhotos from "../AllPhotos";
 import {
