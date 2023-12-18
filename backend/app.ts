@@ -8,7 +8,6 @@ import cors from "cors";
 const app = express();
 
 app.use(express.json());
-app.use(express.static("public")); // maybe not needed
 
 app.use((req, res, next) => {
   console.log(`processing ${req.method} request to ${req.path}`);
@@ -18,7 +17,7 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://green-grapes-wineapp.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
@@ -40,7 +39,7 @@ async function run() {
     const conn = await mongoose.connect(process.env.MONGODB_URI || "");
 
     app.listen(port, () => {
-      console.log(`server running on http://localhost:${port}`);
+      console.log(`server running on PORT ${port}`);
     });
   } catch (error) {
     console.log(error);

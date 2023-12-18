@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { IReviewContext, ReviewContext } from "../../contexts/ReviewContext";
 
 const WelcomePage = () => {

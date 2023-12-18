@@ -7,12 +7,12 @@ const AllPhotos = () => {
 
   const getReviewData = async () => {
     const res = await axios.get<IReview[]>(
-      "http://localhost:4000/api/v1/review",
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      "https://green-grapes-l2ar.onrender.com/api/v1/review"
+      // {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // }
     );
 
     if (res.status == 200) {
@@ -29,13 +29,15 @@ const AllPhotos = () => {
   return (
     <>
       <div>
-        {data.map((photo, i) => (
-          <img
-            key={i}
-            src={photo.photo}
-            alt={"photo of the wine: " + photo.wineName}
-            style={{ width: "250px", height: "250px", margin: "5px" }}
-          />
+        {data.map((review, i) => (
+          <div key={i} style={{ margin: "10px" }}>
+            <img
+              src={review.photo}
+              alt={`Photo of the wine: ${review.wineName}`}
+              style={{ width: "250px", height: "250px" }}
+            />
+            <p>Firstname: {review.firstname}</p>
+          </div>
         ))}
       </div>
     </>
