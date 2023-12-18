@@ -1,4 +1,8 @@
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
+
 import { ReviewContext } from "../contexts/ReviewContext";
 import { IReview } from "../models/IReview";
 import { MdOutlineAddAPhoto } from "react-icons/md";
@@ -65,6 +69,7 @@ const Form = () => {
     finishedData.append("grape", formData.grape || "");
     finishedData.append("comment", formData.comment || "");
 
+
     const response = await axios.post<IReview>(
       "https://green-grapes-l2ar.onrender.com/api/v1/review",
       finishedData
@@ -72,9 +77,9 @@ const Form = () => {
     console.log(response);
     console.log("försöker posta");
     createReview(finishedData);
+
   };
 
-  console.log(currentReview.firstname);
   return (
     <>
       <div>

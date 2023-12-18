@@ -30,7 +30,7 @@ export const ReviewContext = createContext<IReviewContext>({
   createReview: async (reviewData: FormData) => {
     // assuming you have a function to convert FormData to IReview
     const result = await createNewReview(reviewData);
-    return result;
+    return result as IReview;
   },
 });
 
