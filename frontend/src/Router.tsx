@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import { FeedPage } from "./components/pages/FeedPage";
+import { HomePage } from "./components/pages/HomePage";
 import { ReviewPage } from "./components/pages/ReviewPage";
+import { Feed } from "./components/pages/Feed";
 import { Layout } from "./components/pages/Layout";
 
 export const router = createBrowserRouter([
@@ -8,7 +9,8 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Layout></Layout>,
     children: [
-      { path: "/", element: <FeedPage></FeedPage>, index: true },
+      { path: "/", element: <HomePage></HomePage>, index: true },
+      { path: "/", element: <Feed></Feed> },
       { path: "/review", element: <ReviewPage></ReviewPage> },
     ],
   },
