@@ -7,7 +7,7 @@ const AllPhotos = () => {
 
   const getReviewData = async () => {
     const res = await axios.get<IReview[]>(
-      "https://green-grapes-l2ar.onrender.com/api/v1/review"
+      "http://localhost:4000/api/v1/review"
       // {
       //   headers: {
       //     "Content-Type": "application/json",
