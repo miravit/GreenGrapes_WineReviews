@@ -70,6 +70,7 @@ const Form = () => {
       finishedData
     );
     console.log(response);
+    console.log("försöker posta");
     createReview(finishedData);
   };
 

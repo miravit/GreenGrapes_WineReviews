@@ -19,7 +19,7 @@ export const reviewSchema = new Schema<IReview>(
     firstname: { type: String, required: true },
     lastname: { type: String, required: false },
     wineName: { type: String, required: true },
-    photo: { type: String, required: false },
+    photo: { type: String, required: true },
     producer: { type: String, required: true },
     percentage: { type: String, required: true },
     price: { type: Number, required: true },
