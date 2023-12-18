@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useState } from "react";
 import { IReviewContext, ReviewContext } from "../../contexts/ReviewContext";
 
-const WelcomePage = () => {
+export const WelcomePage = () => {
   const { currentReview } = useContext<IReviewContext>(ReviewContext);
   const [username, setUsername] = useState(currentReview);
 

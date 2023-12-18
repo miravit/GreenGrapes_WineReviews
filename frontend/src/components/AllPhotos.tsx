@@ -2,12 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { IReview } from "../models/IReview";
 
-const AllPhotos = () => {
+export const AllPhotos = () => {
   const [data, setData] = useState<IReview[]>([]);
 
   const getReviewData = async () => {
     const res = await axios.get<IReview[]>(
-      "https://green-grapes-l2ar.onrender.com/api/v1/review"
+      "http://localhost:4000/api/v1/review"
       // {
       //   headers: {
       //     "Content-Type": "application/json",

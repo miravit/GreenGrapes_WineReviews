@@ -1,6 +1,7 @@
 import axios from "axios";
 import { IReview } from "../models/IReview";
 
+
 //GET
 
 export const getAllReviews = async () => {
@@ -21,4 +22,5 @@ export const createNewReview = async (review: FormData): Promise<IReview> => {
   );
   console.log("posted review: " + response.data);
   return response.data;
+
 };

@@ -4,13 +4,15 @@ import { ChangeEvent, FormEvent, useContext, useState } from "react";
 
 import { ReviewContext } from "../contexts/ReviewContext";
 import { IReview } from "../models/IReview";
-import { MdOutlineAddAPhoto } from "react-icons/md";
-import { FormStyled } from "./styled/FormStyled";
-import axios from "axios";
 
-const Form = () => {
+import { FormStyled } from "./styled/FormStyled";
+
+
+import PhotoUploader from "./PhotoUploader";
+
+export const Form = () => {
   const { createReview } = useContext(ReviewContext);
-  const [photoUploaded, setPhotoUploaded] = useState("");
+
 
   const [formData, setFormData] = useState<IReview>({
     firstname: "",
@@ -26,40 +28,29 @@ const Form = () => {
     comment: "",
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
+  const [newPhoto, setNewPhoto] = useState<File>();
 
-    if (e.target.name === "price" || e.target.name === "rating") {
-      setFormData((prevReview) => ({
-        ...prevReview,
-        [name]: +value,
-      }));
-    } else {
-      setFormData((prevReview) => ({
-        ...prevReview,
-        [name]: value,
-      }));
-    }
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setFormData((prevReview) => ({
+      ...prevReview,
+      [name]: name === "price" || name === "rating" ? +value : value,
+    }));
   };
 
-  const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    setFormData({ ...formData, photo: e.target.files![0] });
-    if (e.target.files![0]) {
-      setPhotoUploaded("Photo Successfully uploaded!");
-    }
+  const handlePhotoChange = (photo: File) => {
+    setNewPhoto(photo);
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
     const finishedData = new FormData();
     finishedData.append("firstname", formData.firstname || "");
     finishedData.append("lastname", formData.lastname || "");
     finishedData.append("wineName", formData.wineName || "");
-    finishedData.append("photo", formData.photo || "");
+    finishedData.append("photo", newPhoto || "");
     finishedData.append("producer", formData.producer || "");
     finishedData.append("percentage", formData.percentage || "");
     finishedData.append("price", formData.price.toString() || "");
@@ -68,13 +59,13 @@ const Form = () => {
     finishedData.append("grape", formData.grape || "");
     finishedData.append("comment", formData.comment || "");
 
-    const response = await axios.post<IReview>(
-      "https://green-grapes-l2ar.onrender.com/api/v1/review",
-      finishedData
-    );
-    console.log(response);
-    console.log("försöker posta");
-    createReview(finishedData);
+
+    try {
+      const response = await createReview(finishedData);
+    } catch (error) {
+      console.log("sorry couldnt post review");
+    }
+
   };
 
   return (
@@ -181,18 +172,7 @@ const Form = () => {
             />
           </label>
 
-          <label className="uploadButton" htmlFor="file_picker">
-            <MdOutlineAddAPhoto />
-            <input
-              hidden
-              type="file"
-              name="PHOTO"
-              accept=".png, .jpg, .jpeg"
-              id="file_picker"
-              onChange={(e) => handlePhoto(e)}
-            />
-          </label>
-          <p>{photoUploaded}</p>
+          <PhotoUploader onPhotoChange={handlePhotoChange} />
           <button type="submit">Submit</button>
         </FormStyled>
       </div>
