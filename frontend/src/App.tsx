@@ -1,4 +1,6 @@
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { useState } from "react";
 import "./App.css";
 import {
@@ -7,21 +9,25 @@ import {
   IReviewContext,
   ReviewContext,
 } from "./contexts/ReviewContext";
+
 import { IReview } from "./models/IReview";
+
 import { createNewReview } from "./services/reviewApi";
 import WelcomePage from "./components/pages/WelcomePage";
 import FeedPage from "./components/pages/FeedPage";
 import ReviewPage from "./components/pages/ReviewPage";
 
 function App() {
-  const [allReviews, setAllReviews] = useState<IAllReviewsContext>(() => ({
+  //tagit bort setCurrentReview för deployment
+  const [allReviews] = useState<IAllReviewsContext>(() => ({
     reviews: [],
     getReviews: () => {
       return;
     },
   }));
 
-  const [currentReview, setCurrentReview] = useState<IReviewContext>({
+  //tagit bort setCurrentReview för deployment
+  const [currentReview] = useState<IReviewContext>({
     currentReview: {
       firstname: "",
       lastname: "",

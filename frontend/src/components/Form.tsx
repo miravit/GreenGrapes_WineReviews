@@ -1,10 +1,17 @@
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
+
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
+
+
 import { ReviewContext } from "../contexts/ReviewContext";
 import { IReview } from "../models/IReview";
 
 import { FormStyled } from "./styled/FormStyled";
+
 import PhotoUploader from "./PhotoUploader";
+
 
 const Form = () => {
   const { createReview } = useContext(ReviewContext);
@@ -54,11 +61,13 @@ const Form = () => {
     finishedData.append("grape", formData.grape || "");
     finishedData.append("comment", formData.comment || "");
 
+
     try {
       const response = await createReview(finishedData);
     } catch (error) {
       console.log("sorry couldnt post review");
     }
+
   };
 
   return (
