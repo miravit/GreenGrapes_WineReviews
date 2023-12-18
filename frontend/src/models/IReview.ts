@@ -12,6 +12,11 @@ export interface IReview {
   comment: string;
 }
 
+export interface IName {
+  firstname: string;
+  lastname: string;
+}
+
 // export const defaultReview = {
 //   _id: "",
 //   people: 0,

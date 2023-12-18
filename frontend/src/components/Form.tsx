@@ -7,12 +7,10 @@ import { IReview } from "../models/IReview";
 
 import { FormStyled } from "./styled/FormStyled";
 
-
 import PhotoUploader from "./PhotoUploader";
 
 export const Form = () => {
-  const { createReview } = useContext(ReviewContext);
-
+  const { createReview, currentReview } = useContext(ReviewContext);
 
   const [formData, setFormData] = useState<IReview>({
     firstname: "",
@@ -47,8 +45,8 @@ export const Form = () => {
     e.preventDefault();
 
     const finishedData = new FormData();
-    finishedData.append("firstname", formData.firstname || "");
-    finishedData.append("lastname", formData.lastname || "");
+    finishedData.append("firstname", currentReview.firstname || "");
+    finishedData.append("lastname", currentReview.lastname || "");
     finishedData.append("wineName", formData.wineName || "");
     finishedData.append("photo", newPhoto || "");
     finishedData.append("producer", formData.producer || "");
@@ -59,39 +57,19 @@ export const Form = () => {
     finishedData.append("grape", formData.grape || "");
     finishedData.append("comment", formData.comment || "");
 
-
     try {
       const response = await createReview(finishedData);
     } catch (error) {
       console.log("sorry couldnt post review");
     }
-
   };
+
+  console.log(currentReview);
 
   return (
     <>
       <div>
         <FormStyled onSubmit={handleSubmit} encType="multipart/form-data">
-          <label>
-            First Name:
-            <input
-              type="text"
-              name="firstname"
-              value={formData.firstname}
-              onChange={handleChange}
-            />
-          </label>
-
-          <label>
-            Last Name:
-            <input
-              type="text"
-              name="lastname"
-              value={formData.lastname}
-              onChange={handleChange}
-            />
-          </label>
-
           <label>
             Wine Name:
             <input

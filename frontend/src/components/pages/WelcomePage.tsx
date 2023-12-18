@@ -1,20 +1,26 @@
-import { ChangeEvent, useContext, useState } from "react";
-import { IReviewContext, ReviewContext } from "../../contexts/ReviewContext";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { IName } from "../../models/IReview";
 
-export const WelcomePage = () => {
-  const { currentReview } = useContext<IReviewContext>(ReviewContext);
-  const [username, setUsername] = useState(currentReview);
+interface WelcomePageProps {
+  setName: (name: IName) => void;
+}
+export const WelcomePage = ({ setName }: WelcomePageProps) => {
+  const [username, setUsername] = useState<IName>({
+    firstname: "",
+    lastname: "",
+  });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUsername((prevReview) => ({
-      ...prevReview,
+    setUsername((prevUsername) => ({
+      ...prevUsername,
       [name]: value,
     }));
   };
 
-  const updateContext = () => {
-    // lägg in i mitt currentReview? eller är det det jag ska använda min reducer till?
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setName(username);
   };
   return (
     <div>
@@ -36,7 +42,7 @@ export const WelcomePage = () => {
           onChange={handleChange}
         />
       </label>
-      <button onClick={updateContext}>Update Context</button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 };

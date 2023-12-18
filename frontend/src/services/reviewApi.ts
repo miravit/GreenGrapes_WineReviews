@@ -19,6 +19,6 @@ export const createNewReview = async (review: FormData): Promise<IReview> => {
     "http://localhost:4000/api/v1/review",
     review
   );
-  console.log("posted review: " + response.data);
+  console.log(response.data);
   return response.data;
 };

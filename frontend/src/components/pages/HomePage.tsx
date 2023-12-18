@@ -6,6 +6,7 @@ import {
 
 import Searchbar from "../Searchbar";
 import Feed from "./Feed";
+import { Link } from "react-router-dom";
 
 export const HomePage = () => {
   const [allReviews] = useState<IAllReviewsContext>(() => ({
@@ -19,10 +20,11 @@ export const HomePage = () => {
 
   return (
     <>
-      <div>HomePage</div>
       <AllReviewsContext.Provider value={allReviews}>
         <Searchbar />
+        <Link to="/review">Create a Review!</Link>
         <Feed />
+        <button></button>
       </AllReviewsContext.Provider>
     </>
   );
