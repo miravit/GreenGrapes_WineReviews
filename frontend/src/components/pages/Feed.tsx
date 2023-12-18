@@ -1,15 +1,12 @@
-
 import { useState } from "react";
-
 
 import AllPhotos from "../AllPhotos";
 import {
   AllReviewsContext,
   IAllReviewsContext,
 } from "../../contexts/ReviewContext";
-import WelcomePage from "./WelcomePage";
 
-export const FeedPage = () => {
+export const Feed = () => {
   //tagit bort setCurrentReview för deployment
   const [allReviews] = useState<IAllReviewsContext>(() => ({
     reviews: [],
@@ -22,8 +19,7 @@ export const FeedPage = () => {
 
   return (
     <>
-      <div>FeedPage</div>
-      <WelcomePage />
+      <div>FEED</div>
       <AllReviewsContext.Provider value={allReviews}>
         <AllPhotos></AllPhotos>
       </AllReviewsContext.Provider>
@@ -31,4 +27,4 @@ export const FeedPage = () => {
   );
 };
 
-export default FeedPage;
+export default Feed;

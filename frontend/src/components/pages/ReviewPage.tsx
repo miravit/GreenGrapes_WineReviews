@@ -1,9 +1,9 @@
-
 import { useState } from "react";
-import Form from "../Form";
 import { IReviewContext, ReviewContext } from "../../contexts/ReviewContext";
 import { IReview } from "../../models/IReview";
 import { createNewReview } from "../../services/reviewApi";
+import Form from "../Form";
+import WelcomePage from "./WelcomePage";
 
 export const ReviewPage = () => {
   //tagit bort setCurrentReview för deployment
@@ -22,17 +22,16 @@ export const ReviewPage = () => {
       comment: "",
     },
     createReview: async (reviewData: FormData) => {
-      // assuming you have a function to convert FormData to IReview
       const result = await createNewReview(reviewData);
       return result as IReview;
     },
   });
 
-  console.log(currentReview);
   return (
     <>
+      <div>ReviewPage</div>
       <ReviewContext.Provider value={currentReview}>
-        <div>ReviewPage</div>
+        <WelcomePage />
         <Form></Form>
       </ReviewContext.Provider>
     </>
