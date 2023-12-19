@@ -7,13 +7,13 @@ import WelcomePage from "./WelcomePage";
 import { Link } from "react-router-dom";
 
 export const ReviewPage = () => {
-  //tagit bort setCurrentReview för deployment
   const [isFormVisible, setIsFormVisible] = useState(false);
 
   const [name, setName] = useState<IName>({
     firstname: "",
     lastname: "",
   });
+
   const [currentReview, setCurrentReview] = useState<IReviewContext>({
     currentReview: {
       firstname: "",
@@ -60,6 +60,10 @@ export const ReviewPage = () => {
     }
   }, [name]);
 
+  const handleChangeNameClick = () => {
+    setIsFormVisible(false);
+  };
+
   console.log(currentReview);
 
   return (
@@ -68,16 +72,21 @@ export const ReviewPage = () => {
       <button>
         <Link to="/">Go Back</Link>
       </button>
-      <div>
-        <h1>
-          {"Welcome " +
-            currentReview.currentReview.firstname +
-            " please create a new Wine Review!"}
-        </h1>
-      </div>
+      <div></div>
       <ReviewContext.Provider value={currentReview}>
-        {isFormVisible && <Form />}
-        {!isFormVisible && <WelcomePage setName={handleNameChange} />}
+        {isFormVisible ? (
+          <>
+            <h2>
+              {"Welcome " +
+                currentReview.currentReview.firstname +
+                " please create a new Wine Review!"}
+            </h2>
+            <button onClick={handleChangeNameClick}>change name</button>
+            <Form />
+          </>
+        ) : (
+          <WelcomePage setName={handleNameChange} />
+        )}
       </ReviewContext.Provider>
     </>
   );

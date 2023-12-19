@@ -7,9 +7,12 @@ export interface IReviewContext {
   createReview: (reviewData: FormData) => Promise<IReview>;
 }
 
-export interface IAllReviewsContext {
+// export interface IAllReviewsContext {
+//   reviews: IReview[];
+// }
+
+export interface IReviewState {
   reviews: IReview[];
-  getReviews: () => void;
 }
 
 // my context with the current context and the post request function.
@@ -27,6 +30,7 @@ export const ReviewContext = createContext<IReviewContext>({
     grape: "",
     comment: "",
   },
+
   createReview: async (reviewData: FormData) => {
     // assuming you have a function to convert FormData to IReview
     const result = await createNewReview(reviewData);
@@ -35,9 +39,10 @@ export const ReviewContext = createContext<IReviewContext>({
 });
 
 // get all reviews context with the list of all reviews + the get function.
-export const AllReviewsContext = createContext<IAllReviewsContext>({
+// export const AllReviewsContext = createContext<IAllReviewsContext>({
+//   reviews: [],
+// });
+
+export const ReviewReducerContext = createContext<IReviewState>({
   reviews: [],
-  getReviews: () => {
-    return;
-  },
 });
