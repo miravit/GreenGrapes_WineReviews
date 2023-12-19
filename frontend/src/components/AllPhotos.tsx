@@ -1,35 +1,15 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { IReview } from "../models/IReview";
+import { useContext } from "react";
+import { ReviewReducerContext } from "../contexts/ReviewContext";
 
 export const AllPhotos = () => {
-  const [data, setData] = useState<IReview[]>([]);
+  const { reviews } = useContext(ReviewReducerContext);
 
-  const getReviewData = async () => {
-    const res = await axios.get<IReview[]>(
-      "http://localhost:4000/api/v1/review"
-      // {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // }
-    );
-
-    if (res.status == 200) {
-      setData(res.data);
-    } else {
-      alert("error");
-    }
-  };
-
-  useEffect(() => {
-    getReviewData();
-  }, []);
+  console.log(reviews);
 
   return (
     <>
       <div>
-        {data.map((review, i) => (
+        {reviews.map((review, i) => (
           <div key={i} style={{ margin: "10px" }}>
             <img
               src={review.photo}
