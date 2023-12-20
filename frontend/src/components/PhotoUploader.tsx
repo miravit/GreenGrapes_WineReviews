@@ -5,7 +5,7 @@ import { ActionType } from "../reducers/ReviewsReducer";
 
 export const PhotoUploader = () => {
   const dispatch = useContext(ReviewDispatchContext);
-  const [photoUploaded, setPhotoUploaded] = useState("");
+  const [uploadedPhotoText, setUploadedPhotoText] = useState("");
 
   const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -17,7 +17,7 @@ export const PhotoUploader = () => {
           photo: file,
         },
       });
-      setPhotoUploaded("Photo Successfully uploaded!");
+      setUploadedPhotoText("Photo Added!");
     }
   };
 
@@ -34,7 +34,9 @@ export const PhotoUploader = () => {
           onChange={(e) => handlePhoto(e)}
         />
       </label>
-      <p>{photoUploaded}</p>
+      <div>
+        <p>{uploadedPhotoText}</p>
+      </div>
     </>
   );
 };
