@@ -4,8 +4,6 @@ import { AllReviewsReducerContext } from "../contexts/ReviewContext";
 export const AllPhotos = () => {
   const { reviews } = useContext(AllReviewsReducerContext);
 
-  console.log(reviews);
-
   return (
     <>
       <div>

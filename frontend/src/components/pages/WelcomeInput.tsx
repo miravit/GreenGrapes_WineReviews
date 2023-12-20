@@ -1,10 +1,10 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { IName } from "../../models/IReview";
+import { ReviewDispatchContext } from "../../contexts/ReviewDispatchContext";
+import { ActionType } from "../../reducers/ReviewsReducer";
 
-interface WelcomePageProps {
-  setName: (name: IName) => void;
-}
-export const WelcomePage = ({ setName }: WelcomePageProps) => {
+export const WelcomeInput = () => {
+  const dispatch = useContext(ReviewDispatchContext);
   const [username, setUsername] = useState<IName>({
     firstname: "",
     lastname: "",
@@ -20,7 +20,15 @@ export const WelcomePage = ({ setName }: WelcomePageProps) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setName(username);
+
+    dispatch({
+      type: ActionType.UPDATEREVIEW,
+      payload: {
+        firstname: username.firstname,
+        lastname: username.lastname,
+        // Add other fields to update as needed...
+      },
+    });
   };
   return (
     <div>
@@ -47,4 +55,4 @@ export const WelcomePage = ({ setName }: WelcomePageProps) => {
   );
 };
 
-export default WelcomePage;
+export default WelcomeInput;

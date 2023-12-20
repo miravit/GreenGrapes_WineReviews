@@ -8,8 +8,10 @@ import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
 import { ActionType } from "../reducers/ReviewsReducer";
 export const Form = () => {
   const { createReview, currentReview } = useContext(ReviewContext);
+  const { createNewReview, review } = useContext(ReviewReducerContext);
   const dispatch = useContext(ReviewDispatchContext);
 
+  // hanterar inputr
   const [inputData, setInputData] = useState<IReview>({
     firstname: "",
     lastname: "",
@@ -60,14 +62,11 @@ export const Form = () => {
         type: ActionType.CREATENEWREVIEW,
         payload: finishedData,
       });
-      await createReview(finishedData);
+      await createNewReview(finishedData);
     } catch (error) {
       console.log("sorry could not post review");
     }
   };
-
-  console.log(currentReview);
-  console.log(inputData);
 
   return (
     <>
