@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { IReview } from "../../../backend/src/models/Review";
 import { createNewReview } from "../services/reviewApi";
+import { IAllReviewState, IReviewState } from "../reducers/ReviewsReducer";
 
 export interface IReviewContext {
   currentReview: IReview;
@@ -10,10 +11,6 @@ export interface IReviewContext {
 // export interface IAllReviewsContext {
 //   reviews: IReview[];
 // }
-
-export interface IReviewState {
-  reviews: IReview[];
-}
 
 // my context with the current context and the post request function.
 export const ReviewContext = createContext<IReviewContext>({
@@ -43,6 +40,22 @@ export const ReviewContext = createContext<IReviewContext>({
 //   reviews: [],
 // });
 
-export const ReviewReducerContext = createContext<IReviewState>({
+export const AllReviewsReducerContext = createContext<IAllReviewState>({
   reviews: [],
+});
+
+export const ReviewReducerContext = createContext<IReviewState>({
+  review: {
+    firstname: "",
+    lastname: "",
+    wineName: "",
+    photo: "",
+    producer: "",
+    percentage: "",
+    price: 0,
+    rating: 0,
+    foodPairing: "",
+    grape: "",
+    comment: "",
+  },
 });
