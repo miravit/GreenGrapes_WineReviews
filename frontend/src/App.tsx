@@ -2,7 +2,7 @@
 
 import { RouterProvider } from "react-router-dom";
 import { router } from "./Router";
-import { useReducer, useEffect, useState } from "react";
+import { useReducer, useEffect, useState, useContext } from "react";
 import {
   AllReviewsReducerContext,
   ReviewReducerContext,
@@ -46,15 +46,15 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       const getAllDataFromApi = await getAllReviews();
+      console.log("NY HÄMTNING");
 
       dispatch2({
         type: ActionType.GETALLREVIEWS,
         payload: JSON.stringify(getAllDataFromApi),
       });
     };
-
     getData();
-  }, [dispatch2]);
+  }, [createReview.review]);
 
   console.log(createReview);
 

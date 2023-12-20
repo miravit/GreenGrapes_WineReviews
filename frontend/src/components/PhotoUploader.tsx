@@ -1,17 +1,22 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { MdOutlineAddAPhoto } from "react-icons/md";
+import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
+import { ActionType } from "../reducers/ReviewsReducer";
 
-interface PhotoUploaderProps {
-  onPhotoChange: (photo: File) => void;
-}
-export const PhotoUploader = ({ onPhotoChange }: PhotoUploaderProps) => {
+export const PhotoUploader = () => {
+  const dispatch = useContext(ReviewDispatchContext);
   const [photoUploaded, setPhotoUploaded] = useState("");
 
   const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
     if (file) {
-      onPhotoChange(file);
+      dispatch({
+        type: ActionType.UPDATEREVIEW,
+        payload: {
+          photo: file,
+        },
+      });
       setPhotoUploaded("Photo Successfully uploaded!");
     }
   };

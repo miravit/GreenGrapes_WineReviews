@@ -3,40 +3,91 @@ import { ReviewReducerContext } from "../../contexts/ReviewContext";
 
 import Form from "../Form";
 import { Link } from "react-router-dom";
-//import { ReviewDispatchContext } from "../../contexts/ReviewDispatchContext";
 import WelcomeInput from "./WelcomeInput";
+import ConfirmReview from "../ConfirmReview";
+import { ReviewDispatchContext } from "../../contexts/ReviewDispatchContext";
+import { ActionType } from "../../reducers/ReviewsReducer";
+import { createNewReview } from "../../services/reviewApi";
 
 export const ReviewPage = () => {
-  //const dispatch = useContext(ReviewDispatchContext)
+  const dispatch = useContext(ReviewDispatchContext);
+  //const dispatch2 = useContext(ReviewDispatchContext);
   const createReview = useContext(ReviewReducerContext);
-  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [showConfirmReview, setShowConfirmReview] = useState(false);
 
   useEffect(() => {
     if (
       createReview.review.firstname !== "" &&
-      createReview.review.firstname !== ""
+      createReview.review.lastname !== ""
     ) {
-      setIsFormVisible(true);
+      setShowForm(true);
     } else {
-      setIsFormVisible(false);
+      setShowForm(false);
     }
   }, [createReview]);
 
   const handleChangeNameClick = () => {
-    setIsFormVisible(false);
+    setShowForm(false);
+    setShowConfirmReview(false);
   };
+  const handleNextButtonClick = () => {
+    setShowConfirmReview(true);
+    setShowForm(false);
+  };
+  const handleEditClick = () => {
+    setShowForm(true);
+    setShowConfirmReview(false);
+  };
+  const handlePostClick = async () => {
+    const finishedData = new FormData();
+    finishedData.append("firstname", createReview.review.firstname || "");
+    finishedData.append("lastname", createReview.review.lastname || "");
+    finishedData.append("wineName", createReview.review.wineName || "");
+    finishedData.append("photo", createReview.review.photo || "");
+    finishedData.append("producer", createReview.review.producer || "");
+    finishedData.append("percentage", createReview.review.percentage || "");
+    finishedData.append("price", createReview.review.price.toString() || "");
+    finishedData.append("rating", createReview.review.rating.toString() || "");
+    finishedData.append("foodPairing", createReview.review.foodPairing || "");
+    finishedData.append("grape", createReview.review.grape || "");
+    finishedData.append("comment", createReview.review.comment || "");
+    try {
+      dispatch({
+        type: ActionType.CREATENEWREVIEW,
+        payload: finishedData,
+      });
+      await createNewReview(finishedData);
 
-  console.log(createReview);
+      // dispatch({
+      //   type: ActionType.CREATENEWREVIEW,
+      //   payload: {
+      //     firstname: "",
+      //     lastname: "",
+      //     wineName: "",
+      //     photo: "",
+      //     producer: "",
+      //     percentage: "",
+      //     price: 0,
+      //     rating: 0,
+      //     foodPairing: "",
+      //     grape: "",
+      //     comment: "",
+      //   },
+      // });
+    } catch (error) {
+      console.log("sorry could not post review" + error);
+    }
+  };
 
   return (
     <>
-      <div>ReviewPage</div>
       <button>
         <Link to="/">Go Back</Link>
       </button>
       <div></div>
 
-      {isFormVisible ? (
+      {showForm && !showConfirmReview && (
         <>
           <h2>
             {"Welcome " +
@@ -44,11 +95,21 @@ export const ReviewPage = () => {
               " please create a new Wine Review!"}
           </h2>
           <button onClick={handleChangeNameClick}>change name</button>
-          <Form />
+          <Form onNextButtonClick={handleNextButtonClick} />
         </>
-      ) : (
-        <WelcomeInput />
       )}
+
+      {showConfirmReview && (
+        <>
+          <ConfirmReview />
+          <div>
+            <button onClick={handleEditClick}>Edit Review</button>
+            <button onClick={handlePostClick}>Post Review</button>
+          </div>
+        </>
+      )}
+
+      {!showForm && !showConfirmReview && <WelcomeInput />}
     </>
   );
 };
