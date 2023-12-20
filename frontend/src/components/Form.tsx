@@ -1,18 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
-
-import { ReviewContext } from "../contexts/ReviewContext";
+import { ReviewContext, ReviewReducerContext } from "../contexts/ReviewContext";
 import { IReview } from "../models/IReview";
-
 import { FormStyled } from "./styled/FormStyled";
-
 import PhotoUploader from "./PhotoUploader";
-
+import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
+import { ActionType } from "../reducers/ReviewsReducer";
 export const Form = () => {
   const { createReview, currentReview } = useContext(ReviewContext);
+  const dispatch = useContext(ReviewDispatchContext);
 
-  const [formData, setFormData] = useState<IReview>({
+  const [inputData, setInputData] = useState<IReview>({
     firstname: "",
     lastname: "",
     wineName: "",
@@ -31,7 +29,7 @@ export const Form = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    setFormData((prevReview) => ({
+    setInputData((prevReview) => ({
       ...prevReview,
       [name]: name === "price" || name === "rating" ? +value : value,
     }));
@@ -47,24 +45,29 @@ export const Form = () => {
     const finishedData = new FormData();
     finishedData.append("firstname", currentReview.firstname || "");
     finishedData.append("lastname", currentReview.lastname || "");
-    finishedData.append("wineName", formData.wineName || "");
+    finishedData.append("wineName", inputData.wineName || "");
     finishedData.append("photo", newPhoto || "");
-    finishedData.append("producer", formData.producer || "");
-    finishedData.append("percentage", formData.percentage || "");
-    finishedData.append("price", formData.price.toString() || "");
-    finishedData.append("rating", formData.rating.toString() || "");
-    finishedData.append("foodPairing", formData.foodPairing || "");
-    finishedData.append("grape", formData.grape || "");
-    finishedData.append("comment", formData.comment || "");
+    finishedData.append("producer", inputData.producer || "");
+    finishedData.append("percentage", inputData.percentage || "");
+    finishedData.append("price", inputData.price.toString() || "");
+    finishedData.append("rating", inputData.rating.toString() || "");
+    finishedData.append("foodPairing", inputData.foodPairing || "");
+    finishedData.append("grape", inputData.grape || "");
+    finishedData.append("comment", inputData.comment || "");
 
     try {
-      const response = await createReview(finishedData);
+      dispatch({
+        type: ActionType.CREATENEWREVIEW,
+        payload: finishedData,
+      });
+      await createReview(finishedData);
     } catch (error) {
-      console.log("sorry couldnt post review");
+      console.log("sorry could not post review");
     }
   };
 
   console.log(currentReview);
+  console.log(inputData);
 
   return (
     <>
@@ -75,7 +78,7 @@ export const Form = () => {
             <input
               type="text"
               name="wineName"
-              value={formData.wineName}
+              value={inputData.wineName}
               onChange={handleChange}
             />
           </label>
@@ -85,7 +88,7 @@ export const Form = () => {
             <input
               type="text"
               name="producer"
-              value={formData.producer}
+              value={inputData.producer}
               onChange={handleChange}
             />
           </label>
@@ -95,7 +98,7 @@ export const Form = () => {
             <input
               type="text"
               name="percentage"
-              value={formData.percentage}
+              value={inputData.percentage}
               onChange={handleChange}
             />
           </label>
@@ -105,7 +108,7 @@ export const Form = () => {
             <input
               type="number"
               name="price"
-              value={formData.price}
+              value={inputData.price}
               onChange={handleChange}
             />
           </label>
@@ -115,7 +118,7 @@ export const Form = () => {
             <input
               type="number"
               name="rating"
-              value={formData.rating}
+              value={inputData.rating}
               onChange={handleChange}
             />
           </label>
@@ -125,7 +128,7 @@ export const Form = () => {
             <input
               type="text"
               name="foodPairing"
-              value={formData.foodPairing}
+              value={inputData.foodPairing}
               onChange={handleChange}
             />
           </label>
@@ -135,7 +138,7 @@ export const Form = () => {
             <input
               type="text"
               name="grape"
-              value={formData.grape}
+              value={inputData.grape}
               onChange={handleChange}
             />
           </label>
@@ -145,7 +148,7 @@ export const Form = () => {
             <input
               type="text"
               name="comment"
-              value={formData.comment}
+              value={inputData.comment}
               onChange={handleChange}
             />
           </label>

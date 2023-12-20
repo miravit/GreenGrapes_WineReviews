@@ -4,17 +4,15 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./Router";
 import { useReducer, useEffect, useState } from "react";
 import {
-  IReviewContext,
-  ReviewContext,
+  AllReviewsReducerContext,
   ReviewReducerContext,
 } from "./contexts/ReviewContext";
 import { ReviewDispatchContext } from "./contexts/ReviewDispatchContext";
-import { ReviewReducer, ActionType } from "./reducers/ReviewsReducer";
-import { createNewReview, getAllReviews } from "./services/reviewApi";
-import { IReview } from "./models/IReview";
+import { ActionType, AllReviewReducer } from "./reducers/ReviewsReducer";
+import { getAllReviews } from "./services/reviewApi";
 
 function App() {
-  const [reviews, dispatch] = useReducer(ReviewReducer, {
+  const [reviews, dispatch] = useReducer(AllReviewReducer, {
     reviews: [],
   });
 
@@ -34,11 +32,11 @@ function App() {
   return (
     <>
       <>
-        <ReviewReducerContext.Provider value={reviews}>
+        <AllReviewsReducerContext.Provider value={reviews}>
           <ReviewDispatchContext.Provider value={dispatch}>
             <RouterProvider router={router} />
           </ReviewDispatchContext.Provider>
-        </ReviewReducerContext.Provider>
+        </AllReviewsReducerContext.Provider>
       </>
     </>
   );

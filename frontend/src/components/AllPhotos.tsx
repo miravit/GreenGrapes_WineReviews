@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { ReviewReducerContext } from "../contexts/ReviewContext";
+import { AllReviewsReducerContext } from "../contexts/ReviewContext";
 
 export const AllPhotos = () => {
-  const { reviews } = useContext(ReviewReducerContext);
+  const { reviews } = useContext(AllReviewsReducerContext);
 
   console.log(reviews);
 

@@ -12,15 +12,20 @@ export enum ActionType {
   //FILTERED,
 }
 
-export interface IReviewState {
+export interface IAllReviewState {
   reviews: IReview[];
   // filteredReviews: IReview[];
 }
 
-export const ReviewReducer = (
-  state: IReviewState,
+export interface IReviewState {
+  review: IReview;
+  // filteredReviews: IReview[];
+}
+
+export const AllReviewReducer = (
+  state: IAllReviewState,
   action: IAction
-): IReviewState => {
+): IAllReviewState => {
   switch (action.type) {
     case ActionType.GETALLREVIEWS: {
       return {
@@ -28,7 +33,18 @@ export const ReviewReducer = (
         // filteredReviews: JSON.parse(action.payload),
       };
     }
+    default:
+      break;
+  }
 
+  return state;
+};
+
+export const NewReviewReducer = (
+  state: IReviewState,
+  action: IAction
+): IReviewState => {
+  switch (action.type) {
     case ActionType.CREATENEWREVIEW: {
       const newReview: IReview = {
         firstname: action.payload.firstname,
@@ -44,7 +60,7 @@ export const ReviewReducer = (
         comment: action.payload.comment,
       };
 
-      return { ...state, reviews: [...state.reviews, newReview] };
+      return { ...state, review: newReview };
     }
 
     default:
