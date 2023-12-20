@@ -54,7 +54,7 @@ function App() {
       });
     };
     getData();
-  }, [createReview.review]);
+  }, [createReview.review.photo]);
 
   console.log(createReview);
 

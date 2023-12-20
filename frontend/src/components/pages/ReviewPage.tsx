@@ -59,22 +59,22 @@ export const ReviewPage = () => {
       });
       await createNewReview(finishedData);
 
-      // dispatch({
-      //   type: ActionType.CREATENEWREVIEW,
-      //   payload: {
-      //     firstname: "",
-      //     lastname: "",
-      //     wineName: "",
-      //     photo: "",
-      //     producer: "",
-      //     percentage: "",
-      //     price: 0,
-      //     rating: 0,
-      //     foodPairing: "",
-      //     grape: "",
-      //     comment: "",
-      //   },
-      // });
+      dispatch({
+        type: ActionType.CREATENEWREVIEW,
+        payload: {
+          firstname: "",
+          lastname: "",
+          wineName: "",
+          photo: "",
+          producer: "",
+          percentage: "",
+          price: 0,
+          rating: 0,
+          foodPairing: "",
+          grape: "",
+          comment: "",
+        },
+      });
     } catch (error) {
       console.log("sorry could not post review" + error);
     }
