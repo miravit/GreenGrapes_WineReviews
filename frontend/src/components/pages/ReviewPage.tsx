@@ -1,123 +1,115 @@
-import { useEffect, useReducer, useState } from "react";
-import {
-  IReviewContext,
-  ReviewContext,
-  ReviewReducerContext,
-} from "../../contexts/ReviewContext";
-import { IName, IReview } from "../../models/IReview";
-import { createNewReview } from "../../services/reviewApi";
+import { useContext, useEffect, useState } from "react";
+import { ReviewReducerContext } from "../../contexts/ReviewContext";
+
 import Form from "../Form";
-import WelcomePage from "./WelcomePage";
 import { Link } from "react-router-dom";
-import { NewReviewReducer } from "../../reducers/ReviewsReducer";
+import WelcomeInput from "./WelcomeInput";
+import ConfirmReview from "../ConfirmReview";
 import { ReviewDispatchContext } from "../../contexts/ReviewDispatchContext";
+import { ActionType } from "../../reducers/ReviewsReducer";
+import { createNewReview } from "../../services/reviewApi";
 
 export const ReviewPage = () => {
-  const [isFormVisible, setIsFormVisible] = useState(false);
-
-  //with this state we create the review
-  const [createReview, dispatch] = useReducer(NewReviewReducer, {
-    review: {
-      firstname: "",
-      lastname: "",
-      wineName: "",
-      photo: "",
-      producer: "",
-      percentage: "",
-      price: 0,
-      rating: 0,
-      foodPairing: "",
-      grape: "",
-      comment: "",
-    },
-  });
-
-  //therefore this state needs to go in the dispatch as well.
-  const [name, setName] = useState<IName>({
-    firstname: "",
-    lastname: "",
-  });
-
-  // this is only a state to keep track of the current booking information
-  const [currentReview, setCurrentReview] = useState<IReviewContext>({
-    currentReview: {
-      firstname: "",
-      lastname: "",
-      wineName: "",
-      photo: "",
-      producer: "",
-      percentage: "",
-      price: 0,
-      rating: 0,
-      foodPairing: "",
-      grape: "",
-      comment: "",
-    },
-    createReview: async (reviewData: FormData) => {
-      const result = await createNewReview(reviewData);
-      return result as IReview;
-    },
-  });
-
-  const handleNameChange = (name: IName) => {
-    setName(name);
-    setCurrentReview((prevReview) => ({
-      ...prevReview,
-      currentReview: {
-        ...prevReview.currentReview,
-        firstname: name.firstname,
-        lastname: name.lastname,
-      },
-    }));
-  };
+  const dispatch = useContext(ReviewDispatchContext);
+  //const dispatch2 = useContext(ReviewDispatchContext);
+  const createReview = useContext(ReviewReducerContext);
+  const [showForm, setShowForm] = useState(false);
+  const [showConfirmReview, setShowConfirmReview] = useState(false);
 
   useEffect(() => {
     if (
-      currentReview.currentReview.firstname !== "" &&
-      currentReview.currentReview.firstname !== ""
+      createReview.review.firstname !== "" &&
+      createReview.review.lastname !== ""
     ) {
-      setIsFormVisible(true);
-      if (name.firstname !== "") {
-        setIsFormVisible(true);
-      }
+      setShowForm(true);
     } else {
-      setIsFormVisible(false);
+      setShowForm(false);
     }
-  }, [name]);
+  }, [createReview]);
 
   const handleChangeNameClick = () => {
-    setIsFormVisible(false);
+    setShowForm(false);
+    setShowConfirmReview(false);
   };
+  const handleNextButtonClick = () => {
+    setShowConfirmReview(true);
+    setShowForm(false);
+  };
+  const handleEditClick = () => {
+    setShowForm(true);
+    setShowConfirmReview(false);
+  };
+  const handlePostClick = async () => {
+    const finishedData = new FormData();
+    finishedData.append("firstname", createReview.review.firstname || "");
+    finishedData.append("lastname", createReview.review.lastname || "");
+    finishedData.append("wineName", createReview.review.wineName || "");
+    finishedData.append("photo", createReview.review.photo || "");
+    finishedData.append("producer", createReview.review.producer || "");
+    finishedData.append("percentage", createReview.review.percentage || "");
+    finishedData.append("price", createReview.review.price.toString() || "");
+    finishedData.append("rating", createReview.review.rating.toString() || "");
+    finishedData.append("foodPairing", createReview.review.foodPairing || "");
+    finishedData.append("grape", createReview.review.grape || "");
+    finishedData.append("comment", createReview.review.comment || "");
+    try {
+      dispatch({
+        type: ActionType.CREATENEWREVIEW,
+        payload: finishedData,
+      });
+      await createNewReview(finishedData);
 
-  console.log(createReview);
-  console.log(currentReview);
+      // dispatch({
+      //   type: ActionType.CREATENEWREVIEW,
+      //   payload: {
+      //     firstname: "",
+      //     lastname: "",
+      //     wineName: "",
+      //     photo: "",
+      //     producer: "",
+      //     percentage: "",
+      //     price: 0,
+      //     rating: 0,
+      //     foodPairing: "",
+      //     grape: "",
+      //     comment: "",
+      //   },
+      // });
+    } catch (error) {
+      console.log("sorry could not post review" + error);
+    }
+  };
 
   return (
     <>
-      <div>ReviewPage</div>
       <button>
         <Link to="/">Go Back</Link>
       </button>
       <div></div>
-      <ReviewReducerContext.Provider value={createReview}>
-        <ReviewDispatchContext.Provider value={dispatch}>
-          <ReviewContext.Provider value={currentReview}>
-            {isFormVisible ? (
-              <>
-                <h2>
-                  {"Welcome " +
-                    currentReview.currentReview.firstname +
-                    " please create a new Wine Review!"}
-                </h2>
-                <button onClick={handleChangeNameClick}>change name</button>
-                <Form />
-              </>
-            ) : (
-              <WelcomePage setName={handleNameChange} />
-            )}
-          </ReviewContext.Provider>
-        </ReviewDispatchContext.Provider>
-      </ReviewReducerContext.Provider>
+
+      {showForm && !showConfirmReview && (
+        <>
+          <h2>
+            {"Welcome " +
+              createReview.review.firstname +
+              " please create a new Wine Review!"}
+          </h2>
+          <button onClick={handleChangeNameClick}>change name</button>
+          <Form onNextButtonClick={handleNextButtonClick} />
+        </>
+      )}
+
+      {showConfirmReview && (
+        <>
+          <ConfirmReview />
+          <div>
+            <button onClick={handleEditClick}>Edit Review</button>
+            <button onClick={handlePostClick}>Post Review</button>
+          </div>
+        </>
+      )}
+
+      {!showForm && !showConfirmReview && <WelcomeInput />}
     </>
   );
 };

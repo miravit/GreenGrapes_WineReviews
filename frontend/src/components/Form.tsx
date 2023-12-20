@@ -1,18 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
-import { ReviewContext, ReviewReducerContext } from "../contexts/ReviewContext";
+import { ReviewReducerContext } from "../contexts/ReviewContext";
 import { IReview } from "../models/IReview";
 import { FormStyled } from "./styled/FormStyled";
 import PhotoUploader from "./PhotoUploader";
 import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
 import { ActionType } from "../reducers/ReviewsReducer";
-export const Form = () => {
-  const { createReview, currentReview } = useContext(ReviewContext);
-  const dispatch = useContext(ReviewDispatchContext);
 
-  const [inputData, setInputData] = useState<IReview>({
-    firstname: "",
-    lastname: "",
+interface FormProps {
+  onNextButtonClick: () => void;
+}
+
+export const Form = ({ onNextButtonClick }: FormProps) => {
+  const dispatch = useContext(ReviewDispatchContext);
+  // hanterar input
+  const [inputData, setInputData] = useState<Partial<IReview>>({
     wineName: "",
     photo: "",
     producer: "",
@@ -24,8 +26,6 @@ export const Form = () => {
     comment: "",
   });
 
-  const [newPhoto, setNewPhoto] = useState<File>();
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -35,39 +35,24 @@ export const Form = () => {
     }));
   };
 
-  const handlePhotoChange = (photo: File) => {
-    setNewPhoto(photo);
-  };
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const finishedData = new FormData();
-    finishedData.append("firstname", currentReview.firstname || "");
-    finishedData.append("lastname", currentReview.lastname || "");
-    finishedData.append("wineName", inputData.wineName || "");
-    finishedData.append("photo", newPhoto || "");
-    finishedData.append("producer", inputData.producer || "");
-    finishedData.append("percentage", inputData.percentage || "");
-    finishedData.append("price", inputData.price.toString() || "");
-    finishedData.append("rating", inputData.rating.toString() || "");
-    finishedData.append("foodPairing", inputData.foodPairing || "");
-    finishedData.append("grape", inputData.grape || "");
-    finishedData.append("comment", inputData.comment || "");
-
-    try {
-      dispatch({
-        type: ActionType.CREATENEWREVIEW,
-        payload: finishedData,
-      });
-      await createReview(finishedData);
-    } catch (error) {
-      console.log("sorry could not post review");
-    }
+    dispatch({
+      type: ActionType.UPDATEREVIEW,
+      payload: {
+        wineName: inputData.wineName,
+        producer: inputData.producer,
+        percentage: inputData.percentage,
+        price: inputData.price,
+        rating: inputData.rating,
+        foodPairing: inputData.foodPairing,
+        grape: inputData.grape,
+        comment: inputData.comment,
+      },
+    });
+    onNextButtonClick();
   };
-
-  console.log(currentReview);
-  console.log(inputData);
 
   return (
     <>
@@ -153,8 +138,8 @@ export const Form = () => {
             />
           </label>
 
-          <PhotoUploader onPhotoChange={handlePhotoChange} />
-          <button type="submit">Submit</button>
+          <PhotoUploader />
+          <button type="submit">Next</button>
         </FormStyled>
       </div>
     </>

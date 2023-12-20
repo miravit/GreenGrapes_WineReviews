@@ -9,6 +9,7 @@ export interface IAction {
 export enum ActionType {
   GETALLREVIEWS,
   CREATENEWREVIEW,
+  UPDATEREVIEW,
   //FILTERED,
 }
 
@@ -19,6 +20,7 @@ export interface IAllReviewState {
 
 export interface IReviewState {
   review: IReview;
+  createNewReview: (reviewData: FormData) => Promise<IReview>;
   // filteredReviews: IReview[];
 }
 
@@ -61,6 +63,12 @@ export const NewReviewReducer = (
       };
 
       return { ...state, review: newReview };
+    }
+
+    case ActionType.UPDATEREVIEW: {
+      const updatedFields: Partial<IReview> = action.payload;
+
+      return { ...state, review: { ...state.review, ...updatedFields } };
     }
 
     default:

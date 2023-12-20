@@ -58,4 +58,9 @@ export const ReviewReducerContext = createContext<IReviewState>({
     grape: "",
     comment: "",
   },
+  createNewReview: async (reviewData: FormData) => {
+    // assuming you have a function to convert FormData to IReview
+    const result = await createNewReview(reviewData);
+    return result as IReview;
+  },
 });
