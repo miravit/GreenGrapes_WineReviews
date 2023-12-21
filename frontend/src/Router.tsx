@@ -3,11 +3,17 @@ import { HomePage } from "./components/pages/HomePage";
 import { ReviewPage } from "./components/pages/ReviewPage";
 import { Feed } from "./components/pages/Feed";
 import { Layout } from "./components/pages/Layout";
+import GlobalStyles from "./assets/GlobalStyles";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout></Layout>,
+    element: (
+      <>
+        <GlobalStyles />
+        <Layout />
+      </>
+    ),
     children: [
       { path: "/", element: <HomePage></HomePage>, index: true },
       { path: "/", element: <Feed></Feed> },
