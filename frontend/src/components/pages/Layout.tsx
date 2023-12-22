@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Outlet } from "react-router";
+import { theme } from "../../themes/theme";
 
 // Create a styled component for the container
 const Container = styled.div`
@@ -15,14 +16,14 @@ const Header = styled.header`
 
 // Create a styled component for the main content
 const Main = styled.main`
-  flex: 1;
-  padding: 20px;
+  /* flex: 1;
+  padding: 20px; */
 `;
 
 // Create a styled component for the h1 element
 const Heading = styled.h1`
   margin: 0;
-  color: #165a31;
+  color: ${theme.headingColor};
 `;
 
 export const Layout = () => {
