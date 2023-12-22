@@ -3,10 +3,15 @@ import { AllReviewsReducerContext } from "../contexts/ReviewContext";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 130px;
-  margin-left: 13px;
-  height: 44px;
-  padding: 0;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+`;
+
+const Photos = styled.img`
+  width: 170px;
+  height: 170px;
+  padding: 5px;
 `;
 
 export const AllPhotos = () => {
@@ -16,13 +21,11 @@ export const AllPhotos = () => {
     <>
       <Container>
         {reviews.map((review, i) => (
-          <div key={i} style={{ margin: "10px" }}>
-            <img
+          <div key={i}>
+            <Photos
               src={review.photo}
               alt={`Photo of the wine: ${review.wineName}`}
-              style={{ width: "250px", height: "250px" }}
             />
-            <p>Firstname: {review.firstname}</p>
           </div>
         ))}
       </Container>
