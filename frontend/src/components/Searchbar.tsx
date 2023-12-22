@@ -1,11 +1,10 @@
-import { BiPlusMedical } from "react-icons/bi";
-
 import styled from "styled-components";
 import { theme } from "../themes/theme";
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 20px;
 `;
 
 const Input = styled.input`
@@ -16,22 +15,17 @@ const Input = styled.input`
   margin-left: 13px;
 `;
 
-const IconContainer = styled.div`
-  .hello {
-    font-size: 60px;
-    margin-top: -10px;
-    margin-left: 15px;
-    color: ${theme.iconColor};
-  }
+const Button = styled.button`
+  margin-left: 10px;
+  background-color: ${theme.buttonColor};
+  color: ${theme.buttonTextColor};
 `;
 
 export const Searchbar = () => {
   return (
     <Container>
       <Input />
-      <IconContainer>
-        <BiPlusMedical className="hello" />
-      </IconContainer>
+      <Button>Sök</Button>
     </Container>
   );
 };

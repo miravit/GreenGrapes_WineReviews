@@ -1,12 +1,20 @@
 import { useContext } from "react";
 import { AllReviewsReducerContext } from "../contexts/ReviewContext";
+import styled from "styled-components";
+
+const Container = styled.div`
+  width: 130px;
+  margin-left: 13px;
+  height: 44px;
+  padding: 0;
+`;
 
 export const AllPhotos = () => {
   const { reviews } = useContext(AllReviewsReducerContext);
 
   return (
     <>
-      <div>
+      <Container>
         {reviews.map((review, i) => (
           <div key={i} style={{ margin: "10px" }}>
             <img
@@ -17,7 +25,7 @@ export const AllPhotos = () => {
             <p>Firstname: {review.firstname}</p>
           </div>
         ))}
-      </div>
+      </Container>
     </>
   );
 };
