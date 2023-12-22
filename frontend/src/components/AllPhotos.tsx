@@ -5,13 +5,14 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  padding: 5px;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 const Photos = styled.img`
-  width: 170px;
-  height: 170px;
-  padding: 5px;
+  width: 175px;
+  height: 175px;
+  padding: 6px;
 `;
 
 export const AllPhotos = () => {
