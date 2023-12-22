@@ -8,6 +8,7 @@ import ConfirmReview from "../ConfirmReview";
 import { ReviewDispatchContext } from "../../contexts/ReviewDispatchContext";
 import { ActionType } from "../../reducers/ReviewsReducer";
 import { createNewReview } from "../../services/reviewApi";
+import NavbarReviewPage from "../NavbarReviewPage";
 
 export const ReviewPage = () => {
   const dispatch = useContext(ReviewDispatchContext);
@@ -59,22 +60,22 @@ export const ReviewPage = () => {
       });
       await createNewReview(finishedData);
 
-      // dispatch({
-      //   type: ActionType.CREATENEWREVIEW,
-      //   payload: {
-      //     firstname: "",
-      //     lastname: "",
-      //     wineName: "",
-      //     photo: "",
-      //     producer: "",
-      //     percentage: "",
-      //     price: 0,
-      //     rating: 0,
-      //     foodPairing: "",
-      //     grape: "",
-      //     comment: "",
-      //   },
-      // });
+      dispatch({
+        type: ActionType.CREATENEWREVIEW,
+        payload: {
+          firstname: "",
+          lastname: "",
+          wineName: "",
+          photo: "",
+          producer: "",
+          percentage: "",
+          price: 0,
+          rating: 0,
+          foodPairing: "",
+          grape: "",
+          comment: "",
+        },
+      });
     } catch (error) {
       console.log("sorry could not post review" + error);
     }
@@ -82,6 +83,7 @@ export const ReviewPage = () => {
 
   return (
     <>
+      <NavbarReviewPage></NavbarReviewPage>
       <button>
         <Link to="/">Go Back</Link>
       </button>

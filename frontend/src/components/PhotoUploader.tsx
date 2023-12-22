@@ -2,10 +2,15 @@ import { ChangeEvent, useContext, useState } from "react";
 import { MdOutlineAddAPhoto } from "react-icons/md";
 import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
 import { ActionType } from "../reducers/ReviewsReducer";
+// import { ReviewReducerContext } from "../contexts/ReviewContext";
+// import { IReview } from "../models/IReview";
 
 export const PhotoUploader = () => {
   const dispatch = useContext(ReviewDispatchContext);
-  const [photoUploaded, setPhotoUploaded] = useState("");
+  // const createReview = useContext(ReviewReducerContext);
+  // const review: IReview = createReview.review;
+  const [uploadedPhotoText, setUploadedPhotoText] = useState("");
+  //const [uploadedPhoto, setUploadedPhoto] = useState<File>();
 
   const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -17,7 +22,8 @@ export const PhotoUploader = () => {
           photo: file,
         },
       });
-      setPhotoUploaded("Photo Successfully uploaded!");
+      setUploadedPhotoText("Photo Added!");
+      //setUploadedPhoto(file);
     }
   };
 
@@ -34,7 +40,14 @@ export const PhotoUploader = () => {
           onChange={(e) => handlePhoto(e)}
         />
       </label>
-      <p>{photoUploaded}</p>
+      <div>
+        <p>{uploadedPhotoText}</p>
+        {/* <img
+          src={URL.createObjectURL(review.photo)}
+          alt={`Photo of the wine`}
+          style={{ width: "100px", height: "130px" }}
+        /> */}
+      </div>
     </>
   );
 };

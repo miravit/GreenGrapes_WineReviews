@@ -2,7 +2,7 @@
 
 import { RouterProvider } from "react-router-dom";
 import { router } from "./Router";
-import { useReducer, useEffect, useState, useContext } from "react";
+import { useReducer, useEffect } from "react";
 import {
   AllReviewsReducerContext,
   ReviewReducerContext,
@@ -54,7 +54,7 @@ function App() {
       });
     };
     getData();
-  }, [createReview.review]);
+  }, [createReview.review.photo]);
 
   console.log(createReview);
 
