@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Outlet } from "react-router";
 import { theme } from "../../themes/theme";
+import Navbar from "../Navbar";
 
 // Create a styled component for the container
 const Container = styled.div`
@@ -31,6 +32,7 @@ export const Layout = () => {
     <Container>
       <Header>
         <Heading className="custom-font">Green Grapes</Heading>
+        <Navbar></Navbar>
       </Header>
       <Main>
         <Outlet />

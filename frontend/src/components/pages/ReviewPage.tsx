@@ -8,7 +8,6 @@ import ConfirmReview from "../ConfirmReview";
 import { ReviewDispatchContext } from "../../contexts/ReviewDispatchContext";
 import { ActionType } from "../../reducers/ReviewsReducer";
 import { createNewReview } from "../../services/reviewApi";
-import NavbarReviewPage from "../NavbarReviewPage";
 
 export const ReviewPage = () => {
   const dispatch = useContext(ReviewDispatchContext);
@@ -83,7 +82,6 @@ export const ReviewPage = () => {
 
   return (
     <>
-      <NavbarReviewPage></NavbarReviewPage>
       <button>
         <Link to="/">Go Back</Link>
       </button>

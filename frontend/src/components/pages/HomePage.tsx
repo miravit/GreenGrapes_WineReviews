@@ -3,8 +3,11 @@ import { theme } from "../../themes/theme";
 import Searchbar from "../Searchbar";
 import ViewButtons from "../ViewButtons";
 import Feed from "./Feed";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { BiPlusMedical } from "react-icons/bi";
+import AboutSection from "../AboutSection";
+import ContactSection from "../ContactSection";
+import { Link as ScrollLink, Element } from "react-scroll";
 
 const IconContainer = styled.div`
   .react-icon-plus {
@@ -27,12 +30,18 @@ export const HomePage = () => {
       <ButtonContainer>
         <ViewButtons />
         <IconContainer>
-          <Link to="/review">
+          <ScrollLink to="review" smooth={true} duration={500}>
             <BiPlusMedical className="react-icon-plus" />
-          </Link>
+          </ScrollLink>
         </IconContainer>
       </ButtonContainer>
       <Feed />
+      <Element name="about">
+        <AboutSection />
+      </Element>
+      <Element name="contact">
+        <ContactSection />
+      </Element>
     </>
   );
 };
