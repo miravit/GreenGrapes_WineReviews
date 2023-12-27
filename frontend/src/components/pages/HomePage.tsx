@@ -7,7 +7,8 @@ import Feed from "./Feed";
 import { BiPlusMedical } from "react-icons/bi";
 import AboutSection from "../AboutSection";
 import ContactSection from "../ContactSection";
-import { Link as ScrollLink, Element } from "react-scroll";
+import { Element } from "react-scroll";
+import { Link } from "react-router-dom";
 
 const IconContainer = styled.div`
   .react-icon-plus {
@@ -29,11 +30,11 @@ export const HomePage = () => {
       <Searchbar />
       <ButtonContainer>
         <ViewButtons />
-        <IconContainer>
-          <ScrollLink to="review" smooth={true} duration={500}>
+        <Link to="/review">
+          <IconContainer>
             <BiPlusMedical className="react-icon-plus" />
-          </ScrollLink>
-        </IconContainer>
+          </IconContainer>
+        </Link>
       </ButtonContainer>
       <Feed />
       <Element name="about">
