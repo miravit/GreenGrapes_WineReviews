@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { ReviewReducerContext } from "../../contexts/ReviewContext";
-
 import Form from "../Form";
-import { Link } from "react-router-dom";
 import WelcomeInput from "./WelcomeInput";
 import ConfirmReview from "../ConfirmReview";
 import { ReviewDispatchContext } from "../../contexts/ReviewDispatchContext";
@@ -82,9 +80,6 @@ export const ReviewPage = () => {
 
   return (
     <>
-      <button>
-        <Link to="/">Go Back</Link>
-      </button>
       <div></div>
 
       {showForm && !showConfirmReview && (
