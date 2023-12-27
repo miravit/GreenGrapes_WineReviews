@@ -7,12 +7,17 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 3px;
+
+  .photo-div {
+    margin-bottom: -3px;
+  }
 `;
 
 const Photos = styled.img`
   width: 175px;
   height: 175px;
-  padding: 6px;
+  padding-top: 0px;
 `;
 
 export const AllPhotos = () => {
@@ -22,7 +27,7 @@ export const AllPhotos = () => {
     <>
       <Container>
         {reviews.map((review, i) => (
-          <div key={i}>
+          <div key={i} className="photo-div">
             <Photos
               src={review.photo}
               alt={`Photo of the wine: ${review.wineName}`}

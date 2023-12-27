@@ -14,26 +14,23 @@ const BackContainer = styled.div`
   cursor: pointer;
 
   .back-arrow {
-    font-size: 30px;
+    font-size: 35px;
+    padding-right: 5px;
   }
 
   p {
-    margin-top: -6px;
+    margin-top: 3px;
   }
 `;
 
 export const ReviewPage = () => {
   const dispatch = useContext(ReviewDispatchContext);
-  //const dispatch2 = useContext(ReviewDispatchContext);
   const createReview = useContext(ReviewReducerContext);
   const [showForm, setShowForm] = useState(false);
   const [showConfirmReview, setShowConfirmReview] = useState(false);
 
   useEffect(() => {
-    if (
-      createReview.review.firstname !== "" &&
-      createReview.review.lastname !== ""
-    ) {
+    if (createReview.review.firstname !== "") {
       setShowForm(true);
     } else {
       setShowForm(false);
@@ -103,9 +100,9 @@ export const ReviewPage = () => {
         <>
           <BackContainer onClick={handleChangeNameClick}>
             <MdOutlineKeyboardBackspace className="back-arrow" />
-            <p>Change Name</p>
+            <p> Change Name</p>
           </BackContainer>
-          <h2>{"Welcome " + createReview.review.firstname + "!"}</h2>
+          {/* <h2>{"Welcome " + createReview.review.firstname + "!"}</h2> */}
           <Form onNextButtonClick={handleNextButtonClick} />
         </>
       )}

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
-import { ReviewReducerContext } from "../contexts/ReviewContext";
 import { IReview } from "../models/IReview";
 import { FormStyled } from "./styled/FormStyled";
 import PhotoUploader from "./PhotoUploader";
@@ -58,88 +57,76 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
     <>
       <div>
         <FormStyled onSubmit={handleSubmit} encType="multipart/form-data">
-          <label>
-            Wine Name:
-            <input
-              type="text"
-              name="wineName"
-              value={inputData.wineName}
-              onChange={handleChange}
-            />
-          </label>
+          <label>Wine Name:</label>
+          <input
+            type="text"
+            name="wineName"
+            value={inputData.wineName}
+            onChange={handleChange}
+          />
 
-          <label>
-            Producer:
+          <label>Producer:</label>
+          <input
+            type="text"
+            name="producer"
+            value={inputData.producer}
+            onChange={handleChange}
+          />
+          <div className="small-input-container">
             <input
-              type="text"
-              name="producer"
-              value={inputData.producer}
-              onChange={handleChange}
-            />
-          </label>
-
-          <label>
-            Percentage:
-            <input
+              className="percentage"
               type="text"
               name="percentage"
               value={inputData.percentage}
               onChange={handleChange}
             />
-          </label>
+            <label className="percentage-label">%</label>
 
-          <label>
-            Price:
             <input
+              className="price"
               type="number"
               name="price"
               value={inputData.price}
               onChange={handleChange}
             />
-          </label>
+            <label className="price-label">kr</label>
+          </div>
 
-          <label>
-            Rating:
-            <input
-              type="number"
-              name="rating"
-              value={inputData.rating}
-              onChange={handleChange}
-            />
-          </label>
+          <label>Rating:</label>
+          <input
+            type="number"
+            name="rating"
+            value={inputData.rating}
+            onChange={handleChange}
+          />
 
-          <label>
-            Food Pairing:
-            <input
-              type="text"
-              name="foodPairing"
-              value={inputData.foodPairing}
-              onChange={handleChange}
-            />
-          </label>
+          <label>Food Pairing:</label>
+          <input
+            type="text"
+            name="foodPairing"
+            value={inputData.foodPairing}
+            onChange={handleChange}
+          />
 
-          <label>
-            Grape:
-            <input
-              type="text"
-              name="grape"
-              value={inputData.grape}
-              onChange={handleChange}
-            />
-          </label>
+          <label>Grape:</label>
+          <input
+            type="text"
+            name="grape"
+            value={inputData.grape}
+            onChange={handleChange}
+          />
 
-          <label>
-            Comment:
-            <input
-              type="text"
-              name="comment"
-              value={inputData.comment}
-              onChange={handleChange}
-            />
-          </label>
-
-          <PhotoUploader />
-          <button type="submit">Next</button>
+          <label>Comment:</label>
+          <input
+            type="text"
+            name="comment"
+            value={inputData.comment}
+            onChange={handleChange}
+          />
+          <div className="button-container">
+            <PhotoUploader />
+            <button type="submit">Next</button>
+          </div>
         </FormStyled>
       </div>
     </>

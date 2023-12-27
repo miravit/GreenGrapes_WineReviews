@@ -5,27 +5,50 @@ export const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 13px;
-  margin-top: 30px;
-
-  @media screen and (min-width: 768px) {
-    width: 0px;
-    margin-left: 450px;
-    margin-top: 130px;
-  }
+  gap: 8px;
+  //margin-top: 30px;
 
   input {
-    width: 350px;
+    width: 320px;
     height: 30px;
+    border-radius: 9px;
+    border: none;
   }
 
-  button {
-    margin-top: -17px;
-    margin-bottom: 10px;
-    border: 1px solid black;
+  .small-input-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
 
-    @media screen and (min-width: 768px) {
-      width: 200px;
+    input {
+      width: 130px;
     }
+    .percentage-label {
+    }
+    .percentage {
+      margin-right: 4px;
+    }
+    .price-label {
+      margin-left: 5px;
+    }
+    .price {
+      margin-left: 20px;
+    }
+  }
+
+  .button-container {
+    display: flex;
+    margin: 10px;
+    .photo-icon {
+      font-size: 60px;
+      padding-right: 40px;
+    }
+    button {
+      height: 40px;
+      margin-top: 14px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
   }
 `;
