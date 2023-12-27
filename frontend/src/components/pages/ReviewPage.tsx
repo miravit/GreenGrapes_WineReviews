@@ -6,6 +6,21 @@ import ConfirmReview from "../ConfirmReview";
 import { ReviewDispatchContext } from "../../contexts/ReviewDispatchContext";
 import { ActionType } from "../../reducers/ReviewsReducer";
 import { createNewReview } from "../../services/reviewApi";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
+import styled from "styled-components";
+
+const BackContainer = styled.div`
+  display: flex;
+  cursor: pointer;
+
+  .back-arrow {
+    font-size: 30px;
+  }
+
+  p {
+    margin-top: -6px;
+  }
+`;
 
 export const ReviewPage = () => {
   const dispatch = useContext(ReviewDispatchContext);
@@ -86,12 +101,11 @@ export const ReviewPage = () => {
 
       {showForm && !showConfirmReview && (
         <>
-          <h2>
-            {"Welcome " +
-              createReview.review.firstname +
-              " please create a new Wine Review!"}
-          </h2>
-          <button onClick={handleChangeNameClick}>change name</button>
+          <BackContainer onClick={handleChangeNameClick}>
+            <MdOutlineKeyboardBackspace className="back-arrow" />
+            <p>Change Name</p>
+          </BackContainer>
+          <h2>{"Welcome " + createReview.review.firstname + "!"}</h2>
           <Form onNextButtonClick={handleNextButtonClick} />
         </>
       )}

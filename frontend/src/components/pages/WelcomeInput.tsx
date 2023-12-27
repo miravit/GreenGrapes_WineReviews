@@ -8,11 +8,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 80px;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 15px;
 `;
 
 const Input = styled.input`
@@ -20,7 +22,7 @@ const Input = styled.input`
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 10px;
-  width: 300px;
+  width: 320px;
   height: 40px;
   border-radius: 10px;
   border: none;
@@ -54,25 +56,27 @@ export const WelcomeInput = () => {
   };
   return (
     <Container>
-      <label>Firstname:</label>
-      <Input
-        type="text"
-        name="firstname"
-        value={username.firstname}
-        onChange={handleChange}
-      />
+      <form onSubmit={handleSubmit}>
+        <label>Firstname:</label>
+        <Input
+          type="text"
+          name="firstname"
+          value={username.firstname}
+          onChange={handleChange}
+        />
 
-      <label>lastname:</label>
-      <Input
-        type="text"
-        name="lastname"
-        value={username.lastname}
-        onChange={handleChange}
-      />
+        <label>lastname:</label>
+        <Input
+          type="text"
+          name="lastname"
+          value={username.lastname}
+          onChange={handleChange}
+        />
 
-      <ButtonContainer>
-        <button onClick={handleSubmit}>Submit</button>
-      </ButtonContainer>
+        <ButtonContainer>
+          <button onSubmit={handleSubmit}>Submit</button>
+        </ButtonContainer>
+      </form>
     </Container>
   );
 };
