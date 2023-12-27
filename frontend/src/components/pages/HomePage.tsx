@@ -5,9 +5,6 @@ import ViewButtons from "../ViewButtons";
 import Feed from "./Feed";
 //import { Link } from "react-router-dom";
 import { BiPlusMedical } from "react-icons/bi";
-import AboutSection from "../AboutSection";
-import ContactSection from "../ContactSection";
-import { Element } from "react-scroll";
 import { Link } from "react-router-dom";
 
 const IconContainer = styled.div`
@@ -37,12 +34,6 @@ export const HomePage = () => {
         </Link>
       </ButtonContainer>
       <Feed />
-      <Element name="about">
-        <AboutSection />
-      </Element>
-      <Element name="contact">
-        <ContactSection />
-      </Element>
     </>
   );
 };

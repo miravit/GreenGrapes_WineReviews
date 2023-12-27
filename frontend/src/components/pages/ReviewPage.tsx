@@ -73,6 +73,8 @@ export const ReviewPage = () => {
           comment: "",
         },
       });
+
+      setShowConfirmReview(false);
     } catch (error) {
       console.log("sorry could not post review" + error);
     }

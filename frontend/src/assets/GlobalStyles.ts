@@ -6,7 +6,11 @@ export const GlobalStyles = createGlobalStyle`
 
   .custom-font {
     font-family: 'Notable', sans-serif;
-    /* Other styles for elements with the 'custom-font' class */
+  
+  }
+  .general-font {
+    font-family: 'Nokora', sans-serif;
+    font-family: 'Notable', sans-serif;
   }
 `;
 
