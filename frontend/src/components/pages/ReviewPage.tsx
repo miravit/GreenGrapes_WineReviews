@@ -1,27 +1,36 @@
 import { useContext, useEffect, useState } from "react";
 import { ReviewReducerContext } from "../../contexts/ReviewContext";
-
 import Form from "../Form";
-import { Link } from "react-router-dom";
 import WelcomeInput from "./WelcomeInput";
 import ConfirmReview from "../ConfirmReview";
 import { ReviewDispatchContext } from "../../contexts/ReviewDispatchContext";
 import { ActionType } from "../../reducers/ReviewsReducer";
 import { createNewReview } from "../../services/reviewApi";
-import NavbarReviewPage from "../NavbarReviewPage";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
+import styled from "styled-components";
+
+const BackContainer = styled.div`
+  display: flex;
+  cursor: pointer;
+
+  .back-arrow {
+    font-size: 35px;
+    padding-right: 5px;
+  }
+
+  p {
+    margin-top: 3px;
+  }
+`;
 
 export const ReviewPage = () => {
   const dispatch = useContext(ReviewDispatchContext);
-  //const dispatch2 = useContext(ReviewDispatchContext);
   const createReview = useContext(ReviewReducerContext);
   const [showForm, setShowForm] = useState(false);
   const [showConfirmReview, setShowConfirmReview] = useState(false);
 
   useEffect(() => {
-    if (
-      createReview.review.firstname !== "" &&
-      createReview.review.lastname !== ""
-    ) {
+    if (createReview.review.firstname !== "") {
       setShowForm(true);
     } else {
       setShowForm(false);
@@ -76,6 +85,8 @@ export const ReviewPage = () => {
           comment: "",
         },
       });
+
+      setShowConfirmReview(false);
     } catch (error) {
       console.log("sorry could not post review" + error);
     }
@@ -83,20 +94,15 @@ export const ReviewPage = () => {
 
   return (
     <>
-      <NavbarReviewPage></NavbarReviewPage>
-      <button>
-        <Link to="/">Go Back</Link>
-      </button>
       <div></div>
 
       {showForm && !showConfirmReview && (
         <>
-          <h2>
-            {"Welcome " +
-              createReview.review.firstname +
-              " please create a new Wine Review!"}
-          </h2>
-          <button onClick={handleChangeNameClick}>change name</button>
+          <BackContainer onClick={handleChangeNameClick}>
+            <MdOutlineKeyboardBackspace className="back-arrow" />
+            <p> Change Name</p>
+          </BackContainer>
+          {/* <h2>{"Welcome " + createReview.review.firstname + "!"}</h2> */}
           <Form onNextButtonClick={handleNextButtonClick} />
         </>
       )}

@@ -3,8 +3,9 @@ import { theme } from "../../themes/theme";
 import Searchbar from "../Searchbar";
 import ViewButtons from "../ViewButtons";
 import Feed from "./Feed";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { BiPlusMedical } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const IconContainer = styled.div`
   .react-icon-plus {
@@ -26,11 +27,11 @@ export const HomePage = () => {
       <Searchbar />
       <ButtonContainer>
         <ViewButtons />
-        <IconContainer>
-          <Link to="/review">
+        <Link to="/review">
+          <IconContainer>
             <BiPlusMedical className="react-icon-plus" />
-          </Link>
-        </IconContainer>
+          </IconContainer>
+        </Link>
       </ButtonContainer>
       <Feed />
     </>
