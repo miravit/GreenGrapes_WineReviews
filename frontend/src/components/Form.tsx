@@ -13,6 +13,7 @@ interface FormProps {
 export const Form = ({ onNextButtonClick }: FormProps) => {
   const dispatch = useContext(ReviewDispatchContext);
   const [clicked, setClicked] = useState([false, false, false, false, false]);
+  const [ratingNumber, setRatingNumber] = useState(0);
   // hanterar input
   const [inputData, setInputData] = useState<Partial<IReview>>({
     wineName: "",
@@ -45,7 +46,7 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
         producer: inputData.producer,
         percentage: inputData.percentage,
         price: inputData.price,
-        rating: inputData.rating,
+        rating: ratingNumber,
         foodPairing: inputData.foodPairing,
         grape: inputData.grape,
         comment: inputData.comment,
@@ -64,8 +65,19 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
     }
 
     setClicked(clickStates);
-  };
 
+    setRatingNumber((prevNumber) => {
+      let newNumber = 0;
+      for (let i = 0; i < clickStates.length; i++) {
+        if (clickStates[i] === true) {
+          newNumber++;
+        }
+      }
+
+      return newNumber;
+    });
+  };
+  console.log(ratingNumber);
   return (
     <>
       <div>
