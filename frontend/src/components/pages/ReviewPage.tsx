@@ -42,8 +42,13 @@ export const ReviewPage = () => {
     setShowConfirmReview(false);
   };
   const handleNextButtonClick = () => {
-    setShowConfirmReview(true);
-    setShowForm(false);
+    if (Object.values(createReview.review).every((value) => value)) {
+      setShowConfirmReview(true);
+      setShowForm(false);
+    } else {
+      // At least one property is missing a value, do something else...
+      console.log("At least one property is missing a value");
+    }
   };
   const handleEditClick = () => {
     setShowForm(true);
