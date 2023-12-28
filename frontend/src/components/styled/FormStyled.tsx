@@ -42,12 +42,11 @@ export const FormStyled = styled.form`
   }
 
   svg polygon {
-    stroke: #dbdbdb;
-    stroke-width: 5;
+    stroke: #ffffff;
+    stroke-width: 1;
     stroke-linecap: round;
     stroke-linejoin: round;
-    fill: #dbdbdb;
-    margin-right: 1rem;
+    fill: #ffffff;
   }
 
   svg polygon {
@@ -56,23 +55,23 @@ export const FormStyled = styled.form`
 
   .star {
     height: 50px;
-    margin-left: 80px;
+    margin-left: 30px;
     margin-top: 29px;
   }
   svg:hover polygon {
-    stroke: #d6bb0d;
-    fill: #d6bb0d;
+    stroke: #e64caa;
+    fill: #e64caa;
     cursor: pointer;
   }
 
   svg polygon:hover ~ polygon {
-    stroke: #dbdbdb;
-    fill: #dbdbdb;
+    stroke: #ffffff;
+    fill: #ffffff;
   }
 
   .clickedstar {
-    stroke: #d6bb0d;
-    fill: #d6bb0d;
+    stroke: #e64caa;
+    fill: #e64caa;
   }
 
   .button-container {

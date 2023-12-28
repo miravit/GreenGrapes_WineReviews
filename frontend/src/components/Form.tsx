@@ -133,27 +133,27 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
               <polygon
                 onClick={(e) => handleStarClick(e, 0)}
                 className={clicked[0] ? "clickedstar" : undefined}
-                points="20,0 8,40 40,16 0,16 32,40"
+                points="30,0 18,40 50,16 10,16 42,40"
               />
               <polygon
                 onClick={(e) => handleStarClick(e, 1)}
                 className={clicked[1] ? "clickedstar" : undefined}
-                points="62,0 50,40 82,16 42,16 74,40"
+                points="82,0 70,40 102,16 62,16 94,40"
               />
               <polygon
                 onClick={(e) => handleStarClick(e, 2)}
                 className={clicked[2] ? "clickedstar" : undefined}
-                points="104,0 92,40 124,16 84,16 116,40"
+                points="134,0 122,40 154,16 114,16 146,40"
               />
               <polygon
                 onClick={(e) => handleStarClick(e, 3)}
                 className={clicked[3] ? "clickedstar" : undefined}
-                points="146,0 134,40 166,16 126,16 158,40"
+                points="186,0 174,40 206,16 166,16 198,40"
               />
               <polygon
                 onClick={(e) => handleStarClick(e, 4)}
                 className={clicked[4] ? "clickedstar" : undefined}
-                points="188,0 176,40 208,16 168,16 200,40"
+                points="238,0 226,40 258,16 218,16 250,40"
               />
             </svg>
           </div>
