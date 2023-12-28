@@ -1,6 +1,11 @@
-import { useContext } from "react";
-import { AllReviewsReducerContext } from "../contexts/ReviewContext";
+// import { useContext } from "react";
+// import { AllReviewsReducerContext } from "../contexts/ReviewContext";
 import styled from "styled-components";
+import { IReview } from "../models/IReview";
+
+interface AllPhotosProps {
+  reviews: IReview[];
+}
 
 const Container = styled.div`
   display: flex;
@@ -20,8 +25,8 @@ const Photos = styled.img`
   padding-top: 0px;
 `;
 
-export const AllPhotos = () => {
-  const { reviews } = useContext(AllReviewsReducerContext);
+export const AllPhotos = ({ reviews }: AllPhotosProps) => {
+  // const { reviews } = useContext(AllReviewsReducerContext);
 
   return (
     <>
