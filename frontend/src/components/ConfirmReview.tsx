@@ -35,10 +35,10 @@ const ConfirmReview = () => {
           )}
           <p>Wine Name: {review.wineName}</p>
           <div>
-            <p>Price: {review.price}</p>
+            <p>Price: {review.price} kr </p>
             <p>Rating: {review.rating}</p>
           </div>
-          <p>Percentage: {review.percentage}</p>
+          <p>Percentage: {review.percentage} %</p>
           <p>Grape: {review.grape}</p>
           <p>Producer: {review.producer}</p>
           <p>Food Pairing: {review.foodPairing}</p>

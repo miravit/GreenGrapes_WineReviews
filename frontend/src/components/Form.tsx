@@ -55,7 +55,7 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
     onNextButtonClick();
   };
 
-  // kan vara fel ts types!
+  // star rating logic from https://javascript.plainenglish.io/how-to-use-css-and-react-to-create-a-star-rating-5bfc85882b1b
   const handleStarClick = (e: FormEvent, index: number) => {
     e.preventDefault();
     const clickStates = [...clicked];
@@ -111,7 +111,7 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
               className="price"
               type="number"
               name="price"
-              value={inputData.price}
+              value={inputData.price === 0 ? "" : inputData.price}
               onChange={handleChange}
             />
             <label className="price-label">kr</label>
