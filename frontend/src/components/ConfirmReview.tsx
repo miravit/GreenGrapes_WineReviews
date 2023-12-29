@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   // margin-top: 20px;
-  padding-top: 10px;
+  //padding-top: 10px;
   padding-bottom: 10px;
   align-items: center;
   width: 100vw;
@@ -40,7 +40,8 @@ const HeadingContainer = styled.div`
   justify-content: center;
   max-width: 100vw;
   color: ${theme.secondaryColor};
-  // margin-bottom: -40px;
+  margin-bottom: 5px;
+  margin-top: 0px;
 `;
 
 const Heading = styled.h2`
@@ -167,6 +168,9 @@ const ConfirmReview = () => {
       {review && (
         <>
           <Container>
+            <HeadingContainer>
+              <Heading className="custom-font">{review.wineName}</Heading>
+            </HeadingContainer>
             {imageBlob && (
               <ImgHeader>
                 <Photo
@@ -176,9 +180,6 @@ const ConfirmReview = () => {
                 />
               </ImgHeader>
             )}
-            <HeadingContainer>
-              <Heading className="custom-font">{review.wineName}</Heading>
-            </HeadingContainer>
             <SmallContainer>
               <p>{review.price} kr </p>
               <p>{review.percentage} %</p>
