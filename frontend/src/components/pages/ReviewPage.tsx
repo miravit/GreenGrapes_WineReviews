@@ -8,6 +8,7 @@ import { ActionType } from "../../reducers/ReviewsReducer";
 import { createNewReview } from "../../services/reviewApi";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import styled from "styled-components";
+import { theme } from "../../themes/theme";
 
 const BackContainer = styled.div`
   display: flex;
@@ -20,6 +21,20 @@ const BackContainer = styled.div`
 
   p {
     margin-top: 3px;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 10px;
+
+  button {
+    margin-right: 20px;
+    margin-left: 20px;
+    background-color: ${theme.buttonColor};
+    color: ${theme.buttonTextColor};
   }
 `;
 
@@ -118,10 +133,10 @@ export const ReviewPage = () => {
       {showConfirmReview && (
         <>
           <ConfirmReview />
-          <div>
+          <ButtonContainer>
             <button onClick={handleEditClick}>Edit Review</button>
             <button onClick={handlePostClick}>Post Review</button>
-          </div>
+          </ButtonContainer>
         </>
       )}
 

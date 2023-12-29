@@ -8,7 +8,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Notable', sans-serif;
   
   }
-  .general-font {
+  .general {
     font-family: 'Nokora', sans-serif;
     font-family: 'Notable', sans-serif;
   }

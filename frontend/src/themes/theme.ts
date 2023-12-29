@@ -6,4 +6,6 @@ export const theme = {
   buttonColor: "#165A35",
   buttonTextColor: "#FFFFFF",
   iconColor: "#165A35",
+
+  secondaryColor: "#165A35", //pink (star rating + heading on review)
 };
