@@ -5,6 +5,7 @@ import { FormStyled } from "./styled/FormStyled";
 import PhotoUploader from "./PhotoUploader";
 import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
 import { ActionType } from "../reducers/ReviewsReducer";
+import { useForm, Controller } from "react-hook-form";
 
 interface FormProps {
   onNextButtonClick: () => void;
@@ -15,41 +16,49 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [ratingNumber, setRatingNumber] = useState(0);
   // hanterar input
-  const [inputData, setInputData] = useState<Partial<IReview>>({
-    wineName: "",
-    photo: "",
-    producer: "",
-    percentage: "",
-    price: 0,
-    rating: 0,
-    foodPairing: "",
-    grape: "",
-    comment: "",
+  const {
+    handleSubmit,
+    control,
+    register,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      wineName: "",
+      producer: "",
+      percentage: "",
+      price: 0,
+      rating: 0,
+      foodPairing: "",
+      grape: "",
+      comment: "",
+    },
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
 
-    setInputData((prevReview) => ({
-      ...prevReview,
-      [name]: name === "price" || name === "rating" ? +value : value,
-    }));
-  };
+  //   setInputData((prevReview) => ({
+  //     ...prevReview,
+  //     [name]: name === "price" || name === "rating" ? +value : value,
+  //   }));
+  // };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit = (data: Partial<IReview>) => {
+    let priceToNumber = data.price;
+    if (data.price !== undefined) {
+      priceToNumber = +data.price;
+    }
     dispatch({
       type: ActionType.UPDATEREVIEW,
       payload: {
-        wineName: inputData.wineName,
-        producer: inputData.producer,
-        percentage: inputData.percentage,
-        price: inputData.price,
+        wineName: data.wineName,
+        producer: data.producer,
+        percentage: data.percentage,
+        price: priceToNumber,
         rating: ratingNumber,
-        foodPairing: inputData.foodPairing,
-        grape: inputData.grape,
-        comment: inputData.comment,
+        foodPairing: data.foodPairing,
+        grape: data.grape,
+        comment: data.comment,
       },
     });
     onNextButtonClick();
@@ -81,64 +90,98 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
   return (
     <>
       <div>
-        <FormStyled onSubmit={handleSubmit} encType="multipart/form-data">
+        <FormStyled
+          onSubmit={handleSubmit(onSubmit)}
+          encType="multipart/form-data"
+        >
           <label>Wine Name:</label>
-          <input
-            type="text"
+          <Controller
             name="wineName"
-            value={inputData.wineName}
-            onChange={handleChange}
+            control={control}
+            render={({ field }) => (
+              <>
+                <input {...field} type="text" />
+                {errors.wineName && (
+                  <p className="error">{errors.wineName.message}</p>
+                )}
+              </>
+            )}
+            rules={{ required: "Wine name is required" }}
           />
 
           <label>Producer:</label>
-          <input
-            type="text"
+          <Controller
             name="producer"
-            value={inputData.producer}
-            onChange={handleChange}
+            control={control}
+            render={({ field }) => (
+              <>
+                <input {...field} type="text" />
+                {errors.producer && (
+                  <p className="error">{errors.producer.message}</p>
+                )}
+              </>
+            )}
+            rules={{ required: "producer is required" }}
           />
           <div className="small-input-container">
-            <input
-              className="percentage"
-              type="text"
+            <Controller
               name="percentage"
-              value={inputData.percentage}
-              onChange={handleChange}
+              control={control}
+              render={({ field }) => (
+                <>
+                  <input {...field} type="text" />
+                  {errors.percentage && (
+                    <p className="error">{errors.percentage.message}</p>
+                  )}
+                </>
+              )}
+              rules={{ required: "Percentage is required" }}
             />
             <label className="percentage-label">%</label>
 
-            <input
-              className="price"
-              type="number"
+            <Controller
               name="price"
-              value={inputData.price === 0 ? "" : inputData.price}
-              onChange={handleChange}
+              control={control}
+              render={({ field }) => (
+                <>
+                  <input {...field} type="number" />
+                  {errors.price && (
+                    <p className="error">{errors.price.message}</p>
+                  )}
+                </>
+              )}
+              rules={{ required: "Price is required" }}
             />
             <label className="price-label">kr</label>
           </div>
 
           <label>Food Pairing:</label>
-          <input
-            type="text"
+          <Controller
             name="foodPairing"
-            value={inputData.foodPairing}
-            onChange={handleChange}
+            control={control}
+            render={({ field }) => <input {...field} type="text" />}
           />
 
           <label>Grape:</label>
-          <input
-            type="text"
+          <Controller
             name="grape"
-            value={inputData.grape}
-            onChange={handleChange}
+            control={control}
+            render={({ field }) => (
+              <>
+                <input {...field} type="text" />
+                {errors.grape && (
+                  <p className="error">{errors.grape.message}</p>
+                )}
+              </>
+            )}
+            rules={{ required: "Grape is required" }}
           />
 
           <label>Comment:</label>
-          <input
-            type="text"
+          <Controller
             name="comment"
-            value={inputData.comment}
-            onChange={handleChange}
+            control={control}
+            render={({ field }) => <input {...field} type="text" />}
           />
           <div className="rating">
             <svg xmlns="http://www.w3.org/2000/svg" className="star">
