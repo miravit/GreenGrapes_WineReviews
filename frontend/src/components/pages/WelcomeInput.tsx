@@ -65,7 +65,7 @@ export const WelcomeInput = () => {
           onChange={handleChange}
         />
 
-        <label>lastname:</label>
+        <label>Lastname:</label>
         <Input
           type="text"
           name="lastname"

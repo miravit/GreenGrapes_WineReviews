@@ -36,6 +36,44 @@ export const FormStyled = styled.form`
     }
   }
 
+  .rating {
+    display: flex;
+    align-items: center;
+  }
+
+  svg polygon {
+    stroke: #ffffff;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: #ffffff;
+  }
+
+  svg polygon {
+    transition: all 300ms ease;
+  }
+
+  .star {
+    height: 50px;
+    margin-left: 30px;
+    margin-top: 29px;
+  }
+  svg:hover polygon {
+    stroke: #e64caa;
+    fill: #e64caa;
+    cursor: pointer;
+  }
+
+  svg polygon:hover ~ polygon {
+    stroke: #ffffff;
+    fill: #ffffff;
+  }
+
+  .clickedstar {
+    stroke: #e64caa;
+    fill: #e64caa;
+  }
+
   .button-container {
     display: flex;
     margin: 10px;
