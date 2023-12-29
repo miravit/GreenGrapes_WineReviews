@@ -42,12 +42,15 @@ export const ReviewPage = () => {
     setShowConfirmReview(false);
   };
   const handleNextButtonClick = () => {
-    if (Object.values(createReview.review).every((value) => value)) {
+    const { wineName, producer, percentage, price, rating, grape } =
+      createReview.review;
+
+    if (wineName && producer && percentage && price && rating && grape) {
       setShowConfirmReview(true);
       setShowForm(false);
     } else {
-      // At least one property is missing a value, do something else...
-      console.log("At least one property is missing a value");
+      // At least one required property is missing a value, do something else...
+      console.log("At least one required property is missing a value");
     }
   };
   const handleEditClick = () => {
