@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { IReview } from "../models/IReview";
 import { FormStyled } from "./styled/FormStyled";
 import PhotoUploader from "./PhotoUploader";
@@ -19,7 +18,6 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
   const {
     handleSubmit,
     control,
-    register,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -33,15 +31,6 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
       comment: "",
     },
   });
-
-  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-
-  //   setInputData((prevReview) => ({
-  //     ...prevReview,
-  //     [name]: name === "price" || name === "rating" ? +value : value,
-  //   }));
-  // };
 
   const onSubmit = (data: Partial<IReview>) => {
     let priceToNumber = data.price;
@@ -75,7 +64,7 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
 
     setClicked(clickStates);
 
-    setRatingNumber((prevNumber) => {
+    setRatingNumber(() => {
       let newNumber = 0;
       for (let i = 0; i < clickStates.length; i++) {
         if (clickStates[i] === true) {
