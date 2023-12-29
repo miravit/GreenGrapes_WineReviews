@@ -20,7 +20,7 @@ const Container = styled.div`
   .comment-container {
     margin: 0;
     padding: 0%;
-    padding-left: 12px;
+    padding-left: 10px;
     padding-top: 10px;
 
     p {
@@ -131,15 +131,14 @@ const BigContainer = styled.div`
 
   .text-container {
     display: flex;
-    align-items: start;
-    margin-right: 50px;
+    //margin-right: 50px;
   }
 
   .label {
     color: ${theme.secondaryColor};
-    width: 160px;
+    min-width: 160px;
     font-weight: bold;
-    //margin-right: 50px;
+    margin-left: 10px;
   }
 `;
 
@@ -198,10 +197,10 @@ const ConfirmReview = () => {
                 <p className="label">Food suggestion: </p>
                 <p>{review.foodPairing}</p>
               </div>
-              <div className="text-container">
+              {/* <div className="text-container">
                 <p className="label">Your Name: </p>
                 <p>{review.firstname + " " + review.lastname}</p>
-              </div>
+              </div> */}
             </BigContainer>
             <div className="comment-container">
               <p className="comment-label">Comment: </p>
