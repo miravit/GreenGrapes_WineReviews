@@ -9,6 +9,7 @@ import { createNewReview } from "../../services/reviewApi";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import styled from "styled-components";
 import { theme } from "../../themes/theme";
+import { useNavigate } from "react-router-dom";
 
 const BackContainer = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ export const ReviewPage = () => {
   const createReview = useContext(ReviewReducerContext);
   const [showForm, setShowForm] = useState(false);
   const [showConfirmReview, setShowConfirmReview] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (createReview.review.firstname !== "") {
@@ -67,6 +69,7 @@ export const ReviewPage = () => {
     } else {
       // At least one required property is missing a value, do something else...
       console.log("At least one required property is missing a value");
+      setShowConfirmReview(false);
     }
   };
   const handleEditClick = () => {
@@ -74,6 +77,7 @@ export const ReviewPage = () => {
     setShowConfirmReview(false);
   };
   const handlePostClick = async () => {
+    setShowConfirmReview(false);
     const finishedData = new FormData();
     finishedData.append("firstname", createReview.review.firstname || "");
     finishedData.append("lastname", createReview.review.lastname || "");
@@ -110,7 +114,7 @@ export const ReviewPage = () => {
         },
       });
 
-      setShowConfirmReview(false);
+      navigate("/");
     } catch (error) {
       console.log("sorry could not post review" + error);
     }
@@ -118,8 +122,6 @@ export const ReviewPage = () => {
 
   return (
     <>
-      <div></div>
-
       {showForm && !showConfirmReview && (
         <>
           <BackContainer onClick={handleChangeNameClick}>
