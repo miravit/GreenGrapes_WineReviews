@@ -30,14 +30,6 @@ export const ViewButtons: React.FC<ViewButtonsProps> = ({
   onGalleryClick,
   onDetailedClick,
 }) => {
-  // const onGalleryClick = () => {
-  //   console.log("gallery view");
-  // };
-
-  // const onDetailedClick = () => {
-  //   console.log("detailed view");
-  // };
-
   return (
     <Container>
       <GalleryButton

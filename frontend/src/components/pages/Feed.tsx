@@ -67,10 +67,7 @@ export const Feed = () => {
         </Link>
       </ButtonContainer>
       {selectedView === "gallery" && <AllPhotos reviews={currentPosts} />}
-      {selectedView === "detailed" && (
-        <DetailedView reviews={currentPosts} />
-      )}{" "}
-      {/* Render DetailedView if selectedView is "detailed" */}
+      {selectedView === "detailed" && <DetailedView reviews={currentPosts} />}
       <Container>
         <Pagination
           currentPage={currentPage}

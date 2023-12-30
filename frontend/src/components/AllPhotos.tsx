@@ -1,5 +1,3 @@
-// import { useContext } from "react";
-// import { AllReviewsReducerContext } from "../contexts/ReviewContext";
 import styled from "styled-components";
 import { IReview } from "../models/IReview";
 
@@ -23,11 +21,10 @@ const Photos = styled.img`
   width: 175px;
   height: 175px;
   padding-top: 0px;
+  border: 1px solid black;
 `;
 
 export const AllPhotos = ({ reviews }: AllPhotosProps) => {
-  // const { reviews } = useContext(AllReviewsReducerContext);
-
   return (
     <>
       <Container>
