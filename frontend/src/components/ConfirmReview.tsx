@@ -40,12 +40,12 @@ const HeadingContainer = styled.div`
   justify-content: center;
   max-width: 100vw;
   color: ${theme.secondaryColor};
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   margin-top: 0px;
 `;
 
 const Heading = styled.h2`
-  color: ${theme.secondaryColor};
+  color: #f545a6;
   margin: 0;
   max-width: 100vw;
 `;
