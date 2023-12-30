@@ -1,3 +1,10 @@
+import styled from "styled-components";
+import { theme } from "../themes/theme";
+
+const Button = styled.button`
+  background-color: ${theme.buttonColor};
+  color: ${theme.buttonTextColor};
+`;
 export interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -15,13 +22,13 @@ export const Pagination = ({
   return (
     <div className="pagination">
       {pages.map((page) => (
-        <button
+        <Button
           key={page}
           className={page === currentPage ? "active" : ""}
           onClick={() => onPageChange(page)}
         >
           {page}
-        </button>
+        </Button>
       ))}
     </div>
   );
