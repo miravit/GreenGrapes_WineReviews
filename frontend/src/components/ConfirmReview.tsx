@@ -5,19 +5,20 @@ import styled from "styled-components";
 import { theme } from "../themes/theme";
 
 const Container = styled.div`
-  display: flex;
+  // display: flex;
   flex-direction: column;
   // margin-top: 20px;
   //padding-top: 10px;
   padding-bottom: 10px;
   align-items: center;
   width: 100vw;
-  background-color: #ffffffdf;
+  //background-color: #ffffffdf;
   /* box-shadow: rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; */
   color: black;
 
   .comment-container {
+    padding-right: 200px;
     margin: 0;
     padding: 0%;
     padding-left: 10px;
@@ -45,7 +46,8 @@ const HeadingContainer = styled.div`
 `;
 
 const Heading = styled.h2`
-  color: #f545a6;
+  //color: #f545a6;
+  color: ${theme.secondaryColor};
   margin: 0;
   max-width: 100vw;
 `;
@@ -79,6 +81,7 @@ const ImgHeader = styled.div`
   position: relative;
   text-align: center;
   padding: 0%;
+  margin-left: 75px;
 
   &:before {
     border-radius: 2px;
