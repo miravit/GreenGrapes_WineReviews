@@ -35,6 +35,7 @@ const ButtonContainer = styled.div`
     margin-left: 20px;
     background-color: ${theme.buttonColor};
     color: ${theme.buttonTextColor};
+    width: 100px;
   }
 `;
 
@@ -134,8 +135,8 @@ export const ReviewPage = () => {
         <>
           <ConfirmReview />
           <ButtonContainer>
-            <button onClick={handleEditClick}>Edit Review</button>
-            <button onClick={handlePostClick}>Post Review</button>
+            <button onClick={handleEditClick}>Edit</button>
+            <button onClick={handlePostClick}>Post</button>
           </ButtonContainer>
         </>
       )}
