@@ -21,28 +21,36 @@ const DetailedButton = styled(BaseButton)`
   margin-left: 25px;
 `;
 
-export const ViewButtons = () => {
-  const handleGalleryClick = () => {
-    console.log("gallery view");
-  };
+interface ViewButtonsProps {
+  onGalleryClick: () => void;
+  onDetailedClick: () => void;
+}
 
-  const handleDetailedClick = () => {
-    console.log("detailed view");
-  };
+export const ViewButtons: React.FC<ViewButtonsProps> = ({
+  onGalleryClick,
+  onDetailedClick,
+}) => {
+  // const onGalleryClick = () => {
+  //   console.log("gallery view");
+  // };
+
+  // const onDetailedClick = () => {
+  //   console.log("detailed view");
+  // };
 
   return (
     <Container>
       <GalleryButton
         type="button"
         className="gallery-button"
-        onClick={handleGalleryClick}
+        onClick={onGalleryClick}
       >
         Gallery View
       </GalleryButton>
       <DetailedButton
         type="button"
         className="detailed-button"
-        onClick={handleDetailedClick}
+        onClick={onDetailedClick}
       >
         Detailed View
       </DetailedButton>
