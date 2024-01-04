@@ -117,7 +117,6 @@ interface AllPhotosProps {
 }
 
 export const DetailedView = ({ reviews }: AllPhotosProps) => {
-  console.log(reviews);
   return (
     <>
       {reviews.map((review, i) => (

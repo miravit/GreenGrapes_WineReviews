@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import { theme } from "../themes/theme";
 import { IoSearchOutline } from "react-icons/io5";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { IReview } from "../models/IReview";
+import { AllReviewsReducerContext } from "../contexts/ReviewContext";
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
   justify-content: center;
+  cursor: pointer;
 
   .search {
     font-size: 30px;
@@ -24,16 +28,78 @@ const Input = styled.input`
   border: none;
 `;
 
-export const Searchbar = () => {
-  const handleSearch = () => {
-    console.log("hej");
+interface SearchBarProps {
+  setFilteredData: (data: IReview[]) => void;
+}
+
+export const Searchbar = ({ setFilteredData }: SearchBarProps) => {
+  const { reviews } = useContext(AllReviewsReducerContext);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log(`Searching for: ${searchQuery}`);
+
+    //string fields
+    const filteredData = reviews.filter((review) => {
+      const searchableFields = [
+        review.wineName,
+        review.grape,
+        review.firstname,
+        review.lastname,
+        review.foodPairing,
+        review.producer,
+      ];
+
+      //number fields
+      const priceFields = [review.price];
+      const ratingFields = [review.rating];
+
+      const stringMatches = searchableFields.some(
+        (field) =>
+          typeof field === "string" &&
+          field.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      if (searchQuery.length > 1) {
+        const priceMatches = priceFields.some(
+          (field) =>
+            typeof field === "number" &&
+            field.toString().includes(searchQuery.toLowerCase())
+        );
+        return priceMatches;
+      }
+      if (searchQuery.length === 1) {
+        const ratingMatches = ratingFields.some(
+          (field) =>
+            typeof field === "number" &&
+            field.toString().includes(searchQuery.toLowerCase())
+        );
+        return ratingMatches;
+      }
+
+      return stringMatches;
+    });
+
+    setFilteredData(filteredData);
   };
   return (
     <Container>
-      <form onClick={handleSearch}>
-        <Input />
+      <form onSubmit={handleSubmit}>
+        <Input
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
 
-        <IoSearchOutline className="search" onClick={handleSearch} />
+        <IoSearchOutline
+          className="search"
+          onClick={handleSubmit}
+          type="submit"
+        />
       </form>
     </Container>
   );
