@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { theme } from "../themes/theme";
+import { IoSearchOutline } from "react-icons/io5";
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+  justify-content: center;
 `;
 
 const Input = styled.input`
@@ -12,20 +14,34 @@ const Input = styled.input`
   height: 40px;
   border-radius: 7px;
   border: none;
-  margin-left: 13px;
+
+  .search {
+    font-size: 50px;
+  }
 `;
 
-const Button = styled.button`
-  margin-left: 10px;
-  background-color: ${theme.buttonColor};
-  color: ${theme.buttonTextColor};
+const Button = styled.div`
+  width: 50px;
+  padding: 2px;
+  padding-top: 8px;
+  margin-left: -40px;
+  //margin-left: 20px;
+  //background-color: white;
+
+  color: ${theme.buttonColor};
+  .search {
+    font-size: 25px;
+    cursor: pointer;
+  }
 `;
 
 export const Searchbar = () => {
   return (
     <Container>
       <Input />
-      <Button>Sök</Button>
+      <Button>
+        <IoSearchOutline className="search" onClick="" />
+      </Button>
     </Container>
   );
 };

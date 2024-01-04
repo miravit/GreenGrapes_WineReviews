@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../themes/theme";
 
 export const FormStyled = styled.form`
   width: 100vw;
@@ -59,8 +60,8 @@ export const FormStyled = styled.form`
     margin-top: 29px;
   }
   svg:hover polygon {
-    stroke: #e64caa;
-    fill: #e64caa;
+    stroke: ${theme.buttonColor};
+    fill: ${theme.buttonColor};
     cursor: pointer;
   }
 
@@ -76,7 +77,6 @@ export const FormStyled = styled.form`
 
   .button-container {
     display: flex;
-    margin: 10px;
     .photo-icon {
       font-size: 60px;
       padding-right: 40px;

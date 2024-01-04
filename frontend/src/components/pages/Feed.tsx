@@ -5,8 +5,8 @@ import styled from "styled-components";
 import Pagination from "../Pagination";
 import ViewButtons from "../ViewButtons";
 import { Link } from "react-router-dom";
-import { theme } from "../../themes/theme";
-import { BiPlusMedical } from "react-icons/bi";
+//import { theme } from "../../themes/theme";
+//import { BiPlusMedical } from "react-icons/bi";
 import DetailedView from "../DetailedView";
 
 const Container = styled.div`
@@ -14,26 +14,28 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const IconContainer = styled.div`
-  .react-icon-plus {
-    font-size: 60px;
-    margin-top: -10px;
-    margin-left: 15px;
-    color: ${theme.iconColor};
-    cursor: pointer;
-  }
-`;
+// const IconContainer = styled.div`
+//   .react-icon-plus {
+//     font-size: 60px;
+//     margin-top: -10px;
+//     margin-left: 15px;
+//     color: ${theme.iconColor};
+//     cursor: pointer;
+//   }
+// `;
 
 const ButtonContainer = styled.div`
   display: flex;
+  justify-content: center;
+  margin-bottom: 6px;
 `;
 
 // pagination logic from https://aalhommada.medium.com/make-pagination-with-reactjs-d052b3b92720
 export const Feed = () => {
   const { reviews } = useContext(AllReviewsReducerContext);
-  const [selectedView, setSelectedView] = useState("gallery"); // Add selectedView state
+  const [selectedView, setSelectedView] = useState("gallery");
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
+  const [postsPerPage, setPostsPerPage] = useState(6);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -47,10 +49,12 @@ export const Feed = () => {
 
   const handleGalleryClick = () => {
     setSelectedView("gallery");
+    setPostsPerPage(6);
   };
 
   const handleDetailedClick = () => {
     setSelectedView("detailed");
+    setPostsPerPage(3);
   };
 
   return (
@@ -59,11 +63,12 @@ export const Feed = () => {
         <ViewButtons
           onGalleryClick={handleGalleryClick}
           onDetailedClick={handleDetailedClick}
+          selectedView={selectedView}
         />
         <Link to="/review">
-          <IconContainer>
+          {/* <IconContainer>
             <BiPlusMedical className="react-icon-plus" />
-          </IconContainer>
+          </IconContainer> */}
         </Link>
       </ButtonContainer>
       {selectedView === "gallery" && <AllPhotos reviews={currentPosts} />}

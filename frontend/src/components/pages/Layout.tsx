@@ -4,26 +4,25 @@ import { theme } from "../../themes/theme";
 import Navbar from "../Navbar";
 import { Link } from "react-router-dom";
 
-// Create a styled component for the container
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
 `;
 
-// Create a styled component for the header
 const Header = styled.header`
   padding: 10px;
+  padding-top: 0px;
+  margin-top: -5px;
 `;
 
-// Create a styled component for the main content
 const Main = styled.main`
   /* flex: 1;
   padding: 20px; */
 `;
 
-// Create a styled component for the h1 element
 const Heading = styled.h1`
+  font-size: 30pt;
   margin: 0;
   color: ${theme.headingColor};
 `;
