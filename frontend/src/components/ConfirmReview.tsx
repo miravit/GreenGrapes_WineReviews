@@ -21,7 +21,7 @@ const Container = styled.div`
     padding-right: 200px;
     margin: 0;
     padding: 0%;
-    padding-left: 10px;
+    //padding-left: 10px;
     padding-top: 10px;
 
     p {
@@ -110,24 +110,26 @@ const SmallContainer = styled.div`
   margin: 0;
   max-width: 100vw;
   color: white;
+  margin-bottom: 10px;
 
   p {
     border: 2px solid ${theme.secondaryColor};
     border-radius: 20px;
-    width: 100px;
-    margin-left: 20px;
+    width: 70px;
     text-align: center;
-    margin-right: 20px;
+    //margin-right: 20px;
     background-color: ${theme.secondaryColor};
   }
 `;
 
 const BigContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  max-width: 100vw;
-  color: black;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 
   p {
     margin: 0;
@@ -140,9 +142,9 @@ const BigContainer = styled.div`
 
   .label {
     color: ${theme.secondaryColor};
-    min-width: 160px;
+    min-width: 150px;
     font-weight: bold;
-    margin-left: 10px;
+    //margin-left: 10px;
   }
 `;
 
@@ -183,12 +185,12 @@ const ConfirmReview = () => {
                 />
               </ImgHeader>
             )}
-            <SmallContainer>
-              <p>{review.price} kr </p>
-              <p>{review.percentage} %</p>
-              <p>{review.rating} / 5</p>
-            </SmallContainer>
             <BigContainer>
+              <SmallContainer>
+                <p>{review.price} kr </p>
+                <p>{review.percentage} %</p>
+                <p>{review.rating} / 5</p>
+              </SmallContainer>
               <div className="text-container">
                 <p className="label">Grape: </p>
                 <p>{review.grape}</p>
@@ -205,11 +207,11 @@ const ConfirmReview = () => {
                 <p className="label">Your Name: </p>
                 <p>{review.firstname + " " + review.lastname}</p>
               </div> */}
+              <div className="comment-container">
+                <p className="comment-label">Comment: </p>
+                <p>{review.comment}</p>
+              </div>
             </BigContainer>
-            <div className="comment-container">
-              <p className="comment-label">Comment: </p>
-              <p>{review.comment}</p>
-            </div>
           </Container>
         </>
       )}

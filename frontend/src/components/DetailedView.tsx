@@ -1,61 +1,70 @@
 import styled from "styled-components";
 import { IReview } from "../models/IReview";
 import { theme } from "../themes/theme";
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 20px;
-`;
-const OnePost = styled.div`
-  display: flex;
-  background-color: #f8f6f6;
-  border: 2px solid ${theme.secondaryColor};
+const WineReviewCard = styled.div`
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  padding-top: 0;
+  margin: 16px;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 
-  p {
-    color: black;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  h3 {
-    margin: 0;
-    margin-left: 5px;
-    text-align: center;
-    color: black;
-    font-weight: 200;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  &:hover {
+    transform: scale(1.05);
   }
 `;
-const InfoContainer = styled.div`
-  background-color: #f8f6f6;
-  //border: 1px solid black;
-  width: 80%;
-  height: 305px;
-`;
-const InfoDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  p {
-    color: white;
-    border: 2px solid ${theme.secondaryColor};
-    border-radius: 20px;
-    width: 50px;
-    margin-left: 4px;
-    text-align: center;
-    margin-right: 4px;
-    background-color: ${theme.secondaryColor};
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+const WineImage = styled.img`
+  max-width: 100%;
+  border-radius: 4px;
+  margin-bottom: 12px;
 `;
-const Photos = styled.img`
-  width: 168px;
-  height: 200px;
-  padding-top: 0px;
-  margin-top: 50px;
+
+const WineDetails = styled.div`
+  font-size: 16px;
+`;
+
+const WineName = styled.h2`
+  margin: 0px;
+  color: #333;
+`;
+
+const WineProducer = styled.p`
+  color: #666;
+`;
+
+const WineGrape = styled.p`
+  color: #666;
+`;
+
+const WineFoodPairing = styled.p`
+  color: #666;
+`;
+
+const WineComment = styled.p`
+  margin-top: 8px;
+  color: #333;
+`;
+
+const WinePriceRatingWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+`;
+
+const WinePrice = styled.p`
+  color: #27ae60;
+`;
+
+const WineRating = styled.p`
+  color: #f39c12;
+`;
+
+const WineAlcoholPercentage = styled.p`
+  margin-top: 8px;
+  color: #666;
 `;
 interface AllPhotosProps {
   reviews: IReview[];
@@ -65,34 +74,26 @@ export const DetailedView = ({ reviews }: AllPhotosProps) => {
   console.log(reviews);
   return (
     <>
-      <Container>
-        {reviews.map((review, i) => (
-          <>
-            <OnePost key={i} className="photo-div">
-              <Photos
-                src={review.photo}
-                alt={`Photo of the wine: ${review.wineName}`}
-              />
-              <InfoContainer>
-                <h3>{review.wineName}</h3>
-                <InfoDiv>
-                  <p>{review.price} kr</p>
-                  <p>{review.rating} / 5</p>
-                  <p>{review.percentage} %</p>
-                </InfoDiv>
-                <p>{review.producer}</p>
-                <p>{review.grape}</p>
-                <p>{review.foodPairing}</p>
-                <p>{review.comment}</p>
-                <p>
-                  {review.firstname}
-                  {review.lastname}
-                </p>
-              </InfoContainer>
-            </OnePost>
-          </>
-        ))}
-      </Container>
+      {reviews.map((review, i) => (
+        <WineReviewCard key={i}>
+          <WineName>{review.wineName}</WineName>
+          <WineImage
+            src={review.photo}
+            alt={`Photo of the wine: ${review.wineName}`}
+          />
+          <WineDetails>
+            <WinePriceRatingWrapper>
+              <WinePrice>{`$${review.price}`}</WinePrice>
+              <WineRating>{`${review.rating}/5`}</WineRating>
+              <WineAlcoholPercentage>{`Alcohol: ${review.percentage}%`}</WineAlcoholPercentage>
+            </WinePriceRatingWrapper>
+            <WineProducer>{review.producer}</WineProducer>
+            <WineGrape>{review.grape}</WineGrape>
+            <WineFoodPairing>{review.foodPairing}</WineFoodPairing>
+            <WineComment>{review.comment}</WineComment>
+          </WineDetails>
+        </WineReviewCard>
+      ))}
     </>
   );
 };
