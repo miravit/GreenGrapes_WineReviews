@@ -5,12 +5,14 @@ import PhotoUploader from "./PhotoUploader";
 import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
 import { ActionType } from "../reducers/ReviewsReducer";
 import { useForm, Controller } from "react-hook-form";
+import { ReviewReducerContext } from "../contexts/ReviewContext";
 
 interface FormProps {
   onNextButtonClick: () => void;
 }
 
 export const Form = ({ onNextButtonClick }: FormProps) => {
+  const { review } = useContext(ReviewReducerContext);
   const dispatch = useContext(ReviewDispatchContext);
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [ratingNumber, setRatingNumber] = useState(0);
@@ -201,6 +203,7 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
               />
             </svg>
           </div>
+          <p>{"/ " + review.firstname + " " + review.lastname}</p>
           <div className="button-container">
             <PhotoUploader />
             <button type="submit">Next</button>

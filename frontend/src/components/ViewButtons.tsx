@@ -1,48 +1,58 @@
 import styled from "styled-components";
 import { theme } from "../themes/theme";
 
+interface ButtonProps {
+  active: boolean;
+}
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
 `;
 
-const BaseButton = styled.button`
+const BaseButton = styled.button<ButtonProps>`
   width: 130px;
-  margin-left: 13px;
+  //margin-left: 13px;
   height: 44px;
   padding: 0;
-  background-color: ${theme.buttonColor};
+  background-color: ${(props) =>
+    props.active ? `${theme.backroundColor}` : theme.buttonColor};
+  border: ${(props) => (props.active ? "2px solid #ddd" : theme.buttonColor)};
   color: ${theme.buttonTextColor};
 `;
 
 const GalleryButton = styled(BaseButton)``;
 
 const DetailedButton = styled(BaseButton)`
-  margin-left: 25px;
+  margin-left: 20px;
 `;
 
-export const ViewButtons = () => {
-  const handleGalleryClick = () => {
-    console.log("gallery view");
-  };
+interface ViewButtonsProps {
+  onGalleryClick: () => void;
+  onDetailedClick: () => void;
+  selectedView: string;
+}
 
-  const handleDetailedClick = () => {
-    console.log("detailed view");
-  };
-
+export const ViewButtons: React.FC<ViewButtonsProps> = ({
+  onGalleryClick,
+  onDetailedClick,
+  selectedView,
+}) => {
   return (
     <Container>
       <GalleryButton
         type="button"
         className="gallery-button"
-        onClick={handleGalleryClick}
+        onClick={onGalleryClick}
+        active={selectedView === "gallery"}
       >
         Gallery View
       </GalleryButton>
       <DetailedButton
         type="button"
         className="detailed-button"
-        onClick={handleDetailedClick}
+        onClick={onDetailedClick}
+        active={selectedView === "detailed"}
       >
         Detailed View
       </DetailedButton>
