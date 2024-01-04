@@ -56,6 +56,7 @@ const HeadingContainer = styled.div`
 
 const WineName = styled.h2`
   margin: 0px;
+  padding-bottom: 3px;
   color: #333;
   font-size: 14pt;
   text-align: center;

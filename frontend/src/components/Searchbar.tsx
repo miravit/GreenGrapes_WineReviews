@@ -7,41 +7,34 @@ const Container = styled.div`
   flex-direction: row;
   margin-bottom: 10px;
   justify-content: center;
+
+  .search {
+    font-size: 30px;
+    cursor: pointer;
+    margin-left: -34px;
+    margin-bottom: -7px;
+    color: ${theme.buttonColor};
+  }
 `;
 
 const Input = styled.input`
-  width: 280px;
+  width: 330px;
   height: 40px;
   border-radius: 7px;
   border: none;
-
-  .search {
-    font-size: 50px;
-  }
-`;
-
-const Button = styled.div`
-  width: 50px;
-  padding: 2px;
-  padding-top: 8px;
-  margin-left: -40px;
-  //margin-left: 20px;
-  //background-color: white;
-
-  color: ${theme.buttonColor};
-  .search {
-    font-size: 25px;
-    cursor: pointer;
-  }
 `;
 
 export const Searchbar = () => {
+  const handleSearch = () => {
+    console.log("hej");
+  };
   return (
     <Container>
-      <Input />
-      <Button>
-        <IoSearchOutline className="search" onClick="" />
-      </Button>
+      <form onClick={handleSearch}>
+        <Input />
+
+        <IoSearchOutline className="search" onClick={handleSearch} />
+      </form>
     </Container>
   );
 };
