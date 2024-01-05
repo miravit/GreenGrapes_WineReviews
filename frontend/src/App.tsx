@@ -57,7 +57,6 @@ function App() {
   }, [createReview.review.photo]);
 
   console.log(createReview);
-
   return (
     <>
       <>

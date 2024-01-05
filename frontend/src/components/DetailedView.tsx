@@ -81,6 +81,16 @@ const WineComment = styled.p`
   color: #333;
 `;
 
+const NameWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  //text-decoration: underline black;
+`;
+const UserName = styled.span`
+  color: #333;
+  font-size: 10pt;
+`;
+
 const WinePriceRatingWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -144,6 +154,9 @@ export const DetailedView = ({ reviews }: AllPhotosProps) => {
               </WineFoodPairing>
               <WineComment>{"Comment: " + review.comment}</WineComment>
             </WineDetails>
+            <NameWrapper>
+              <UserName>{review.firstname + " " + review.lastname}</UserName>
+            </NameWrapper>
           </SmallerContainer>
         </WineReviewCard>
       ))}

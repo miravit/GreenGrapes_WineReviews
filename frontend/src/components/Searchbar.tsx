@@ -30,9 +30,13 @@ const Input = styled.input`
 
 interface SearchBarProps {
   setFilteredData: (data: IReview[]) => void;
+  setSearchInput: (search: string) => void;
 }
 
-export const Searchbar = ({ setFilteredData }: SearchBarProps) => {
+export const Searchbar = ({
+  setFilteredData,
+  setSearchInput,
+}: SearchBarProps) => {
   const { reviews } = useContext(AllReviewsReducerContext);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -44,8 +48,8 @@ export const Searchbar = ({ setFilteredData }: SearchBarProps) => {
     e.preventDefault();
     console.log(`Searching for: ${searchQuery}`);
 
-    //string fields
-    const filteredData = reviews.filter((review) => {
+    // string fields
+    const stringMatches = reviews.filter((review) => {
       const searchableFields = [
         review.wineName,
         review.grape,
@@ -55,51 +59,41 @@ export const Searchbar = ({ setFilteredData }: SearchBarProps) => {
         review.producer,
       ];
 
-      //number fields
-      const priceFields = [review.price];
-      const ratingFields = [review.rating];
-
-      // searchableFields.some((field) => {
-      //   console.log("field:", field);
-      //   console.log("searchQuery:", searchQuery);
-      //   //console.log(stringMatches);
-      //   const match =
-      //     typeof field === "string" &&
-      //     field.toLowerCase().includes(searchQuery.toLowerCase());
-      //   console.log("match:", match);
-      //   return match;
-      // });
-      // return stringMatches;
-
-      if (searchQuery !== "") {
-        const stringMatches = searchableFields.some(
-          (field) =>
-            typeof field === "string" &&
-            field.includes(searchQuery.toLowerCase())
-        );
-        return stringMatches;
-      }
-
-      if (searchQuery.length > 1) {
-        const priceMatches = priceFields.some(
-          (field) =>
-            typeof field === "number" &&
-            field.toString().includes(searchQuery.toLowerCase())
-        );
-        return priceMatches;
-      }
-      if (searchQuery.length === 1) {
-        const ratingMatches = ratingFields.some(
-          (field) =>
-            typeof field === "number" &&
-            field.toString().includes(searchQuery.toLowerCase())
-        );
-        return ratingMatches;
-      }
+      return searchableFields.some(
+        (field) =>
+          typeof field === "string" &&
+          field.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     });
 
-    setFilteredData(filteredData);
+    // number fields
+    const priceMatches = reviews.filter((review) => {
+      const priceFields = [review.price];
+
+      return priceFields.some(
+        (field) =>
+          typeof field === "number" &&
+          field.toString().includes(searchQuery.toLowerCase())
+      );
+    });
+
+    // number fields (rating)
+    const ratingMatches = reviews.filter((review) => {
+      const ratingFields = [review.rating];
+
+      return ratingFields.some(
+        (field) =>
+          typeof field === "number" &&
+          field.toString().includes(searchQuery.toLowerCase())
+      );
+    });
+
+    const matches = [...stringMatches, ...priceMatches, ...ratingMatches];
+
+    setFilteredData(matches);
+    setSearchInput(searchQuery);
   };
+
   return (
     <Container>
       <form onSubmit={handleSubmit}>
