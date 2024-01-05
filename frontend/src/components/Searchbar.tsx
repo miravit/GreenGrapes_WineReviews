@@ -59,11 +59,27 @@ export const Searchbar = ({ setFilteredData }: SearchBarProps) => {
       const priceFields = [review.price];
       const ratingFields = [review.rating];
 
-      const stringMatches = searchableFields.some(
-        (field) =>
-          typeof field === "string" &&
-          field.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      // searchableFields.some((field) => {
+      //   console.log("field:", field);
+      //   console.log("searchQuery:", searchQuery);
+      //   //console.log(stringMatches);
+      //   const match =
+      //     typeof field === "string" &&
+      //     field.toLowerCase().includes(searchQuery.toLowerCase());
+      //   console.log("match:", match);
+      //   return match;
+      // });
+      // return stringMatches;
+
+      if (searchQuery !== "") {
+        const stringMatches = searchableFields.some(
+          (field) =>
+            typeof field === "string" &&
+            field.includes(searchQuery.toLowerCase())
+        );
+        return stringMatches;
+      }
+
       if (searchQuery.length > 1) {
         const priceMatches = priceFields.some(
           (field) =>
@@ -80,8 +96,6 @@ export const Searchbar = ({ setFilteredData }: SearchBarProps) => {
         );
         return ratingMatches;
       }
-
-      return stringMatches;
     });
 
     setFilteredData(filteredData);
