@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 //import { theme } from "../../themes/theme";
 //import { BiPlusMedical } from "react-icons/bi";
 import DetailedView from "../DetailedView";
+import Searchbar from "../Searchbar";
 
 const Container = styled.div`
   display: flex;
@@ -34,14 +35,25 @@ const ButtonContainer = styled.div`
 export const Feed = () => {
   const { reviews } = useContext(AllReviewsReducerContext);
   const [selectedView, setSelectedView] = useState("gallery");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(6);
 
+  // filter for searchbar
+  const [filteredData, setFilteredData] = useState(reviews);
+  const [searchInput, setSearchInput] = useState("");
+
+  // pages
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = reviews.slice(indexOfFirstPost, indexOfLastPost);
 
+  // handle filter on feed
+  const currentPosts = searchInput
+    ? filteredData.slice(indexOfFirstPost, indexOfLastPost)
+    : reviews.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(reviews.length / postsPerPage);
+
+  console.log(filteredData);
+  console.log(searchInput);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -49,16 +61,18 @@ export const Feed = () => {
 
   const handleGalleryClick = () => {
     setSelectedView("gallery");
-    setPostsPerPage(6);
   };
 
   const handleDetailedClick = () => {
     setSelectedView("detailed");
-    setPostsPerPage(3);
   };
 
   return (
     <>
+      <Searchbar
+        setFilteredData={setFilteredData}
+        setSearchInput={setSearchInput}
+      />
       <ButtonContainer>
         <ViewButtons
           onGalleryClick={handleGalleryClick}

@@ -7,10 +7,11 @@ interface AllPhotosProps {
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  //justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 3px;
+  margin-left: 16px;
 
   .photo-div {
     margin-bottom: -3px;

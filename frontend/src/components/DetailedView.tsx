@@ -56,6 +56,7 @@ const HeadingContainer = styled.div`
 
 const WineName = styled.h2`
   margin: 0px;
+  padding-bottom: 3px;
   color: #333;
   font-size: 14pt;
   text-align: center;
@@ -78,6 +79,16 @@ const WineFoodPairing = styled.p`
 const WineComment = styled.p`
   margin-top: 8px;
   color: #333;
+`;
+
+const NameWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  //text-decoration: underline black;
+`;
+const UserName = styled.span`
+  color: #333;
+  font-size: 10pt;
 `;
 
 const WinePriceRatingWrapper = styled.div`
@@ -116,7 +127,6 @@ interface AllPhotosProps {
 }
 
 export const DetailedView = ({ reviews }: AllPhotosProps) => {
-  console.log(reviews);
   return (
     <>
       {reviews.map((review, i) => (
@@ -144,6 +154,9 @@ export const DetailedView = ({ reviews }: AllPhotosProps) => {
               </WineFoodPairing>
               <WineComment>{"Comment: " + review.comment}</WineComment>
             </WineDetails>
+            <NameWrapper>
+              <UserName>{review.firstname + " " + review.lastname}</UserName>
+            </NameWrapper>
           </SmallerContainer>
         </WineReviewCard>
       ))}
