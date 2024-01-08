@@ -24,15 +24,19 @@ export const FormStyled = styled.form`
   .small-input-container {
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    justify-content: space-between;
 
     input {
       width: 133px;
-      margin-right: 10px;
-      margin-left: 0px;
     }
     label {
       padding-right: 3px;
+    }
+
+    .percentage,
+    .price {
+      display: flex;
+      flex-direction: column;
     }
   }
 

@@ -114,35 +114,38 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
               rules={{ required: "producer is required" }}
             />
             <div className="small-input-container">
-              <Controller
-                name="percentage"
-                control={control}
-                render={({ field }) => (
-                  <>
-                    <input {...field} type="text" />
-                    {errors.percentage && (
-                      <p className="error">{errors.percentage.message}</p>
-                    )}
-                  </>
-                )}
-                rules={{ required: "Percentage is required" }}
-              />
-              <label className="percentage-label">%</label>
-
-              <Controller
-                name="price"
-                control={control}
-                render={({ field }) => (
-                  <>
-                    <input {...field} type="number" />
-                    {errors.price && (
-                      <p className="error">{errors.price.message}</p>
-                    )}
-                  </>
-                )}
-                rules={{ required: "Price is required" }}
-              />
-              <label className="price-label">kr</label>
+              <div className="percentage">
+                <label className="percentage-label">percentage: </label>
+                <Controller
+                  name="percentage"
+                  control={control}
+                  render={({ field }) => (
+                    <>
+                      <input {...field} type="text" placeholder="%" />
+                      {errors.percentage && (
+                        <p className="error">{errors.percentage.message}</p>
+                      )}
+                    </>
+                  )}
+                  rules={{ required: "Percentage is required" }}
+                />
+              </div>
+              <div className="price">
+                <label className="price-label">price (sek):</label>
+                <Controller
+                  name="price"
+                  control={control}
+                  render={({ field }) => (
+                    <>
+                      <input {...field} type="number" />
+                      {errors.price && (
+                        <p className="error">{errors.price.message}</p>
+                      )}
+                    </>
+                  )}
+                  rules={{ required: "Price is required" }}
+                />
+              </div>
             </div>
 
             <label>Food Pairing:</label>
