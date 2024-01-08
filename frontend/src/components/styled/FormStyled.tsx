@@ -11,29 +11,32 @@ export const FormStyled = styled.form`
 
   input {
     width: 320px;
-    height: 30px;
-    border-radius: 9px;
+    height: 40px;
+    border-radius: 4px;
     border: none;
+  }
+
+  .formWrapper {
+    display: flex;
+    flex-direction: column;
   }
 
   .small-input-container {
     display: flex;
-    flex-direction: row;
-    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
 
     input {
-      width: 130px;
+      width: 133px;
     }
-    .percentage-label {
+    label {
+      padding-right: 3px;
     }
-    .percentage {
-      margin-right: 4px;
-    }
-    .price-label {
-      margin-left: 5px;
-    }
+
+    .percentage,
     .price {
-      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
     }
   }
 
@@ -70,13 +73,30 @@ export const FormStyled = styled.form`
     fill: #ffffff;
   }
 
+  .grape-photo-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .grapeInput {
+      width: 250px;
+    }
+  }
+
+  svg.photo-icon {
+    font-size: 50px;
+    color: ${theme.buttonColor};
+  }
+
   .clickedstar {
-    stroke: #e64caa;
-    fill: #e64caa;
+    stroke: ${theme.buttonColor};
+    fill: ${theme.buttonColor};
   }
 
   .button-container {
     display: flex;
+    justify-content: center;
     .photo-icon {
       font-size: 60px;
       padding-right: 40px;

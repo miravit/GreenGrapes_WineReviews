@@ -5,14 +5,12 @@ import PhotoUploader from "./PhotoUploader";
 import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
 import { ActionType } from "../reducers/ReviewsReducer";
 import { useForm, Controller } from "react-hook-form";
-import { ReviewReducerContext } from "../contexts/ReviewContext";
 
 interface FormProps {
   onNextButtonClick: () => void;
 }
 
 export const Form = ({ onNextButtonClick }: FormProps) => {
-  const { review } = useContext(ReviewReducerContext);
   const dispatch = useContext(ReviewDispatchContext);
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [ratingNumber, setRatingNumber] = useState(0);
@@ -85,128 +83,134 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
           onSubmit={handleSubmit(onSubmit)}
           encType="multipart/form-data"
         >
-          <label>Wine Name:</label>
-          <Controller
-            name="wineName"
-            control={control}
-            render={({ field }) => (
-              <>
-                <input {...field} type="text" />
-                {errors.wineName && (
-                  <p className="error">{errors.wineName.message}</p>
-                )}
-              </>
-            )}
-            rules={{ required: "Wine name is required" }}
-          />
-
-          <label>Producer:</label>
-          <Controller
-            name="producer"
-            control={control}
-            render={({ field }) => (
-              <>
-                <input {...field} type="text" />
-                {errors.producer && (
-                  <p className="error">{errors.producer.message}</p>
-                )}
-              </>
-            )}
-            rules={{ required: "producer is required" }}
-          />
-          <div className="small-input-container">
+          <div className="formWrapper">
+            <label>Wine Name:</label>
             <Controller
-              name="percentage"
+              name="wineName"
               control={control}
               render={({ field }) => (
                 <>
                   <input {...field} type="text" />
-                  {errors.percentage && (
-                    <p className="error">{errors.percentage.message}</p>
+                  {errors.wineName && (
+                    <p className="error">{errors.wineName.message}</p>
                   )}
                 </>
               )}
-              rules={{ required: "Percentage is required" }}
+              rules={{ required: "Wine name is required" }}
             />
-            <label className="percentage-label">%</label>
 
+            <label>Producer:</label>
             <Controller
-              name="price"
+              name="producer"
               control={control}
               render={({ field }) => (
                 <>
-                  <input {...field} type="number" />
-                  {errors.price && (
-                    <p className="error">{errors.price.message}</p>
+                  <input {...field} type="text" />
+                  {errors.producer && (
+                    <p className="error">{errors.producer.message}</p>
                   )}
                 </>
               )}
-              rules={{ required: "Price is required" }}
+              rules={{ required: "producer is required" }}
             />
-            <label className="price-label">kr</label>
-          </div>
+            <div className="small-input-container">
+              <div className="percentage">
+                <label className="percentage-label">percentage: </label>
+                <Controller
+                  name="percentage"
+                  control={control}
+                  render={({ field }) => (
+                    <>
+                      <input {...field} type="text" placeholder="%" />
+                      {errors.percentage && (
+                        <p className="error">{errors.percentage.message}</p>
+                      )}
+                    </>
+                  )}
+                  rules={{ required: "Percentage is required" }}
+                />
+              </div>
+              <div className="price">
+                <label className="price-label">price (sek):</label>
+                <Controller
+                  name="price"
+                  control={control}
+                  render={({ field }) => (
+                    <>
+                      <input {...field} type="number" />
+                      {errors.price && (
+                        <p className="error">{errors.price.message}</p>
+                      )}
+                    </>
+                  )}
+                  rules={{ required: "Price is required" }}
+                />
+              </div>
+            </div>
 
-          <label>Food Pairing:</label>
-          <Controller
-            name="foodPairing"
-            control={control}
-            render={({ field }) => <input {...field} type="text" />}
-          />
+            <label>Food Pairing:</label>
+            <Controller
+              name="foodPairing"
+              control={control}
+              render={({ field }) => <input {...field} type="text" />}
+            />
 
-          <label>Grape:</label>
-          <Controller
-            name="grape"
-            control={control}
-            render={({ field }) => (
-              <>
-                <input {...field} type="text" />
-                {errors.grape && (
-                  <p className="error">{errors.grape.message}</p>
+            <label>Comment:</label>
+            <Controller
+              name="comment"
+              control={control}
+              render={({ field }) => <input {...field} type="text" />}
+            />
+            <label>Grape:</label>
+            <div className="grape-photo-wrapper">
+              <Controller
+                name="grape"
+                control={control}
+                render={({ field }) => (
+                  <>
+                    <input {...field} type="text" className="grapeInput" />
+                    {errors.grape && (
+                      <p className="error">{errors.grape.message}</p>
+                    )}
+                  </>
                 )}
-              </>
-            )}
-            rules={{ required: "Grape is required" }}
-          />
+                rules={{ required: "Grape is required" }}
+              />
+              <PhotoUploader />
+            </div>
+            <div className="rating">
+              <svg xmlns="http://www.w3.org/2000/svg" className="star">
+                <polygon
+                  onClick={(e) => handleStarClick(e, 0)}
+                  className={clicked[0] ? "clickedstar" : undefined}
+                  points="30,0 18,40 50,16 10,16 42,40"
+                />
+                <polygon
+                  onClick={(e) => handleStarClick(e, 1)}
+                  className={clicked[1] ? "clickedstar" : undefined}
+                  points="82,0 70,40 102,16 62,16 94,40"
+                />
+                <polygon
+                  onClick={(e) => handleStarClick(e, 2)}
+                  className={clicked[2] ? "clickedstar" : undefined}
+                  points="134,0 122,40 154,16 114,16 146,40"
+                />
+                <polygon
+                  onClick={(e) => handleStarClick(e, 3)}
+                  className={clicked[3] ? "clickedstar" : undefined}
+                  points="186,0 174,40 206,16 166,16 198,40"
+                />
+                <polygon
+                  onClick={(e) => handleStarClick(e, 4)}
+                  className={clicked[4] ? "clickedstar" : undefined}
+                  points="238,0 226,40 258,16 218,16 250,40"
+                />
+              </svg>
+            </div>
 
-          <label>Comment:</label>
-          <Controller
-            name="comment"
-            control={control}
-            render={({ field }) => <input {...field} type="text" />}
-          />
-          <div className="rating">
-            <svg xmlns="http://www.w3.org/2000/svg" className="star">
-              <polygon
-                onClick={(e) => handleStarClick(e, 0)}
-                className={clicked[0] ? "clickedstar" : undefined}
-                points="30,0 18,40 50,16 10,16 42,40"
-              />
-              <polygon
-                onClick={(e) => handleStarClick(e, 1)}
-                className={clicked[1] ? "clickedstar" : undefined}
-                points="82,0 70,40 102,16 62,16 94,40"
-              />
-              <polygon
-                onClick={(e) => handleStarClick(e, 2)}
-                className={clicked[2] ? "clickedstar" : undefined}
-                points="134,0 122,40 154,16 114,16 146,40"
-              />
-              <polygon
-                onClick={(e) => handleStarClick(e, 3)}
-                className={clicked[3] ? "clickedstar" : undefined}
-                points="186,0 174,40 206,16 166,16 198,40"
-              />
-              <polygon
-                onClick={(e) => handleStarClick(e, 4)}
-                className={clicked[4] ? "clickedstar" : undefined}
-                points="238,0 226,40 258,16 218,16 250,40"
-              />
-            </svg>
-          </div>
-          <p>{"/ " + review.firstname + " " + review.lastname}</p>
-          <div className="button-container">
-            <PhotoUploader />
-            <button type="submit">Next</button>
+            <div className="button-container">
+              <button type="submit">Next</button>
+            </div>
           </div>
         </FormStyled>
       </div>
