@@ -77,16 +77,25 @@ export const FormStyled = styled.form`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    // align-items: center;
+    margin-top: -23px;
 
-    .grapeInput {
+    input {
       width: 250px;
+      margin-top: 21px;
+    }
+    label {
+      margin: 0px;
+      padding: 0px;
     }
   }
 
   svg.photo-icon {
+    margin-inline-start: 20px;
+    padding-top: 5px;
     font-size: 50px;
     color: ${theme.buttonColor};
+    text-align: center;
   }
 
   .clickedstar {
@@ -97,10 +106,7 @@ export const FormStyled = styled.form`
   .button-container {
     display: flex;
     justify-content: center;
-    .photo-icon {
-      font-size: 60px;
-      padding-right: 40px;
-    }
+
     button {
       height: 40px;
       margin-top: 14px;

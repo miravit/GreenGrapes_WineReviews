@@ -174,9 +174,10 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
                     )}
                   </>
                 )}
-                rules={{ required: "Grape is required" }}
               />
-              <PhotoUploader />
+              <div className="photdiv">
+                <PhotoUploader />
+              </div>
             </div>
             <div className="rating">
               <svg xmlns="http://www.w3.org/2000/svg" className="star">
