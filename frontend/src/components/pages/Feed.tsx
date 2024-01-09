@@ -51,8 +51,6 @@ export const Feed = () => {
   console.log(searchInput);
 
   useEffect(() => {
-    console.log("tja");
-    console.log(reviews);
     if (reviews.length === 0) {
       setLoading(true);
     } else {

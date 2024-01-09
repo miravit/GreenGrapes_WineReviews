@@ -26,6 +26,7 @@ export const Navbar = () => {
 
   const handleButtonClick = () => {
     navigate("/");
+    window.location.reload();
   };
   const handleContactClick = () => {
     navigate("/contact");
