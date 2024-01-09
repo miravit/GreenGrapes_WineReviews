@@ -10,6 +10,8 @@ import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import styled from "styled-components";
 import { theme } from "../../themes/theme";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../LoadingSpinner";
+import { IoMdClose } from "react-icons/io";
 
 const BackContainer = styled.div`
   display: flex;
@@ -40,9 +42,43 @@ const ButtonContainer = styled.div`
   }
 `;
 
+const LoadingWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const LoadingContainer = styled.div`
+  padding: 10px;
+  padding-top: 0px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  background-color: white;
+  color: black;
+  width: 70%;
+`;
+
+const CloseButton = styled.button`
+  //top: 10px;
+  //right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0px;
+
+  .close-icon {
+    font-size: 25pt;
+    margin-left: 240px;
+  }
+`;
+
 export const ReviewPage = () => {
   const dispatch = useContext(ReviewDispatchContext);
   const createReview = useContext(ReviewReducerContext);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [showConfirmReview, setShowConfirmReview] = useState(false);
   const navigate = useNavigate();
@@ -77,7 +113,9 @@ export const ReviewPage = () => {
     setShowConfirmReview(false);
   };
   const handlePostClick = async () => {
+    setShowForm(false);
     setShowConfirmReview(false);
+    setLoading(true);
     const finishedData = new FormData();
     finishedData.append("firstname", createReview.review.firstname || "");
     finishedData.append("lastname", createReview.review.lastname || "");
@@ -96,6 +134,7 @@ export const ReviewPage = () => {
         payload: finishedData,
       });
       await createNewReview(finishedData);
+      setLoading(false);
 
       dispatch({
         type: ActionType.CREATENEWREVIEW,
@@ -117,12 +156,31 @@ export const ReviewPage = () => {
       navigate("/");
     } catch (error) {
       console.log("sorry could not post review" + error);
+      setErrorMessage(
+        "Sorry! Could not post due to technical issues. Please go back, check your network connection and try again!"
+      );
     }
+  };
+
+  const onClose = () => {
+    setErrorMessage("");
+    setLoading(false);
   };
 
   return (
     <>
-      {showForm && !showConfirmReview && (
+      {errorMessage && (
+        <LoadingWrapper>
+          <LoadingContainer onClick={onClose}>
+            <CloseButton onClick={onClose}>
+              <IoMdClose className="close-icon" />
+            </CloseButton>
+            {errorMessage}
+          </LoadingContainer>
+        </LoadingWrapper>
+      )}
+      {loading && <LoadingSpinner />}
+      {showForm && !showConfirmReview && !errorMessage && !loading && (
         <>
           <BackContainer onClick={handleChangeNameClick}>
             <MdOutlineKeyboardBackspace className="back-arrow" />
@@ -142,7 +200,6 @@ export const ReviewPage = () => {
           </ButtonContainer>
         </>
       )}
-
       {!showForm && !showConfirmReview && <WelcomeInput />}
     </>
   );
