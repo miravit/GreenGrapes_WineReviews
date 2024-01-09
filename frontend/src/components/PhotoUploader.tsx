@@ -4,9 +4,13 @@ import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
 import { ActionType } from "../reducers/ReviewsReducer";
 import styled from "styled-components";
 
+const PhotoHandler = styled.div`
+  .photo-icon {
+    margin-top: 11px;
+  }
+`;
 const PhotoAdded = styled.p`
-  margin-left: -20px;
-  margin-right: 20px;
+  margin-left: -140px;
 `;
 
 export const PhotoUploader = () => {
@@ -29,7 +33,7 @@ export const PhotoUploader = () => {
   };
 
   return (
-    <>
+    <PhotoHandler>
       <label className="uploadButton" htmlFor="file_picker">
         <MdOutlineAddAPhoto className="photo-icon" />
         <input
@@ -41,15 +45,14 @@ export const PhotoUploader = () => {
           onChange={(e) => handlePhoto(e)}
         />
       </label>
-      <div>
-        <PhotoAdded>{uploadedPhotoText}</PhotoAdded>
-        {/* <img
+      {/* <img
           src={URL.createObjectURL(review.photo)}
           alt={`Photo of the wine`}
           style={{ width: "100px", height: "130px" }}
         /> */}
-      </div>
-    </>
+
+      <PhotoAdded>{uploadedPhotoText}</PhotoAdded>
+    </PhotoHandler>
   );
 };
 

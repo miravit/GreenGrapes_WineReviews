@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { IReview } from "../models/IReview";
 import { theme } from "../themes/theme";
-import { useContext, useState, useEffect } from "react";
-import { ReviewReducerContext } from "../contexts/ReviewContext";
+import { IoMdClose } from "react-icons/io";
+
 const WineReviewCard = styled.div`
   border: 2px solid #ddd;
   border-radius: 8px;
@@ -125,44 +125,66 @@ const WineAlcoholPercentage = styled.p`
   color: #333;
 `;
 
-export const ConfirmReview = () => {
-  const createReview = useContext(ReviewReducerContext);
-  const review: IReview = createReview.review;
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-  const [imageBlob, setImageBlob] = useState<Blob | null>(null);
+const ModalContent = styled.div`
+  // background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 80%;
+  overflow-y: auto;
+  color: black;
+`;
 
-  useEffect(() => {
-    const fetchImage = async () => {
-      if (typeof review.photo === "string") {
-        const response = await fetch(review.photo);
-        const blob = await response.blob();
-        setImageBlob(blob);
-      } else {
-        setImageBlob(review.photo);
-      }
-    };
+const CloseButton = styled.button`
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 0px;
 
-    fetchImage();
-  }, [review.photo]);
+  .close-icon {
+    font-size: 25pt;
+    margin-left: 240px;
+  }
+`;
 
+interface ReviewModalProps {
+  review: IReview;
+  onClose: () => void;
+}
+
+export const ReviewModal = ({ review, onClose }: ReviewModalProps) => {
   return (
-    <>
-      {review && (
+    <ModalOverlay onClick={onClose}>
+      <ModalContent>
         <>
           <WineReviewCard>
+            <CloseButton onClick={onClose}>
+              <IoMdClose className="close-icon" />
+            </CloseButton>
             <SmallerContainer>
               <HeadingContainer>
                 <WineName className="custom-font">{review.wineName}</WineName>
               </HeadingContainer>
-              {imageBlob && (
-                <ImageContainer>
-                  <WineImage
-                    src={URL.createObjectURL(imageBlob)}
-                    alt={`Photo of the wine: ${review.wineName}`}
-                    style={{ width: "200px", height: "250px" }}
-                  />
-                </ImageContainer>
-              )}
+              <ImageContainer>
+                <WineImage
+                  src={review.photo}
+                  alt={`Photo of the wine: ${review.wineName}`}
+                />
+              </ImageContainer>
               <WineDetails>
                 <WinePriceRatingWrapper>
                   <WinePrice>{`${review.price} kr`}</WinePrice>
@@ -182,9 +204,7 @@ export const ConfirmReview = () => {
             </SmallerContainer>
           </WineReviewCard>
         </>
-      )}
-    </>
+      </ModalContent>
+    </ModalOverlay>
   );
 };
-
-export default ConfirmReview;

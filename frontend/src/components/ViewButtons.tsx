@@ -21,11 +21,11 @@ const BaseButton = styled.button<ButtonProps>`
   color: ${theme.buttonTextColor};
 `;
 
-const GalleryButton = styled(BaseButton)``;
-
-const DetailedButton = styled(BaseButton)`
+const GalleryButton = styled(BaseButton)`
   margin-left: 20px;
 `;
+
+const DetailedButton = styled(BaseButton)``;
 
 interface ViewButtonsProps {
   onGalleryClick: () => void;
@@ -40,14 +40,6 @@ export const ViewButtons: React.FC<ViewButtonsProps> = ({
 }) => {
   return (
     <Container>
-      <GalleryButton
-        type="button"
-        className="gallery-button"
-        onClick={onGalleryClick}
-        active={selectedView === "gallery"}
-      >
-        Gallery View
-      </GalleryButton>
       <DetailedButton
         type="button"
         className="detailed-button"
@@ -56,6 +48,14 @@ export const ViewButtons: React.FC<ViewButtonsProps> = ({
       >
         Detailed View
       </DetailedButton>
+      <GalleryButton
+        type="button"
+        className="gallery-button"
+        onClick={onGalleryClick}
+        active={selectedView === "gallery"}
+      >
+        Gallery View
+      </GalleryButton>
     </Container>
   );
 };
