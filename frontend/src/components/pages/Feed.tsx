@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AllReviewsReducerContext } from "../../contexts/ReviewContext";
 import AllPhotos from "../AllPhotos";
 import styled from "styled-components";
@@ -6,6 +6,7 @@ import Pagination from "../Pagination";
 import ViewButtons from "../ViewButtons";
 import DetailedView from "../DetailedView";
 import Searchbar from "../Searchbar";
+import LoadingSpinner from "../LoadingSpinner";
 
 const Container = styled.div`
   display: flex;
@@ -18,9 +19,16 @@ const ButtonContainer = styled.div`
   margin-bottom: 6px;
 `;
 
+const LoadingContainer = styled.div`
+  margin-top: 40%;
+  display: flex;
+  justify-content: center;
+`;
+
 // pagination logic from https://aalhommada.medium.com/make-pagination-with-reactjs-d052b3b92720
 export const Feed = () => {
   const { reviews } = useContext(AllReviewsReducerContext);
+  const [loading, setLoading] = useState(false);
   const [selectedView, setSelectedView] = useState("detailed");
 
   // filter for searchbar
@@ -41,6 +49,16 @@ export const Feed = () => {
 
   console.log(filteredData);
   console.log(searchInput);
+
+  useEffect(() => {
+    console.log("tja");
+    console.log(reviews);
+    if (reviews.length === 0) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [reviews]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -67,15 +85,26 @@ export const Feed = () => {
           selectedView={selectedView}
         />
       </ButtonContainer>
-      {selectedView === "gallery" && <AllPhotos reviews={currentPosts} />}
-      {selectedView === "detailed" && <DetailedView reviews={currentPosts} />}
-      <Container>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-      </Container>
+      {loading && (
+        <LoadingContainer>
+          <LoadingSpinner />
+        </LoadingContainer>
+      )}
+      {!loading && (
+        <>
+          {selectedView === "gallery" && <AllPhotos reviews={currentPosts} />}
+          {selectedView === "detailed" && (
+            <DetailedView reviews={currentPosts} />
+          )}
+          <Container>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </Container>
+        </>
+      )}
     </>
   );
 };
