@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { IReview } from "../models/IReview";
 import { theme } from "../themes/theme";
+import { useState } from "react";
+import { ReviewModal } from "./ReviewModal";
 
 interface AllPhotosProps {
   reviews: IReview[];
@@ -24,9 +26,19 @@ const Photos = styled.img`
   height: 175px;
   padding-top: 0px;
   border: 1px solid ${theme.buttonColor};
+  cursor: pointer;
 `;
 
 export const AllPhotos = ({ reviews }: AllPhotosProps) => {
+  const [selectedReview, setSelectedReview] = useState<IReview | null>(null);
+
+  const handlePhotoClick = (review: IReview) => {
+    setSelectedReview(review);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedReview(null);
+  };
   return (
     <>
       <Container>
@@ -35,10 +47,14 @@ export const AllPhotos = ({ reviews }: AllPhotosProps) => {
             <Photos
               src={review.photo}
               alt={`Photo of the wine: ${review.wineName}`}
+              onClick={() => handlePhotoClick(review)}
             />
           </div>
         ))}
       </Container>
+      {selectedReview && (
+        <ReviewModal review={selectedReview} onClose={handleCloseModal} />
+      )}
     </>
   );
 };
