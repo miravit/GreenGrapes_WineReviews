@@ -34,7 +34,7 @@ const ButtonContainer = styled.div`
 // pagination logic from https://aalhommada.medium.com/make-pagination-with-reactjs-d052b3b92720
 export const Feed = () => {
   const { reviews } = useContext(AllReviewsReducerContext);
-  const [selectedView, setSelectedView] = useState("gallery");
+  const [selectedView, setSelectedView] = useState("detailed");
 
   // filter for searchbar
   const [filteredData, setFilteredData] = useState(reviews);

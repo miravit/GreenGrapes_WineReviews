@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { IReview } from "../models/IReview";
+import { theme } from "../themes/theme";
 
 interface AllPhotosProps {
   reviews: IReview[];
@@ -10,19 +11,19 @@ const Container = styled.div`
   //justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 3px;
-  margin-left: 16px;
+  gap: 6px;
+  margin-left: 8px;
 
   .photo-div {
-    margin-bottom: -3px;
+    margin-bottom: -6px;
   }
 `;
 
 const Photos = styled.img`
-  width: 175px;
+  width: 182px;
   height: 175px;
   padding-top: 0px;
-  border: 1px solid black;
+  border: 1px solid ${theme.buttonColor};
 `;
 
 export const AllPhotos = ({ reviews }: AllPhotosProps) => {
