@@ -34,7 +34,9 @@ export const Navbar = () => {
 
   const handleButtonClick = () => {
     navigate("/");
-    window.location.reload();
+    if (location.pathname === "/") {
+      window.location.reload();
+    }
   };
   const handleContactClick = () => {
     navigate("/contact");
