@@ -81,11 +81,14 @@ export const ReviewPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [showConfirmReview, setShowConfirmReview] = useState(false);
+  const [showNameModal, setShowNameModal] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (createReview.review.firstname !== "") {
       setShowForm(true);
+      setShowNameModal(false);
     } else {
       setShowForm(false);
     }
@@ -94,6 +97,7 @@ export const ReviewPage = () => {
   const handleChangeNameClick = () => {
     setShowForm(false);
     setShowConfirmReview(false);
+    setShowNameModal(true);
   };
   const handleNextButtonClick = () => {
     const { wineName, producer, percentage, price, rating, grape } =
@@ -162,17 +166,27 @@ export const ReviewPage = () => {
     }
   };
 
-  const onClose = () => {
+  const onLoadingClose = () => {
     setErrorMessage("");
     setLoading(false);
   };
 
+  const handleGoBack = () => {
+    navigate("/");
+    setShowNameModal(false);
+  };
+
   return (
     <>
+      {showNameModal && !showConfirmReview && (
+        <>
+          <WelcomeInput onClick={handleGoBack} />
+        </>
+      )}
       {errorMessage && (
         <LoadingWrapper>
-          <LoadingContainer onClick={onClose}>
-            <CloseButton onClick={onClose}>
+          <LoadingContainer onClick={onLoadingClose}>
+            <CloseButton onClick={onLoadingClose}>
               <IoMdClose className="close-icon" />
             </CloseButton>
             {errorMessage}
@@ -200,7 +214,6 @@ export const ReviewPage = () => {
           </ButtonContainer>
         </>
       )}
-      {!showForm && !showConfirmReview && <WelcomeInput />}
     </>
   );
 };
