@@ -45,7 +45,10 @@ export const Feed = () => {
   const currentPosts = searchInput
     ? filteredData.slice(indexOfFirstPost, indexOfLastPost)
     : reviews.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(reviews.length / postsPerPage);
+
+  const totalPages = searchInput
+    ? Math.ceil(filteredData.length / postsPerPage)
+    : Math.ceil(reviews.length / postsPerPage);
 
   console.log(filteredData);
   console.log(searchInput);
