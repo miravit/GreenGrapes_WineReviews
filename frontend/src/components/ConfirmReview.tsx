@@ -66,21 +66,30 @@ const WineName = styled.h2`
 const WineProducer = styled.p`
   //color: #666;
   color: #333;
+  font-style: oblique;
+`;
+
+const StaticText = styled.span`
+  //color: #666;
+  font-style: normal;
 `;
 
 const WineGrape = styled.p`
   //color: #666;
   color: #333;
+  font-style: oblique;
 `;
 
 const WineFoodPairing = styled.p`
   //color: #666;
   color: #333;
+  font-style: oblique;
 `;
 
 const WineComment = styled.p`
   margin-top: 8px;
   color: #333;
+  font-style: oblique;
 `;
 
 const NameWrapper = styled.div`
@@ -169,12 +178,22 @@ export const ConfirmReview = () => {
                   <WineRating>{`${review.rating}/5`}</WineRating>
                   <WineAlcoholPercentage>{`${review.percentage}%`}</WineAlcoholPercentage>
                 </WinePriceRatingWrapper>
-                <WineProducer>{"Producer: " + review.producer}</WineProducer>
-                <WineGrape>{"Grape: " + review.grape}</WineGrape>
+                <WineProducer>
+                  <StaticText>{"Producer: "}</StaticText>
+                  <span>{review.producer}</span>
+                </WineProducer>
+                <WineGrape>
+                  <StaticText>{"Grape: "}</StaticText>
+                  <span>{review.grape}</span>
+                </WineGrape>
+                <WineComment>
+                  <StaticText>{"Comment: "}</StaticText>
+                  <span>{review.comment}</span>
+                </WineComment>
                 <WineFoodPairing>
-                  {"Food Recommendation: " + review.foodPairing}
+                  <StaticText>{"Food Recommendation: "}</StaticText>
+                  <span>{review.foodPairing}</span>
                 </WineFoodPairing>
-                <WineComment>{"Comment: " + review.comment}</WineComment>
               </WineDetails>
               <NameWrapper>
                 <UserName>{review.firstname + " " + review.lastname}</UserName>

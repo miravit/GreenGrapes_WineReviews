@@ -56,6 +56,11 @@ const HeadingContainer = styled.div`
   justify-content: center;
 `;
 
+const StaticText = styled.span`
+  //color: #666;
+  font-style: normal;
+`;
+
 const WineName = styled.h2`
   margin: 0px;
   padding-bottom: 3px;
@@ -66,21 +71,25 @@ const WineName = styled.h2`
 const WineProducer = styled.p`
   //color: #666;
   color: #333;
+  font-style: oblique;
 `;
 
 const WineGrape = styled.p`
   //color: #666;
   color: #333;
+  font-style: oblique;
 `;
 
 const WineFoodPairing = styled.p`
   //color: #666;
   color: #333;
+  font-style: oblique;
 `;
 
 const WineComment = styled.p`
   margin-top: 8px;
   color: #333;
+  font-style: oblique;
 `;
 
 const NameWrapper = styled.div`
@@ -91,6 +100,7 @@ const NameWrapper = styled.div`
 const UserName = styled.span`
   color: #333;
   font-size: 10pt;
+  font-style: oblique;
 `;
 
 const WinePriceRatingWrapper = styled.div`
@@ -191,12 +201,22 @@ export const ReviewModal = ({ review, onClose }: ReviewModalProps) => {
                   <WineRating>{`${review.rating}/5`}</WineRating>
                   <WineAlcoholPercentage>{`${review.percentage}%`}</WineAlcoholPercentage>
                 </WinePriceRatingWrapper>
-                <WineProducer>{"Producer: " + review.producer}</WineProducer>
-                <WineGrape>{"Grape: " + review.grape}</WineGrape>
+                <WineProducer>
+                  <StaticText>{"Producer: "}</StaticText>
+                  <span>{review.producer}</span>
+                </WineProducer>
+                <WineGrape>
+                  <StaticText>{"Grape: "}</StaticText>
+                  <span>{review.grape}</span>
+                </WineGrape>
+                <WineComment>
+                  <StaticText>{"Comment: "}</StaticText>
+                  <span>{review.comment}</span>
+                </WineComment>
                 <WineFoodPairing>
-                  {"Food Recommendation: " + review.foodPairing}
+                  <StaticText>{"Food Recommendation: "}</StaticText>
+                  <span>{review.foodPairing}</span>
                 </WineFoodPairing>
-                <WineComment>{"Comment: " + review.comment}</WineComment>
               </WineDetails>
               <NameWrapper>
                 <UserName>{review.firstname + " " + review.lastname}</UserName>
