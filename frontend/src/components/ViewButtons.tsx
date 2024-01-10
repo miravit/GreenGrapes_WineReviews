@@ -8,6 +8,10 @@ interface ButtonProps {
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media (min-width: 768px) {
+    margin-right: 40px;
+  }
 `;
 
 const BaseButton = styled.button<ButtonProps>`
@@ -18,13 +22,21 @@ const BaseButton = styled.button<ButtonProps>`
     props.active ? `${theme.backroundColor}` : theme.buttonColor};
   border: ${(props) => (props.active ? "2px solid #ddd" : theme.buttonColor)};
   color: ${theme.buttonTextColor};
+
+  @media (min-width: 768px) {
+    width: 187px;
+    height: 70px;
+  }
 `;
 
 const GalleryButton = styled(BaseButton)`
-  margin-left: 20px;
+  margin-left: 10px;
 `;
 
-const DetailedButton = styled(BaseButton)``;
+const DetailedButton = styled(BaseButton)`
+  @media (min-width: 768px) {
+  }
+`;
 
 interface ViewButtonsProps {
   onGalleryClick: () => void;

@@ -14,17 +14,21 @@ const Header = styled.header`
   padding: 10px;
   padding-top: 0px;
   margin-top: -5px;
+
+  @media (min-width: 768px) {
+    margin-left: 2%;
+  }
 `;
 
-const Main = styled.main`
-  /* flex: 1;
-  padding: 20px; */
-`;
+const Main = styled.main``;
 
 const Heading = styled.h1`
   font-size: 30pt;
   margin: 0;
   color: ${theme.headingColor};
+  @media (min-width: 768px) {
+    font-size: 70pt;
+  }
 `;
 
 export const Layout = () => {
@@ -32,7 +36,8 @@ export const Layout = () => {
     <Container>
       <Header>
         <Link to="/">
-          <Heading className="custom-font">Green Grapes</Heading>
+          <Heading className="custom-font">Green</Heading>
+          <Heading className="custom-font">Grapes</Heading>
         </Link>
         <Navbar></Navbar>
       </Header>

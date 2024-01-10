@@ -10,11 +10,16 @@ interface AllPhotosProps {
 
 const Container = styled.div`
   display: flex;
-  //justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 6px;
   margin-left: 8px;
+
+  @media (min-width: 768px) {
+    margin-left: 8%;
+    margin-right: 5%;
+    gap: 20px;
+  }
 
   .photo-div {
     margin-bottom: -6px;
@@ -27,6 +32,11 @@ const Photos = styled.img`
   padding-top: 0px;
   border: 1px solid ${theme.buttonColor};
   cursor: pointer;
+
+  @media (min-width: 768px) {
+    width: 400px;
+    height: 400px;
+  }
 `;
 
 export const AllPhotos = ({ reviews }: AllPhotosProps) => {

@@ -13,10 +13,31 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const Header = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  @media (min-width: 500px) and (max-width: 767px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+  }
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 6px;
+
+  @media (min-width: 500px) and (max-width: 767px) {
+    margin-left: 4%;
+  }
+
+  @media (min-width: 768px) {
+    margin-left: 620px;
+  }
 `;
 
 const LoadingContainer = styled.div`
@@ -37,7 +58,7 @@ export const Feed = () => {
 
   // pages
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
+  const postsPerPage = window.innerWidth >= 768 ? 10 : 6;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
@@ -72,17 +93,19 @@ export const Feed = () => {
 
   return (
     <>
-      <Searchbar
-        setFilteredData={setFilteredData}
-        setSearchInput={setSearchInput}
-      />
-      <ButtonContainer>
-        <ViewButtons
-          onGalleryClick={handleGalleryClick}
-          onDetailedClick={handleDetailedClick}
-          selectedView={selectedView}
+      <Header>
+        <Searchbar
+          setFilteredData={setFilteredData}
+          setSearchInput={setSearchInput}
         />
-      </ButtonContainer>
+        <ButtonContainer>
+          <ViewButtons
+            onGalleryClick={handleGalleryClick}
+            onDetailedClick={handleDetailedClick}
+            selectedView={selectedView}
+          />
+        </ButtonContainer>
+      </Header>
       {loading && (
         <LoadingContainer>
           <LoadingSpinner />
