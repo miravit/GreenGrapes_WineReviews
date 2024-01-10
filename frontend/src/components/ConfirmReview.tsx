@@ -1,129 +1,7 @@
-import styled from "styled-components";
 import { IReview } from "../models/IReview";
-import { theme } from "../themes/theme";
 import { useContext, useState, useEffect } from "react";
 import { ReviewReducerContext } from "../contexts/ReviewContext";
-const WineReviewCard = styled.div`
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  padding: 8px;
-  padding-top: 8px;
-  margin: 16px;
-  margin-top: 20px;
-  max-width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-  background-color: #84ba5a;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-`;
-
-const SmallerContainer = styled.div`
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  padding-top: 2px;
-  margin: 7px;
-  max-width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-  background-color: #ffffff75;
-
-  &:hover {
-    transform: scale(1.01);
-  }
-`;
-
-const ImageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const WineImage = styled.img`
-  max-width: 100%;
-  border-radius: 4px;
-  border: 2px;
-`;
-
-const WineDetails = styled.div`
-  font-size: 14px;
-`;
-
-const HeadingContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const WineName = styled.h2`
-  margin: 0px;
-  padding-bottom: 3px;
-  color: #333;
-  font-size: 14pt;
-  text-align: center;
-`;
-const WineProducer = styled.p`
-  //color: #666;
-  color: #333;
-`;
-
-const WineGrape = styled.p`
-  //color: #666;
-  color: #333;
-`;
-
-const WineFoodPairing = styled.p`
-  //color: #666;
-  color: #333;
-`;
-
-const WineComment = styled.p`
-  margin-top: 8px;
-  color: #333;
-`;
-
-const NameWrapper = styled.div`
-  display: flex;
-  justify-content: end;
-  //text-decoration: underline black;
-`;
-const UserName = styled.span`
-  color: #333;
-  font-size: 10pt;
-`;
-
-const WinePriceRatingWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
-  max-width: 100vw;
-  color: white;
-  margin-bottom: 10px;
-
-  p {
-    border: 2px solid white;
-    border-radius: 8px;
-    width: 70px;
-    text-align: center;
-    //margin-right: 20px;
-    //background-color: ${theme.secondaryColor};
-  }
-`;
-
-const WinePrice = styled.p`
-  //color: #27ae60;
-  color: #333;
-`;
-
-const WineRating = styled.p`
-  color: #333;
-`;
-
-const WineAlcoholPercentage = styled.p`
-  //color: #666;
-  color: #333;
-`;
+import { ConfirmReviewStyled } from "./styled/ConfirmReviewStyled";
 
 export const ConfirmReview = () => {
   const createReview = useContext(ReviewReducerContext);
@@ -149,38 +27,48 @@ export const ConfirmReview = () => {
     <>
       {review && (
         <>
-          <WineReviewCard>
-            <SmallerContainer>
-              <HeadingContainer>
-                <WineName className="custom-font">{review.wineName}</WineName>
-              </HeadingContainer>
+          <ConfirmReviewStyled>
+            <div className="winecard">
+              <div className="wine-name-container">
+                <h2 className="custom-font">{review.wineName}</h2>
+              </div>
               {imageBlob && (
-                <ImageContainer>
-                  <WineImage
+                <div className="img-container">
+                  <img
                     src={URL.createObjectURL(imageBlob)}
                     alt={`Photo of the wine: ${review.wineName}`}
                     style={{ width: "200px", height: "250px" }}
                   />
-                </ImageContainer>
+                </div>
               )}
-              <WineDetails>
-                <WinePriceRatingWrapper>
-                  <WinePrice>{`${review.price} kr`}</WinePrice>
-                  <WineRating>{`${review.rating}/5`}</WineRating>
-                  <WineAlcoholPercentage>{`${review.percentage}%`}</WineAlcoholPercentage>
-                </WinePriceRatingWrapper>
-                <WineProducer>{"Producer: " + review.producer}</WineProducer>
-                <WineGrape>{"Grape: " + review.grape}</WineGrape>
-                <WineFoodPairing>
-                  {"Food Recommendation: " + review.foodPairing}
-                </WineFoodPairing>
-                <WineComment>{"Comment: " + review.comment}</WineComment>
-              </WineDetails>
-              <NameWrapper>
-                <UserName>{review.firstname + " " + review.lastname}</UserName>
-              </NameWrapper>
-            </SmallerContainer>
-          </WineReviewCard>
+              <div className="wine-details-container">
+                <div className="small-info-container">
+                  <p>{`${review.price} kr`}</p>
+                  <p>{`${review.rating}/5`}</p>
+                  <p>{`${review.percentage}%`}</p>
+                </div>
+                <div className="text-wrapper">
+                  <span>{"Producer: "}</span>
+                  <span className="dynamic-text">{review.producer}</span>
+                </div>
+                <div className="text-wrapper">
+                  <span>{"Grape: "}</span>
+                  <span className="dynamic-text">{review.grape}</span>
+                </div>
+                <div className="text-wrapper">
+                  <span>{"Comment: "}</span>
+                  <span className="dynamic-text">{review.comment}</span>
+                </div>
+                <div className="text-wrapper">
+                  <span>{"Food Recommendation: "}</span>
+                  <span className="dynamic-text">{review.foodPairing}</span>
+                </div>
+              </div>
+              <div className="name-container">
+                <span>{review.firstname + " " + review.lastname}</span>
+              </div>
+            </div>
+          </ConfirmReviewStyled>
         </>
       )}
     </>

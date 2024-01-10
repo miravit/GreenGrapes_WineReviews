@@ -61,8 +61,6 @@ const LoadingContainer = styled.div`
 `;
 
 const CloseButton = styled.button`
-  //top: 10px;
-  //right: 10px;
   background: none;
   border: none;
   cursor: pointer;
@@ -81,11 +79,14 @@ export const ReviewPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [showConfirmReview, setShowConfirmReview] = useState(false);
+  const [showNameModal, setShowNameModal] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (createReview.review.firstname !== "") {
       setShowForm(true);
+      setShowNameModal(false);
     } else {
       setShowForm(false);
     }
@@ -94,20 +95,13 @@ export const ReviewPage = () => {
   const handleChangeNameClick = () => {
     setShowForm(false);
     setShowConfirmReview(false);
+    setShowNameModal(true);
   };
   const handleNextButtonClick = () => {
-    const { wineName, producer, percentage, price, rating, grape } =
-      createReview.review;
-
-    if (wineName && producer && percentage && price && rating && grape) {
-      setShowConfirmReview(true);
-      setShowForm(false);
-    } else {
-      // At least one required property is missing a value, do something else...
-      console.log("At least one required property is missing a value");
-      setShowConfirmReview(false);
-    }
+    setShowConfirmReview(true);
+    setShowForm(false);
   };
+
   const handleEditClick = () => {
     setShowForm(true);
     setShowConfirmReview(false);
@@ -162,17 +156,30 @@ export const ReviewPage = () => {
     }
   };
 
-  const onClose = () => {
+  console.log(createReview);
+
+  const onLoadingClose = () => {
     setErrorMessage("");
     setLoading(false);
   };
 
+  const handleGoBack = () => {
+    navigate("/");
+    setShowNameModal(false);
+  };
+
   return (
     <>
+      {showNameModal && !showConfirmReview && (
+        <>
+          <WelcomeInput onClick={handleGoBack} />
+          <Form onNextButtonClick={handleNextButtonClick} />
+        </>
+      )}
       {errorMessage && (
         <LoadingWrapper>
-          <LoadingContainer onClick={onClose}>
-            <CloseButton onClick={onClose}>
+          <LoadingContainer onClick={onLoadingClose}>
+            <CloseButton onClick={onLoadingClose}>
               <IoMdClose className="close-icon" />
             </CloseButton>
             {errorMessage}
@@ -186,7 +193,6 @@ export const ReviewPage = () => {
             <MdOutlineKeyboardBackspace className="back-arrow" />
             <p> Change Name</p>
           </BackContainer>
-          {/* <h2>{"Welcome " + createReview.review.firstname + "!"}</h2> */}
           <Form onNextButtonClick={handleNextButtonClick} />
         </>
       )}
@@ -200,7 +206,6 @@ export const ReviewPage = () => {
           </ButtonContainer>
         </>
       )}
-      {!showForm && !showConfirmReview && <WelcomeInput />}
     </>
   );
 };

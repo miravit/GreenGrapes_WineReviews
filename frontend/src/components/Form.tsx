@@ -14,7 +14,8 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
   const dispatch = useContext(ReviewDispatchContext);
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [ratingNumber, setRatingNumber] = useState(0);
-  // hanterar input
+
+  // handle input
   const {
     handleSubmit,
     control,
@@ -168,12 +169,15 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
                 control={control}
                 render={({ field }) => (
                   <>
-                    <input {...field} type="text" className="grapeInput" />
-                    {errors.grape && (
-                      <p className="error">{errors.grape.message}</p>
-                    )}
+                    <div>
+                      <input {...field} type="text" className="grapeInput" />
+                      {errors.grape && (
+                        <p className="error-grape">{errors.grape.message}</p>
+                      )}
+                    </div>
                   </>
                 )}
+                rules={{ required: "Grape is required" }}
               />
               <div className="photdiv">
                 <PhotoUploader />

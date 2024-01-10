@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { theme } from "../themes/theme";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
+interface ButtonProps {
+  isActive: boolean;
+}
 
 const Container = styled.div`
   display: flex;
@@ -9,8 +13,11 @@ const Container = styled.div`
   margin-bottom: 0px;
 `;
 
-const BaseButton = styled.button`
-  background-color: ${theme.buttonColor};
+const BaseButton = styled.button<ButtonProps>`
+  background-color: ${({ isActive }) =>
+    isActive ? theme.backroundColor : theme.buttonColor};
+  border: ${({ isActive }) =>
+    isActive ? "2px solid #ddd" : theme.buttonColor};
   color: ${theme.buttonTextColor};
   width: 118px;
 `;
@@ -23,9 +30,13 @@ const ContactButton = styled(BaseButton)``;
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleButtonClick = () => {
     navigate("/");
+    if (location.pathname === "/") {
+      window.location.reload();
+    }
   };
   const handleContactClick = () => {
     navigate("/contact");
@@ -38,11 +49,26 @@ export const Navbar = () => {
   return (
     <>
       <Container>
-        <HomeButton onClick={handleButtonClick}>Home</HomeButton>
+        <HomeButton
+          onClick={handleButtonClick}
+          isActive={location.pathname === "/"}
+        >
+          Home
+        </HomeButton>
 
-        <ReviewButton onClick={handleAboutClick}>Review</ReviewButton>
+        <ReviewButton
+          onClick={handleAboutClick}
+          isActive={location.pathname === "/review"}
+        >
+          Review
+        </ReviewButton>
 
-        <ContactButton onClick={handleContactClick}>Contact</ContactButton>
+        <ContactButton
+          onClick={handleContactClick}
+          isActive={location.pathname === "/contact"}
+        >
+          Contact
+        </ContactButton>
       </Container>
     </>
   );

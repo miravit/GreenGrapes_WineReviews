@@ -4,13 +4,9 @@ import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
 import { ActionType } from "../reducers/ReviewsReducer";
 import styled from "styled-components";
 
-const PhotoHandler = styled.div`
-  .photo-icon {
-    margin-top: 11px;
-  }
-`;
+const PhotoHandler = styled.div``;
 const PhotoAdded = styled.p`
-  margin-left: -140px;
+  margin-left: -160px;
 `;
 
 export const PhotoUploader = () => {
@@ -28,7 +24,6 @@ export const PhotoUploader = () => {
         },
       });
       setUploadedPhotoText("Photo Added ✔");
-      //setUploadedPhoto(file);
     }
   };
 
@@ -45,12 +40,6 @@ export const PhotoUploader = () => {
           onChange={(e) => handlePhoto(e)}
         />
       </label>
-      {/* <img
-          src={URL.createObjectURL(review.photo)}
-          alt={`Photo of the wine`}
-          style={{ width: "100px", height: "130px" }}
-        /> */}
-
       <PhotoAdded>{uploadedPhotoText}</PhotoAdded>
     </PhotoHandler>
   );
