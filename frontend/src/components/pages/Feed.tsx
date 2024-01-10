@@ -11,6 +11,8 @@ import LoadingSpinner from "../LoadingSpinner";
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  @media (min-width: 768px) {
+  }
 `;
 
 const Header = styled.div`
@@ -18,7 +20,7 @@ const Header = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: -20px;
+    //margin-bottom: -20px;
   }
   @media (min-width: 500px) and (max-width: 767px) {
     display: flex;
@@ -37,7 +39,7 @@ const ButtonContainer = styled.div`
   }
 
   @media (min-width: 768px) {
-    margin-left: 620px;
+    margin-left: 113px;
   }
 `;
 
@@ -45,6 +47,9 @@ const LoadingContainer = styled.div`
   margin-top: 40%;
   display: flex;
   justify-content: center;
+  @media (min-width: 768px) {
+    margin-top: 20%;
+  }
 `;
 
 // pagination logic from https://aalhommada.medium.com/make-pagination-with-reactjs-d052b3b92720

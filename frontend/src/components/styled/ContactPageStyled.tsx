@@ -21,6 +21,22 @@ export const Container = styled.div`
     color: black;
     text-decoration: underline;
   }
+
+  .desktop-photo {
+    display: none;
+    @media (min-width: 768px) {
+      display: block;
+      width: 400px;
+      height: 400px;
+    }
+  }
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    //align-items: center;
+    margin-left: 0px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -88,7 +104,14 @@ export const PhotoWrapper = styled.div`
   width: 100%;
   gap: 2px;
 
+  @media (min-width: 768px) {
+    display: none;
+  }
+
   img {
     width: 49.7%;
+    @media (min-width: 768px) {
+      // width: 35%;
+    }
   }
 `;

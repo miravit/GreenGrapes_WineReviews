@@ -11,6 +11,9 @@ const Button = styled.button<ButtonProps>`
     props.active ? `${theme.backroundColor}` : theme.buttonColor};
   color: ${theme.buttonTextColor};
   border: ${(props) => (props.active ? `white 2px solid` : "")};
+  @media (min-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 export interface PaginationProps {
   currentPage: number;

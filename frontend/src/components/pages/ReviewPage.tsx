@@ -17,6 +17,10 @@ const BackContainer = styled.div`
   display: flex;
   cursor: pointer;
 
+  @media (min-width: 768px) {
+    margin-left: 290px;
+  }
+
   .back-arrow {
     font-size: 35px;
     padding-right: 5px;
@@ -24,6 +28,13 @@ const BackContainer = styled.div`
 
   p {
     margin-top: 3px;
+  }
+`;
+
+const Div = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -48,6 +59,9 @@ const LoadingWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: 768px) {
+  }
 `;
 
 const LoadingContainer = styled.div`
@@ -58,6 +72,10 @@ const LoadingContainer = styled.div`
   background-color: white;
   color: black;
   width: 70%;
+
+  @media (min-width: 768px) {
+    margin-top: 100px;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -197,7 +215,9 @@ export const ReviewPage = () => {
 
       {showConfirmReview && (
         <>
-          <ConfirmReview />
+          <Div>
+            <ConfirmReview />
+          </Div>
           <ButtonContainer>
             <button onClick={handleEditClick}>Edit</button>
             <button onClick={handlePostClick}>Post</button>

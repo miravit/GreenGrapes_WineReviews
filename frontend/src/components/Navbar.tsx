@@ -29,8 +29,8 @@ const BaseButton = styled.button<ButtonProps>`
     width: 200px;
   }
   @media (min-width: 768px) {
-    width: 350px;
-    height: 60px;
+    width: 200px;
+    height: 50px;
   }
 `;
 

@@ -16,6 +16,10 @@ export const ConfirmReviewStyled = styled.div`
     transform: scale(1.05);
   }
 
+  @media (min-width: 768px) {
+    width: 600px;
+  }
+
   .winecard {
     border: 2px solid #ddd;
     border-radius: 8px;
@@ -71,6 +75,10 @@ export const ConfirmReviewStyled = styled.div`
           width: 70px;
           text-align: center;
           color: #333;
+
+          @media (min-width: 768px) {
+            width: 100px;
+          }
         }
       }
       .text-wrapper {

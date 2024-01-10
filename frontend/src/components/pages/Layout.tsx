@@ -16,7 +16,7 @@ const Header = styled.header`
   margin-top: -5px;
 
   @media (min-width: 768px) {
-    margin-left: 200px;
+    margin-left: 4%;
   }
 `;
 

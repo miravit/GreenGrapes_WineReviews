@@ -27,6 +27,11 @@ export const ContactPage = () => {
             </div>
           </Contact>
         </AboutWrapper>
+        <img
+          className="desktop-photo"
+          src="/src/assets/photos/photo1.jpg"
+          alt="photo of wine"
+        />
       </Wrapper>
 
       <PhotoWrapper>

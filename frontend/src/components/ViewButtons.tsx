@@ -10,7 +10,6 @@ const Container = styled.div`
   flex-direction: row;
 
   @media (min-width: 768px) {
-    margin-right: 40px;
   }
 `;
 
@@ -24,8 +23,8 @@ const BaseButton = styled.button<ButtonProps>`
   color: ${theme.buttonTextColor};
 
   @media (min-width: 768px) {
-    width: 187px;
-    height: 70px;
+    width: 150px;
+    height: 50px;
   }
 `;
 

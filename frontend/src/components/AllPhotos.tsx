@@ -13,11 +13,12 @@ const Container = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 6px;
-  margin-left: 8px;
+  justify-content: center;
+  //margin-left: 8px;
 
   @media (min-width: 768px) {
-    margin-left: 8%;
-    margin-right: 5%;
+    margin-left: 300px;
+    margin-right: 12%;
     gap: 20px;
   }
 
@@ -27,15 +28,21 @@ const Container = styled.div`
 `;
 
 const Photos = styled.img`
-  width: 182px;
+  width: 175px;
   height: 175px;
   padding-top: 0px;
   border: 1px solid ${theme.buttonColor};
   cursor: pointer;
 
   @media (min-width: 768px) {
-    width: 400px;
-    height: 400px;
+    width: 250px;
+    height: 250px;
+  }
+
+  &:hover {
+    @media (min-width: 768px) {
+      opacity: 0.2;
+    }
   }
 `;
 

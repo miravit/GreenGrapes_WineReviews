@@ -17,7 +17,7 @@ const Container = styled.div`
 
   @media (min-width: 768px) {
     // align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   .search {
@@ -44,17 +44,16 @@ const Input = styled.input`
   border-radius: 7px;
   border: none;
 
-  @media (min-width: 500px) and (max-width: 767px) {
+  /* @media (min-width: 500px) and (max-width: 767px) {
     width: 270px;
     margin-left: 10px;
-  }
+  } */
 
   @media (min-width: 768px) {
-    width: 42vw;
-    height: 60px;
+    width: 600px;
+    height: 40px;
     border-radius: 7px;
     border: none;
-    margin-left: 5px;
   }
 `;
 
