@@ -156,8 +156,6 @@ export const ReviewPage = () => {
     }
   };
 
-  console.log(createReview);
-
   const onLoadingClose = () => {
     setErrorMessage("");
     setLoading(false);

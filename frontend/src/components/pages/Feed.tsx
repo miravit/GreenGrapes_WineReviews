@@ -50,9 +50,6 @@ export const Feed = () => {
     ? Math.ceil(filteredData.length / postsPerPage)
     : Math.ceil(reviews.length / postsPerPage);
 
-  console.log(filteredData);
-  console.log(searchInput);
-
   useEffect(() => {
     if (reviews.length === 0) {
       setLoading(true);

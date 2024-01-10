@@ -46,7 +46,6 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       const getAllDataFromApi = await getAllReviews();
-      console.log("NY HÄMTNING");
 
       dispatch2({
         type: ActionType.GETALLREVIEWS,
@@ -56,7 +55,6 @@ function App() {
     getData();
   }, [createReview.review.photo]);
 
-  console.log(createReview);
   return (
     <>
       <>

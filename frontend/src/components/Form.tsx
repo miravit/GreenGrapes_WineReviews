@@ -76,7 +76,6 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
       return newNumber;
     });
   };
-  console.log(ratingNumber);
   return (
     <>
       <div>

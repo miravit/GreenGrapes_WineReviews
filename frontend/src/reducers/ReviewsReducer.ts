@@ -10,18 +10,15 @@ export enum ActionType {
   GETALLREVIEWS,
   CREATENEWREVIEW,
   UPDATEREVIEW,
-  //FILTERED,
 }
 
 export interface IAllReviewState {
   reviews: IReview[];
-  // filteredReviews: IReview[];
 }
 
 export interface IReviewState {
   review: IReview;
   createNewReview: (reviewData: FormData) => Promise<IReview>;
-  // filteredReviews: IReview[];
 }
 
 export const AllReviewReducer = (
@@ -32,7 +29,6 @@ export const AllReviewReducer = (
     case ActionType.GETALLREVIEWS: {
       return {
         reviews: JSON.parse(action.payload),
-        // filteredReviews: JSON.parse(action.payload),
       };
     }
     default:

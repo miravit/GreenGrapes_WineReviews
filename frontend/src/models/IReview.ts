@@ -16,17 +16,3 @@ export interface IName {
   firstname: string;
   lastname: string;
 }
-
-// export const defaultReview = {
-//   _id: "",
-//   people: 0,
-//   date: "",
-//   sitting: "",
-//   tables: 0,
-//   guest: {
-//     name: "",
-//     lastname: "",
-//     email: "",
-//     phone: 0,
-//   },
-// };

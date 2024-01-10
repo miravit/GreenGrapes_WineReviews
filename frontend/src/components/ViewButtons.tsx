@@ -12,7 +12,6 @@ const Container = styled.div`
 
 const BaseButton = styled.button<ButtonProps>`
   width: 130px;
-  //margin-left: 13px;
   height: 44px;
   padding: 0;
   background-color: ${(props) =>
