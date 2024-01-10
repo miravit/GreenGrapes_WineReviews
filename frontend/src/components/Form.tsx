@@ -168,12 +168,15 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
                 control={control}
                 render={({ field }) => (
                   <>
-                    <input {...field} type="text" className="grapeInput" />
-                    {errors.grape && (
-                      <p className="error">{errors.grape.message}</p>
-                    )}
+                    <div>
+                      <input {...field} type="text" className="grapeInput" />
+                      {errors.grape && (
+                        <p className="error-grape">{errors.grape.message}</p>
+                      )}
+                    </div>
                   </>
                 )}
+                rules={{ required: "Grape is required" }}
               />
               <div className="photdiv">
                 <PhotoUploader />

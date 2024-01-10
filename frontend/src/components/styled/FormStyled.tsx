@@ -7,7 +7,7 @@ export const FormStyled = styled.form`
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  //margin-top: 30px;
+  margin-top: 30px;
 
   input {
     width: 320px;
@@ -27,16 +27,14 @@ export const FormStyled = styled.form`
     justify-content: space-between;
 
     input {
-      width: 133px;
-    }
-    label {
-      padding-right: 3px;
+      width: 140px;
     }
 
     .percentage,
     .price {
       display: flex;
       flex-direction: column;
+      margin-right: 5px;
     }
   }
 
@@ -91,8 +89,9 @@ export const FormStyled = styled.form`
   }
 
   svg.photo-icon {
-    margin-inline-start: 20px;
-    padding-top: 5px;
+    //margin-inline-start: 0px;
+    padding-right: 3px;
+    padding-top: 15px;
     font-size: 50px;
     color: ${theme.buttonColor};
     text-align: center;

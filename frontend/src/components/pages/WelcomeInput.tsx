@@ -20,12 +20,21 @@ const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #84ba5a;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 70%;
-  //max-height: 80%;
   color: black;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  padding-top: 8px;
+  margin: 16px;
+  margin-top: 20px;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  background-color: #84ba5a;
+
+  p {
+    font-style: oblique;
+  }
 `;
 
 const Container = styled.div`
@@ -38,8 +47,15 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #84ba5a;
-    padding: 8px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 29px;
+    padding-top: 30px;
+    margin: 7px;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    background-color: #ffffff75;
   }
 
   .back-button {
@@ -53,17 +69,18 @@ const Container = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 10px;
 `;
 
 const Input = styled.input`
   display: flex;
   justify-content: center;
-  //margin-top: 20px;
-  margin-bottom: 10px;
-  width: 70%;
+  margin-bottom: 20px;
   height: 40px;
   border-radius: 5px;
+  border: none;
+  /* box-shadow: inset 0 0px 10px 2px #d8d3d3;
+  background: #fff; */
 `;
 interface NameModalProps {
   onClick: () => void;
@@ -88,7 +105,7 @@ export const WelcomeInput = ({ onClick }: NameModalProps) => {
     e.preventDefault();
 
     if (username.firstname === "") {
-      setShowErrorMsg("Please provide a name :)");
+      setShowErrorMsg("Please provide a name");
     }
 
     dispatch({
@@ -103,21 +120,21 @@ export const WelcomeInput = ({ onClick }: NameModalProps) => {
     <>
       <ModalOverlay>
         <ModalContent>
-          {showErrorMsg}
+          <p>{showErrorMsg}</p>
           <Container>
             <form onSubmit={handleSubmit}>
-              <label>Firstname:</label>
               <Input
                 type="text"
                 name="firstname"
+                placeholder="firstname"
                 value={username.firstname}
                 onChange={handleChange}
               />
 
-              <label>Lastname:</label>
               <Input
                 type="text"
                 name="lastname"
+                placeholder="lastname"
                 value={username.lastname}
                 onChange={handleChange}
               />

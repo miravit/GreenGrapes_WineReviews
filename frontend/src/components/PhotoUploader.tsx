@@ -4,13 +4,9 @@ import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
 import { ActionType } from "../reducers/ReviewsReducer";
 import styled from "styled-components";
 
-const PhotoHandler = styled.div`
-  .photo-icon {
-    margin-top: 11px;
-  }
-`;
+const PhotoHandler = styled.div``;
 const PhotoAdded = styled.p`
-  margin-left: -140px;
+  margin-left: -160px;
 `;
 
 export const PhotoUploader = () => {
