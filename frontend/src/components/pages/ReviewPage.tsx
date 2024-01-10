@@ -61,8 +61,6 @@ const LoadingContainer = styled.div`
 `;
 
 const CloseButton = styled.button`
-  //top: 10px;
-  //right: 10px;
   background: none;
   border: none;
   cursor: pointer;
@@ -195,7 +193,6 @@ export const ReviewPage = () => {
             <MdOutlineKeyboardBackspace className="back-arrow" />
             <p> Change Name</p>
           </BackContainer>
-          {/* <h2>{"Welcome " + createReview.review.firstname + "!"}</h2> */}
           <Form onNextButtonClick={handleNextButtonClick} />
         </>
       )}

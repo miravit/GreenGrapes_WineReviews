@@ -24,7 +24,6 @@ export const PhotoUploader = () => {
         },
       });
       setUploadedPhotoText("Photo Added ✔");
-      //setUploadedPhoto(file);
     }
   };
 
@@ -41,12 +40,6 @@ export const PhotoUploader = () => {
           onChange={(e) => handlePhoto(e)}
         />
       </label>
-      {/* <img
-          src={URL.createObjectURL(review.photo)}
-          alt={`Photo of the wine`}
-          style={{ width: "100px", height: "130px" }}
-        /> */}
-
       <PhotoAdded>{uploadedPhotoText}</PhotoAdded>
     </PhotoHandler>
   );

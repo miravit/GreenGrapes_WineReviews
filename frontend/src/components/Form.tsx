@@ -14,7 +14,8 @@ export const Form = ({ onNextButtonClick }: FormProps) => {
   const dispatch = useContext(ReviewDispatchContext);
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [ratingNumber, setRatingNumber] = useState(0);
-  // hanterar input
+
+  // handle input
   const {
     handleSubmit,
     control,

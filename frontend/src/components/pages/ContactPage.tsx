@@ -30,7 +30,6 @@ const Wrapper = styled.div`
   padding: 8px;
   padding-top: 8px;
   margin: 10px;
-  //margin-top: 20px;
   max-width: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
@@ -49,7 +48,6 @@ const AboutWrapper = styled.div`
   border-radius: 8px;
   padding: 16px;
   padding-top: 2px;
-  //margin: 7px;
   max-width: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
@@ -77,8 +75,6 @@ const Contact = styled.div`
   p {
     padding-left: 10px;
     margin: 0;
-    // color: ${theme.buttonColor};
-    //margin-top: -10px;
   }
 
   a {
@@ -155,7 +151,6 @@ export const ContactPage = () => {
               <strong> Your Digital Wine Cellar: </strong>
             </p>
             <span>
-              {" "}
               Forget about losing track of your favorite finds. Keep a digital
               cellar, and never forget the name of that fantastic orange you had
               last summer.
