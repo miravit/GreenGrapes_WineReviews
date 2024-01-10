@@ -18,6 +18,7 @@ const Header = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-bottom: -20px;
   }
   @media (min-width: 500px) and (max-width: 767px) {
     display: flex;

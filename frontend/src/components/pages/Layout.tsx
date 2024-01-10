@@ -16,7 +16,7 @@ const Header = styled.header`
   margin-top: -5px;
 
   @media (min-width: 768px) {
-    margin-left: 2%;
+    margin-left: 200px;
   }
 `;
 
@@ -36,8 +36,7 @@ export const Layout = () => {
     <Container>
       <Header>
         <Link to="/">
-          <Heading className="custom-font">Green</Heading>
-          <Heading className="custom-font">Grapes</Heading>
+          <Heading className="custom-font">Green Grapes</Heading>
         </Link>
         <Navbar></Navbar>
       </Header>

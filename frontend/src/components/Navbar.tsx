@@ -15,7 +15,6 @@ const Container = styled.div`
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: left;
-    margin-left: 148px;
   }
 `;
 

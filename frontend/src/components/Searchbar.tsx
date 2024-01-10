@@ -54,6 +54,7 @@ const Input = styled.input`
     height: 60px;
     border-radius: 7px;
     border: none;
+    margin-left: 5px;
   }
 `;
 
