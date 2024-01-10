@@ -181,6 +181,7 @@ export const ReviewPage = () => {
       {showNameModal && !showConfirmReview && (
         <>
           <WelcomeInput onClick={handleGoBack} />
+          <Form onNextButtonClick={handleNextButtonClick} />
         </>
       )}
       {errorMessage && (
