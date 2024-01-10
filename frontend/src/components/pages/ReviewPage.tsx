@@ -100,18 +100,10 @@ export const ReviewPage = () => {
     setShowNameModal(true);
   };
   const handleNextButtonClick = () => {
-    const { wineName, producer, percentage, price, rating, grape } =
-      createReview.review;
-
-    if (wineName && producer && percentage && price && rating && grape) {
-      setShowConfirmReview(true);
-      setShowForm(false);
-    } else {
-      // At least one required property is missing a value, do something else...
-      console.log("At least one required property is missing a value");
-      setShowConfirmReview(false);
-    }
+    setShowConfirmReview(true);
+    setShowForm(false);
   };
+
   const handleEditClick = () => {
     setShowForm(true);
     setShowConfirmReview(false);
@@ -165,6 +157,8 @@ export const ReviewPage = () => {
       );
     }
   };
+
+  console.log(createReview);
 
   const onLoadingClose = () => {
     setErrorMessage("");
