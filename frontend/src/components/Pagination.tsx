@@ -26,13 +26,18 @@ export const Pagination = ({
 }: PaginationProps) => {
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
+  const handlePageClick = (page: number) => {
+    onPageChange(page);
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
   return (
     <div>
       {pages.map((page) => (
         <Button
           key={page}
           active={page === currentPage}
-          onClick={() => onPageChange(page)}
+          onClick={() => handlePageClick(page)}
         >
           {page}
         </Button>
