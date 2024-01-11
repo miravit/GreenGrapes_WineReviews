@@ -9,22 +9,30 @@ const Container = styled.div`
   flex-direction: column;
   height: 100vh;
 `;
-
 const Header = styled.header`
   padding: 10px;
   padding-top: 0px;
   margin-top: -5px;
-`;
 
+  @media (min-width: 1024px) {
+    margin-left: 100px;
+  }
+`;
 const Main = styled.main`
-  /* flex: 1;
-  padding: 20px; */
+  max-width: 100vw;
 `;
-
 const Heading = styled.h1`
   font-size: 30pt;
   margin: 0;
   color: ${theme.headingColor};
+  @media (min-width: 768px) {
+    font-size: 40pt;
+    margin-left: 105px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 70pt;
+    margin: 0;
+  }
 `;
 
 export const Layout = () => {

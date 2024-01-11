@@ -41,7 +41,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  //margin-top: 80px;
 
   form {
     display: flex;
@@ -79,8 +78,6 @@ const Input = styled.input`
   height: 40px;
   border-radius: 5px;
   border: none;
-  /* box-shadow: inset 0 0px 10px 2px #d8d3d3;
-  background: #fff; */
 `;
 interface NameModalProps {
   onClick: () => void;

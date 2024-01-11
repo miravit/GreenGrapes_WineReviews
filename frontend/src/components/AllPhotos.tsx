@@ -10,23 +10,45 @@ interface AllPhotosProps {
 
 const Container = styled.div`
   display: flex;
-  //justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 6px;
-  margin-left: 8px;
+  justify-content: center;
+  //margin-left: 8px;
 
+  @media (min-width: 768px) {
+    margin-top: 20px;
+    gap: 5px;
+    justify-content: left;
+  }
+
+  @media (min-width: 1024px) {
+    margin-left: 110px;
+    margin-top: 40px;
+    gap: 42px;
+  }
   .photo-div {
     margin-bottom: -6px;
   }
 `;
 
 const Photos = styled.img`
-  width: 182px;
+  width: 175px;
   height: 175px;
   padding-top: 0px;
   border: 1px solid ${theme.buttonColor};
   cursor: pointer;
+
+  @media (min-width: 768px) {
+    width: 250px;
+    height: 250px;
+  }
+
+  &:hover {
+    @media (min-width: 768px) {
+      opacity: 0.2;
+    }
+  }
 `;
 
 export const AllPhotos = ({ reviews }: AllPhotosProps) => {

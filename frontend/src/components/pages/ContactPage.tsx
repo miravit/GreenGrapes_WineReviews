@@ -5,6 +5,8 @@ import {
   AboutWrapper,
   Contact,
   PhotoWrapper,
+  AboutWrapperTwo,
+  WrapperTwo,
 } from "../styled/ContactPageStyled";
 
 export const ContactPage = () => {
@@ -27,17 +29,20 @@ export const ContactPage = () => {
             </div>
           </Contact>
         </AboutWrapper>
+        <img
+          className="desktop-photo"
+          src="/src/assets/photos/photo1.jpg"
+          alt="photo of wine"
+        />
       </Wrapper>
-
       <PhotoWrapper>
         <img src="/src/assets/photos/photo1.jpg" alt="photo of wine" />
         <img src="/src/assets/photos/photo2.jpg" alt="photo of wine" />
         <img src="/src/assets/photos/photo5.jpg" alt="photo of wine" />
         <img src="/src/assets/photos/photo4.jpg" alt="photo of wine" />
       </PhotoWrapper>
-
-      <Wrapper>
-        <AboutWrapper>
+      <WrapperTwo>
+        <AboutWrapperTwo>
           <h3 className="custom-font">Why us?</h3>
           <ul>
             <p>
@@ -69,8 +74,8 @@ export const ContactPage = () => {
               last summer.
             </span>
           </ul>
-        </AboutWrapper>
-      </Wrapper>
+        </AboutWrapperTwo>
+      </WrapperTwo>
     </Container>
   );
 };

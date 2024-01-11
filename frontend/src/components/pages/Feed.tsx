@@ -13,16 +13,37 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const Header = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    justify-content: start;
+    margin-left: 110px;
+  }
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 6px;
+
+  @media (min-width: 768px) {
+    margin-left: 3%;
+  }
+  @media (min-width: 1024px) {
+    margin-left: 525px;
+  }
 `;
 
 const LoadingContainer = styled.div`
   margin-top: 40%;
   display: flex;
   justify-content: center;
+  @media (min-width: 768px) {
+    margin-top: 13%;
+  }
 `;
 
 // pagination logic from https://aalhommada.medium.com/make-pagination-with-reactjs-d052b3b92720
@@ -37,7 +58,10 @@ export const Feed = () => {
 
   // pages
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
+
+  const postsPerPage =
+    window.innerWidth < 768 ? 6 : window.innerWidth >= 1024 ? 12 : 9;
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
@@ -49,9 +73,6 @@ export const Feed = () => {
   const totalPages = searchInput
     ? Math.ceil(filteredData.length / postsPerPage)
     : Math.ceil(reviews.length / postsPerPage);
-
-  console.log(filteredData);
-  console.log(searchInput);
 
   useEffect(() => {
     if (reviews.length === 0) {
@@ -75,17 +96,19 @@ export const Feed = () => {
 
   return (
     <>
-      <Searchbar
-        setFilteredData={setFilteredData}
-        setSearchInput={setSearchInput}
-      />
-      <ButtonContainer>
-        <ViewButtons
-          onGalleryClick={handleGalleryClick}
-          onDetailedClick={handleDetailedClick}
-          selectedView={selectedView}
+      <Header>
+        <Searchbar
+          setFilteredData={setFilteredData}
+          setSearchInput={setSearchInput}
         />
-      </ButtonContainer>
+        <ButtonContainer>
+          <ViewButtons
+            onGalleryClick={handleGalleryClick}
+            onDetailedClick={handleDetailedClick}
+            selectedView={selectedView}
+          />
+        </ButtonContainer>
+      </Header>
       {loading && (
         <LoadingContainer>
           <LoadingSpinner />

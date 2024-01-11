@@ -124,8 +124,9 @@ export const ReviewModalStyled = styled.div`
     .close-icon {
       font-size: 25pt;
       margin-left: 240px;
+      @media (min-width: 768px) {
+        margin-left: 300px;
+      }
     }
-  }
-  @media screen and (min-width: 768px) {
   }
 `;

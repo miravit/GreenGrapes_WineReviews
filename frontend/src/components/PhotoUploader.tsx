@@ -7,6 +7,10 @@ import styled from "styled-components";
 const PhotoHandler = styled.div``;
 const PhotoAdded = styled.p`
   margin-left: -160px;
+
+  @media (min-width: 768px) {
+    margin-left: -200px;
+  }
 `;
 
 export const PhotoUploader = () => {

@@ -17,7 +17,10 @@ const Loading = styled.div`
   height: 80px;
   animation: rotate 1s linear infinite;
   margin: auto;
-  margin-top: 50px;
+  @media (min-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 export const LoadingSpinner = () => {

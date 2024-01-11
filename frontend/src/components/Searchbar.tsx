@@ -12,12 +12,26 @@ const Container = styled.div`
   justify-content: center;
   cursor: pointer;
 
+  @media (min-width: 1024px) {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
   .search {
     font-size: 30px;
     cursor: pointer;
-    margin-left: -34px;
+    margin-left: -40px;
     margin-bottom: -7px;
     color: ${theme.buttonColor};
+
+    @media (min-width: 500px) and (max-width: 767px) {
+      display: none;
+      color: ${theme.buttonColor};
+    }
+
+    @media (min-width: 768px) {
+      color: ${theme.buttonColor};
+    }
   }
 `;
 
@@ -26,6 +40,15 @@ const Input = styled.input`
   height: 40px;
   border-radius: 7px;
   border: none;
+
+  @media (min-width: 768px) {
+    width: 407px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 891px;
+    border-radius: 5px;
+  }
 `;
 
 interface SearchBarProps {

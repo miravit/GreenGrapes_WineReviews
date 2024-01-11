@@ -16,6 +16,10 @@ export const DetailedViewStyled = styled.div`
     transform: scale(1.05);
   }
 
+  @media (min-width: 768px) {
+    width: 300px;
+  }
+
   .winecard {
     border: 2px solid #ddd;
     border-radius: 8px;
@@ -29,6 +33,10 @@ export const DetailedViewStyled = styled.div`
 
     &:hover {
       transform: scale(1.01);
+    }
+
+    @media (min-width: 768px) {
+      height: 550px;
     }
 
     .wine-name-container {
@@ -82,17 +90,15 @@ export const DetailedViewStyled = styled.div`
         }
       }
     }
-    .name-container {
-      display: flex;
-      justify-content: end;
-
-      span {
-        color: #333;
-        font-size: 10pt;
-        font-style: oblique;
-      }
-    }
   }
-  @media screen and (min-width: 768px) {
+  .name-container {
+    display: flex;
+    justify-content: end;
+
+    span {
+      color: #333;
+      font-size: 10pt;
+      font-style: oblique;
+    }
   }
 `;
