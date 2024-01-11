@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: "https://green-grapes.vercel.app",
+    origin: "https://green-grapes-wine-reviews.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
