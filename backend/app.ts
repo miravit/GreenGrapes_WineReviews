@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://green-grapes-wineapp.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );

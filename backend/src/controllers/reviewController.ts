@@ -1,7 +1,6 @@
 const cloudinary = require("cloudinary").v2;
 import { RequestHandler } from "express";
 import { Review } from "../../../backend/src/models/Review";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -37,12 +36,8 @@ export const createReview: RequestHandler = async (req, res, next) => {
       comment,
     } = req.body;
 
-    //detta är för multer middleware
+    // multer middleware
     const photo = req.file?.path;
-
-    console.log("------- photo i path:  " + photo);
-
-    //console.log(req.file?.path);
 
     const newReview = await Review.create({
       firstname: firstname,
@@ -57,7 +52,8 @@ export const createReview: RequestHandler = async (req, res, next) => {
       grape: grape,
       comment: comment,
     });
-    //denna laddar upp bilden till Cloudfoundry.
+
+    // posts to cloudinary
     if (req.file) {
       const photoToCloudinary = await cloudinary.uploader.upload(req.file.path);
     }
