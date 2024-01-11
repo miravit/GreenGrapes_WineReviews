@@ -1,6 +1,6 @@
 const cloudinary = require("cloudinary").v2;
 import { RequestHandler } from "express";
-import { Review } from "../../../backend/src/models/Review";
+import { Review } from "../models/IReview";
 import dotenv from "dotenv";
 dotenv.config();
 
