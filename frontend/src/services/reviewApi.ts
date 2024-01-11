@@ -5,7 +5,7 @@ import { IReview } from "../models/IReview";
 
 export const getAllReviews = async () => {
   const response = await axios.get<IReview[]>(
-    "https://green-grapes-l2ar.onrender.com"
+    "http://localhost:4000/api/v1/review"
   );
 
   return response.data;
@@ -16,7 +16,7 @@ export const getAllReviews = async () => {
 export const createNewReview = async (review: FormData): Promise<IReview> => {
   console.log(review);
   const response = await axios.post<IReview>(
-    "https://green-grapes-l2ar.onrender.com",
+    "http://localhost:4000/api/v1/review",
     review
   );
   console.log(response.data);
