@@ -9,8 +9,13 @@ interface AllPhotosProps {
 const Div = styled.div`
   @media (min-width: 768px) {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     flex-wrap: wrap;
+    margin-left: 30px;
+  }
+  @media (min-width: 1024px) {
+    justify-content: left;
+    margin-left: 93px;
   }
 `;
 
@@ -53,9 +58,9 @@ export const DetailedView = ({ reviews }: AllPhotosProps) => {
                   <span className="dynamic-text">{review.foodPairing}</span>
                 </div>
               </div>
-              <div className="name-container">
-                <span>{review.firstname + " " + review.lastname}</span>
-              </div>
+            </div>
+            <div className="name-container">
+              <span>{review.firstname + " " + review.lastname}</span>
             </div>
           </DetailedViewStyled>
         ))}

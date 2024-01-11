@@ -23,6 +23,13 @@ export const FormStyled = styled.form`
   .formWrapper {
     display: flex;
     flex-direction: column;
+
+    @media (min-width: 768px) {
+      margin-top: 80px;
+    }
+    @media (min-width: 1024px) {
+      margin-top: 20px;
+    }
   }
 
   .small-input-container {
@@ -72,16 +79,6 @@ export const FormStyled = styled.form`
       margin-left: 80px;
     }
   }
-  svg:hover polygon {
-    stroke: ${theme.buttonColor};
-    fill: ${theme.buttonColor};
-    cursor: pointer;
-  }
-
-  svg polygon:hover ~ polygon {
-    stroke: #ffffff;
-    fill: #ffffff;
-  }
 
   .grape-photo-wrapper {
     display: flex;
@@ -112,6 +109,16 @@ export const FormStyled = styled.form`
     color: ${theme.buttonColor};
     text-align: center;
   }
+  svg:hover polygon {
+    stroke: ${theme.buttonColor};
+    fill: ${theme.buttonColor};
+    cursor: pointer;
+  }
+
+  svg polygon:hover ~ polygon {
+    stroke: #ffffff;
+    fill: #ffffff;
+  }
 
   .clickedstar {
     stroke: ${theme.buttonColor};
@@ -127,6 +134,9 @@ export const FormStyled = styled.form`
       margin-top: 14px;
       @media (min-width: 768px) {
         margin-top: 60px;
+      }
+      @media (min-width: 1024px) {
+        margin-top: 30px;
       }
     }
   }

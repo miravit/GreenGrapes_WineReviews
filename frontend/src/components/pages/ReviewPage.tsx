@@ -18,7 +18,10 @@ const BackContainer = styled.div`
   cursor: pointer;
 
   @media (min-width: 768px) {
-    margin-left: 290px;
+    margin-left: 12px;
+  }
+  @media (min-width: 1024px) {
+    margin-left: 107px;
   }
 
   .back-arrow {
@@ -59,9 +62,6 @@ const LoadingWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  @media (min-width: 768px) {
-  }
 `;
 
 const LoadingContainer = styled.div`
@@ -76,6 +76,11 @@ const LoadingContainer = styled.div`
   @media (min-width: 768px) {
     margin-top: 100px;
   }
+
+  @media (min-width: 1020px) {
+    width: 600px;
+    margin-top: 0px;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -87,6 +92,13 @@ const CloseButton = styled.button`
   .close-icon {
     font-size: 25pt;
     margin-left: 240px;
+
+    @media (min-width: 768px) {
+      margin-left: 500px;
+    }
+    @media (min-width: 1024px) {
+      margin-left: 570px;
+    }
   }
 `;
 

@@ -12,12 +12,9 @@ const Container = styled.div`
   justify-content: center;
   cursor: pointer;
 
-  @media (min-width: 500px) and (max-width: 767px) {
-  }
-
-  @media (min-width: 768px) {
-    // align-items: center;
+  @media (min-width: 1024px) {
     margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   .search {
@@ -29,11 +26,11 @@ const Container = styled.div`
 
     @media (min-width: 500px) and (max-width: 767px) {
       display: none;
-      color: ${theme.backroundColor};
+      color: ${theme.buttonColor};
     }
 
     @media (min-width: 768px) {
-      color: ${theme.backroundColor};
+      color: ${theme.buttonColor};
     }
   }
 `;
@@ -44,16 +41,13 @@ const Input = styled.input`
   border-radius: 7px;
   border: none;
 
-  /* @media (min-width: 500px) and (max-width: 767px) {
-    width: 270px;
-    margin-left: 10px;
-  } */
-
   @media (min-width: 768px) {
-    width: 600px;
-    height: 40px;
-    border-radius: 7px;
-    border: none;
+    width: 407px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 891px;
+    border-radius: 5px;
   }
 `;
 

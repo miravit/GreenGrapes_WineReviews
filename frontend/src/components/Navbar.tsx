@@ -14,6 +14,11 @@ const Container = styled.div`
 
   @media (min-width: 768px) {
     flex-direction: row;
+    justify-content: center;
+    margin-bottom: 6px;
+  }
+
+  @media (min-width: 1024px) {
     justify-content: left;
   }
 `;
@@ -25,19 +30,13 @@ const BaseButton = styled.button<ButtonProps>`
     isActive ? "2px solid #ddd" : theme.buttonColor};
   color: ${theme.buttonTextColor};
   width: 118px;
-  @media (min-width: 500px) and (max-width: 767px) {
-    width: 200px;
-  }
   @media (min-width: 768px) {
-    width: 200px;
-    height: 50px;
+    width: 290px;
+    height: 40px;
   }
 `;
 
 const HomeButton = styled(BaseButton)`
-  @media (min-width: 500px) and (max-width: 767px) {
-    margin-right: 5%;
-  }
   @media (min-width: 768px) {
     margin-right: 13px;
   }

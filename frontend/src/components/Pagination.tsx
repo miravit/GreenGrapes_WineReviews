@@ -12,7 +12,10 @@ const Button = styled.button<ButtonProps>`
   color: ${theme.buttonTextColor};
   border: ${(props) => (props.active ? `white 2px solid` : "")};
   @media (min-width: 768px) {
-    margin-top: 20px;
+    margin-top: 10px;
+  }
+  @media (min-width: 1028px) {
+    margin-top: 30px;
   }
 `;
 export interface PaginationProps {

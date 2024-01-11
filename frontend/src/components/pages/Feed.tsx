@@ -11,21 +11,19 @@ import LoadingSpinner from "../LoadingSpinner";
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  @media (min-width: 768px) {
-  }
 `;
 
 const Header = styled.div`
   @media (min-width: 768px) {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    //margin-bottom: -20px;
   }
-  @media (min-width: 500px) and (max-width: 767px) {
-    display: flex;
-    flex-direction: row;
+
+  @media (min-width: 1024px) {
     justify-content: start;
+    margin-left: 110px;
+    //width: 100vw;
+    //  margin-top: -55px;
   }
 `;
 
@@ -34,12 +32,15 @@ const ButtonContainer = styled.div`
   justify-content: center;
   margin-bottom: 6px;
 
-  @media (min-width: 500px) and (max-width: 767px) {
-    margin-left: 4%;
-  }
+  /* @media (min-width: 500px) and (max-width: 767px) {
+    margin-left: 0%;
+  } */
 
   @media (min-width: 768px) {
-    margin-left: 113px;
+    margin-left: 3%;
+  }
+  @media (min-width: 1024px) {
+    margin-left: 525px;
   }
 `;
 
@@ -48,7 +49,7 @@ const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
   @media (min-width: 768px) {
-    margin-top: 20%;
+    margin-top: 13%;
   }
 `;
 
@@ -64,7 +65,10 @@ export const Feed = () => {
 
   // pages
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = window.innerWidth >= 768 ? 10 : 6;
+
+  const postsPerPage =
+    window.innerWidth < 768 ? 6 : window.innerWidth >= 1024 ? 12 : 9;
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 

@@ -18,6 +18,8 @@ const Loading = styled.div`
   animation: rotate 1s linear infinite;
   margin: auto;
   @media (min-width: 768px) {
+    width: 100px;
+    height: 100px;
   }
 `;
 

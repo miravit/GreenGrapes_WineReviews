@@ -90,17 +90,15 @@ export const DetailedViewStyled = styled.div`
         }
       }
     }
-    .name-container {
-      display: flex;
-      justify-content: end;
-
-      span {
-        color: #333;
-        font-size: 10pt;
-        font-style: oblique;
-      }
-    }
   }
-  @media screen and (min-width: 768px) {
+  .name-container {
+    display: flex;
+    justify-content: end;
+
+    span {
+      color: #333;
+      font-size: 10pt;
+      font-style: oblique;
+    }
   }
 `;

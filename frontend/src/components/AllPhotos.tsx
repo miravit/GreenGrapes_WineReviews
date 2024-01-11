@@ -17,11 +17,16 @@ const Container = styled.div`
   //margin-left: 8px;
 
   @media (min-width: 768px) {
-    margin-left: 300px;
-    margin-right: 12%;
-    gap: 20px;
+    margin-top: 20px;
+    gap: 5px;
+    justify-content: left;
   }
 
+  @media (min-width: 1024px) {
+    margin-left: 110px;
+    margin-top: 40px;
+    gap: 42px;
+  }
   .photo-div {
     margin-bottom: -6px;
   }

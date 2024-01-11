@@ -8,9 +8,6 @@ interface ButtonProps {
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-
-  @media (min-width: 768px) {
-  }
 `;
 
 const BaseButton = styled.button<ButtonProps>`
@@ -26,16 +23,21 @@ const BaseButton = styled.button<ButtonProps>`
     width: 150px;
     height: 50px;
   }
+  @media (min-width: 1024px) {
+    margin-top: 20px;
+    width: 150px;
+    height: 40px;
+  }
 `;
 
 const GalleryButton = styled(BaseButton)`
   margin-left: 10px;
-`;
-
-const DetailedButton = styled(BaseButton)`
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
+    margin-left: 13px;
   }
 `;
+
+const DetailedButton = styled(BaseButton)``;
 
 interface ViewButtonsProps {
   onGalleryClick: () => void;

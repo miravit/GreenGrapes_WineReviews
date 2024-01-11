@@ -17,7 +17,12 @@ export const ConfirmReviewStyled = styled.div`
   }
 
   @media (min-width: 768px) {
+    margin-top: 90px;
     width: 600px;
+  }
+
+  @media (min-width: 1024px) {
+    margin-top: 60px;
   }
 
   .winecard {
