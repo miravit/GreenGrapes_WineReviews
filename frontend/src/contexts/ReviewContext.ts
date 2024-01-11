@@ -8,27 +8,6 @@ export interface IReviewContext {
   createReview: (reviewData: FormData) => Promise<IReview>;
 }
 
-export const ReviewContext = createContext<IReviewContext>({
-  currentReview: {
-    firstname: "",
-    lastname: "",
-    wineName: "",
-    photo: "",
-    producer: "",
-    percentage: "",
-    price: 0,
-    rating: 0,
-    foodPairing: "",
-    grape: "",
-    comment: "",
-  },
-
-  createReview: async (reviewData: FormData) => {
-    const result = await createNewReview(reviewData);
-    return result as IReview;
-  },
-});
-
 export const AllReviewsReducerContext = createContext<IAllReviewState>({
   reviews: [],
 });
