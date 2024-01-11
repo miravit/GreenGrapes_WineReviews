@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: "https://green-grapes-wineapp.onrender.com",
+    origin: "https://green-grapes.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
@@ -46,3 +46,5 @@ async function run() {
   }
 }
 run();
+
+module.exports = app;
