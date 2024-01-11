@@ -18,12 +18,9 @@ const Header = styled.div`
     display: flex;
     justify-content: center;
   }
-
   @media (min-width: 1024px) {
     justify-content: start;
     margin-left: 110px;
-    //width: 100vw;
-    //  margin-top: -55px;
   }
 `;
 
@@ -31,10 +28,6 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 6px;
-
-  /* @media (min-width: 500px) and (max-width: 767px) {
-    margin-left: 0%;
-  } */
 
   @media (min-width: 768px) {
     margin-left: 3%;

@@ -23,24 +23,20 @@ const BackContainer = styled.div`
   @media (min-width: 1024px) {
     margin-left: 107px;
   }
-
   .back-arrow {
     font-size: 35px;
     padding-right: 5px;
   }
-
   p {
     margin-top: 3px;
   }
 `;
-
 const Div = styled.div`
   @media (min-width: 768px) {
     display: flex;
     justify-content: center;
   }
 `;
-
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -55,7 +51,6 @@ const ButtonContainer = styled.div`
     width: 100px;
   }
 `;
-
 const LoadingWrapper = styled.div`
   height: 100%;
   display: flex;
@@ -63,7 +58,6 @@ const LoadingWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 const LoadingContainer = styled.div`
   padding: 10px;
   padding-top: 0px;
@@ -72,17 +66,14 @@ const LoadingContainer = styled.div`
   background-color: white;
   color: black;
   width: 70%;
-
   @media (min-width: 768px) {
     margin-top: 100px;
   }
-
   @media (min-width: 1020px) {
     width: 600px;
     margin-top: 0px;
   }
 `;
-
 const CloseButton = styled.button`
   background: none;
   border: none;
@@ -92,7 +83,6 @@ const CloseButton = styled.button`
   .close-icon {
     font-size: 25pt;
     margin-left: 240px;
-
     @media (min-width: 768px) {
       margin-left: 500px;
     }
@@ -101,7 +91,6 @@ const CloseButton = styled.button`
     }
   }
 `;
-
 export const ReviewPage = () => {
   const dispatch = useContext(ReviewDispatchContext);
   const createReview = useContext(ReviewReducerContext);

@@ -19,7 +19,6 @@ export const FormStyled = styled.form`
       width: 420px;
     }
   }
-
   .formWrapper {
     display: flex;
     flex-direction: column;
@@ -31,7 +30,6 @@ export const FormStyled = styled.form`
       margin-top: 20px;
     }
   }
-
   .small-input-container {
     display: flex;
     align-items: center;
@@ -44,7 +42,6 @@ export const FormStyled = styled.form`
         width: 200px;
       }
     }
-
     .percentage,
     .price {
       display: flex;
@@ -52,7 +49,6 @@ export const FormStyled = styled.form`
       margin-right: 5px;
     }
   }
-
   .rating {
     display: flex;
     align-items: center;
@@ -69,7 +65,6 @@ export const FormStyled = styled.form`
   svg polygon {
     transition: all 300ms ease;
   }
-
   .star {
     height: 50px;
     margin-left: 30px;
@@ -79,12 +74,10 @@ export const FormStyled = styled.form`
       margin-left: 80px;
     }
   }
-
   .grape-photo-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    // align-items: center;
     margin-top: -23px;
 
     input {
@@ -102,7 +95,6 @@ export const FormStyled = styled.form`
   }
 
   svg.photo-icon {
-    //margin-inline-start: 0px;
     padding-right: 3px;
     padding-top: 15px;
     font-size: 50px;
