@@ -1,45 +1,82 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import styled from "styled-components";
 import { IReview } from "../models/IReview";
+import { theme } from "../themes/theme";
+import { useState } from "react";
+import { ReviewModal } from "./ReviewModal";
 
-export const AllPhotos = () => {
-  const [data, setData] = useState<IReview[]>([]);
+interface AllPhotosProps {
+  reviews: IReview[];
+}
 
-  const getReviewData = async () => {
-    const res = await axios.get<IReview[]>(
-      "http://localhost:4000/api/v1/review"
-      // {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // }
-    );
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  //margin-left: 8px;
 
-    if (res.status == 200) {
-      setData(res.data);
-    } else {
-      alert("error");
+  @media (min-width: 768px) {
+    margin-top: 20px;
+    gap: 5px;
+    justify-content: left;
+  }
+
+  @media (min-width: 1024px) {
+    margin-left: 110px;
+    margin-top: 40px;
+    gap: 42px;
+  }
+  .photo-div {
+    margin-bottom: -6px;
+  }
+`;
+
+const Photos = styled.img`
+  width: 175px;
+  height: 175px;
+  padding-top: 0px;
+  border: 1px solid ${theme.buttonColor};
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    width: 250px;
+    height: 250px;
+  }
+
+  &:hover {
+    @media (min-width: 768px) {
+      opacity: 0.2;
     }
+  }
+`;
+
+export const AllPhotos = ({ reviews }: AllPhotosProps) => {
+  const [selectedReview, setSelectedReview] = useState<IReview | null>(null);
+
+  const handlePhotoClick = (review: IReview) => {
+    setSelectedReview(review);
   };
 
-  useEffect(() => {
-    getReviewData();
-  }, []);
-
+  const handleCloseModal = () => {
+    setSelectedReview(null);
+  };
   return (
     <>
-      <div>
-        {data.map((review, i) => (
-          <div key={i} style={{ margin: "10px" }}>
-            <img
+      <Container>
+        {reviews.map((review, i) => (
+          <div key={i} className="photo-div">
+            <Photos
               src={review.photo}
               alt={`Photo of the wine: ${review.wineName}`}
-              style={{ width: "250px", height: "250px" }}
+              onClick={() => handlePhotoClick(review)}
             />
-            <p>Firstname: {review.firstname}</p>
           </div>
         ))}
-      </div>
+      </Container>
+      {selectedReview && (
+        <ReviewModal review={selectedReview} onClose={handleCloseModal} />
+      )}
     </>
   );
 };

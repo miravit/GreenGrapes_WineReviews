@@ -9,26 +9,40 @@ export interface IAction {
 export enum ActionType {
   GETALLREVIEWS,
   CREATENEWREVIEW,
-  //FILTERED,
+  UPDATEREVIEW,
+}
+
+export interface IAllReviewState {
+  reviews: IReview[];
 }
 
 export interface IReviewState {
-  reviews: IReview[];
-  // filteredReviews: IReview[];
+  review: IReview;
+  createNewReview: (reviewData: FormData) => Promise<IReview>;
 }
 
-export const ReviewReducer = (
-  state: IReviewState,
+export const AllReviewReducer = (
+  state: IAllReviewState,
   action: IAction
-): IReviewState => {
+): IAllReviewState => {
   switch (action.type) {
     case ActionType.GETALLREVIEWS: {
       return {
         reviews: JSON.parse(action.payload),
-        // filteredReviews: JSON.parse(action.payload),
       };
     }
+    default:
+      break;
+  }
 
+  return state;
+};
+
+export const NewReviewReducer = (
+  state: IReviewState,
+  action: IAction
+): IReviewState => {
+  switch (action.type) {
     case ActionType.CREATENEWREVIEW: {
       const newReview: IReview = {
         firstname: action.payload.firstname,
@@ -44,7 +58,13 @@ export const ReviewReducer = (
         comment: action.payload.comment,
       };
 
-      return { ...state, reviews: [...state.reviews, newReview] };
+      return { ...state, review: newReview };
+    }
+
+    case ActionType.UPDATEREVIEW: {
+      const updatedFields: Partial<IReview> = action.payload;
+
+      return { ...state, review: { ...state.review, ...updatedFields } };
     }
 
     default:

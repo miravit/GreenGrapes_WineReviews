@@ -1,25 +1,40 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { MdOutlineAddAPhoto } from "react-icons/md";
+import { ReviewDispatchContext } from "../contexts/ReviewDispatchContext";
+import { ActionType } from "../reducers/ReviewsReducer";
+import styled from "styled-components";
 
-interface PhotoUploaderProps {
-  onPhotoChange: (photo: File) => void;
-}
-export const PhotoUploader = ({ onPhotoChange }: PhotoUploaderProps) => {
-  const [photoUploaded, setPhotoUploaded] = useState("");
+const PhotoHandler = styled.div``;
+const PhotoAdded = styled.p`
+  margin-left: -160px;
+
+  @media (min-width: 768px) {
+    margin-left: -200px;
+  }
+`;
+
+export const PhotoUploader = () => {
+  const dispatch = useContext(ReviewDispatchContext);
+  const [uploadedPhotoText, setUploadedPhotoText] = useState("");
 
   const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
     if (file) {
-      onPhotoChange(file);
-      setPhotoUploaded("Photo Successfully uploaded!");
+      dispatch({
+        type: ActionType.UPDATEREVIEW,
+        payload: {
+          photo: file,
+        },
+      });
+      setUploadedPhotoText("Photo Added ✔");
     }
   };
 
   return (
-    <>
+    <PhotoHandler>
       <label className="uploadButton" htmlFor="file_picker">
-        <MdOutlineAddAPhoto />
+        <MdOutlineAddAPhoto className="photo-icon" />
         <input
           hidden
           type="file"
@@ -29,8 +44,8 @@ export const PhotoUploader = ({ onPhotoChange }: PhotoUploaderProps) => {
           onChange={(e) => handlePhoto(e)}
         />
       </label>
-      <p>{photoUploaded}</p>
-    </>
+      <PhotoAdded>{uploadedPhotoText}</PhotoAdded>
+    </PhotoHandler>
   );
 };
 
